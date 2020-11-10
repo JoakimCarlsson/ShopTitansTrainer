@@ -8,8 +8,8 @@ namespace ShopTitansCheat.Components
 {
     class CraftingComponent : MonoBehaviour
     {
-        internal bool _doCraft = false;
-        internal static List<string> Items = new List<string>();
+        internal static bool Crafting = false;
+        internal static List<Equipment> Items = new List<Equipment>();
 
         private int _i = 0;
         private string _craftItem = "flood";
@@ -17,7 +17,7 @@ namespace ShopTitansCheat.Components
 
         private void Update()
         {
-            if (_doCraft)
+            if (Crafting)
             {
                 DoCraft();
             }
@@ -28,16 +28,16 @@ namespace ShopTitansCheat.Components
             if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
                 return;
 
-            if (Core.StartCraft(_craftItem))
+            if (Core.StartCraft(Items[0].Name))
             {
-                Equipment equipment = Core.PeekCraft(_craftItem)[0];
+                Equipment equipment = Core.PeekCraft(Items[0].Name)[0];
 
                 Game.UI.overlayMessage.PushMessage(
                     $"{equipment.Name}, {equipment.ItemQuality}, {equipment.Double}, {_i}");
 
-                if (equipment.ItemQuality >= ItemQuality.Legendary)
+                if (equipment.ItemQuality >= ItemQuality.Flawless)
                 {
-                    _doCraft = false;
+                    Crafting = false;
                 }
                 else
                 {

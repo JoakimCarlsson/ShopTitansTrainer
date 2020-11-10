@@ -11,12 +11,20 @@ namespace ShopTitansCheat
 {
     internal class Core
     {
-        public static List<string> GetAllItems()
+        public static List<Equipment> GetAllItems()
         {
-            List<string> strs = new List<string>();
-            foreach (GClass281 items in Game.User.observableDictionary_2.Values)
+            List<Equipment> strs = new List<Equipment>();
+            
+            if (Game.PlayState != null)
             {
-                strs.Add(items.string_0);
+                foreach (GClass281 item in Game.User.observableDictionary_2.Values)
+                {
+                    strs.Add(new Equipment
+                    {
+                        Name = item.string_0,
+                        FullName = Game.Texts.GetText(item.method_0()),
+                    });
+                }
             }
 
             return strs;
@@ -54,7 +62,7 @@ namespace ShopTitansCheat
                 if (item.string_0 != craftName)
                     continue;
 
-                equips.Add(new Equipment(Game.Texts.GetText(item.string_0), (ItemQuality)item.int_0, item.bool_0));
+                equips.Add(new Equipment(Game.Texts.GetText(item.string_0), (ItemQuality) item.int_0, item.bool_0));
             }
 
             return equips;
