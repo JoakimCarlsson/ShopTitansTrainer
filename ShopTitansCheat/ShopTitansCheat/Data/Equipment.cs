@@ -2,9 +2,9 @@
 {
     public class Equipment
     {
-        public Equipment(string name, ItemQuality itemQuality, bool @double)
+        public Equipment(string shortName, ItemQuality itemQuality, bool @double)
         {
-            Name = name;
+            ShortName = shortName;
             ItemQuality = itemQuality;
             Double = @double;
         }
@@ -16,13 +16,13 @@
 
         public bool Double { get; set; }
         public ItemQuality ItemQuality { get; set; }
-        public string Name { get; set; }
+        public string ShortName { get; set; }
         public string FullName { get; set; }
 
 
         public override string ToString()
         {
-            return $"Name: {Name}, Quality: {ItemQuality} Double: {Double},";
+            return $"Name: {FullName}, Quality: {ItemQuality} Double: {Double},";
         }
     }
 }

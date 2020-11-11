@@ -26,6 +26,8 @@ namespace ShopTitansCheat.Components
 
         private void Update()
         {
+            Console.WriteLine(Game.PlayState.CurrentViewState);
+
             if (Crafting)
             {
                 DoCraft();
@@ -37,9 +39,9 @@ namespace ShopTitansCheat.Components
             if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
                 return;
 
-            if (Core.StartCraft(Items[0].Name))
+            if (Core.StartCraft(Items[0].ShortName))
             {
-                Equipment equipment = Core.PeekCraft(Items[0].Name)[0];
+                Equipment equipment = Core.PeekCraft(Items[0].ShortName)[0];
 
                 Game.UI.overlayMessage.PushMessage($"{equipment}, {_i}");
 

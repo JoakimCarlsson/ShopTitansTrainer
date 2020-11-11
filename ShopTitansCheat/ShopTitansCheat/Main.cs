@@ -89,7 +89,7 @@ namespace ShopTitansCheat
                     GUILayout.Label("Crafting List");
                     foreach (Equipment item in Core.GetAllItems())
                     {
-                        if (GUILayout.Button(item.Name))
+                        if (GUILayout.Button(item.ShortName))
                         {
                             CraftingComponent.Items.Add(item);
                         }
@@ -101,7 +101,7 @@ namespace ShopTitansCheat
                     GUILayout.Label("Items To Craft");
                     foreach (Equipment item in CraftingComponent.Items)
                     {
-                        GUILayout.Button(item.Name);
+                        GUILayout.Button($"{item.FullName}, {CraftingComponent.itemQuality}");
                     }
                     break;
 

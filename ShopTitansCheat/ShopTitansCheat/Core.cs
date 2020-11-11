@@ -21,7 +21,7 @@ namespace ShopTitansCheat
                 {
                     strs.Add(new Equipment
                     {
-                        Name = item.string_0,
+                        ShortName = item.string_0,
                         FullName = Game.Texts.GetText(item.method_0()),
                     });
                 }
