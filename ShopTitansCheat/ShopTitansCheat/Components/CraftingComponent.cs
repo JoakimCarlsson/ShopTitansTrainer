@@ -38,11 +38,11 @@ namespace ShopTitansCheat.Components
 
         private void DoCraft()
         {
+            if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
+                return;
+
             foreach (Equipment item in Items)
             {
-                if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
-                    return;
-
                 if (item.Done)
                     continue;
 

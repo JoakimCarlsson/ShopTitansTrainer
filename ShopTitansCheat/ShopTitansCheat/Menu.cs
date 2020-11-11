@@ -17,7 +17,9 @@ namespace ShopTitansCheat
         private Rect _myCraftingListWindow;
         private Rect _qualityListWindow;
         private Rect _optionsListWindow;
+        private Rect _autoSellWindow;
 
+        private bool _autoSellVisualVisible;
         private bool _optionsListWindowVisualVisible;
         private bool _craftingVisualVisible;
         private bool _craftingListVisualVisible;
@@ -26,6 +28,7 @@ namespace ShopTitansCheat
 
         private CraftingComponent _craftingComponent;
         private MiscComponent _miscComponent;
+        private AutoSellComponent _autoSellComponent;
 
         private readonly string _watermark = "Hello, this is a test";
 
@@ -37,6 +40,9 @@ namespace ShopTitansCheat
             _myCraftingListWindow = new Rect(790f, 60f, 250f, 150f);
             _qualityListWindow = new Rect(1050f, 60f, 250f, 150f);
             _optionsListWindow = new Rect(1050f, 250f, 250f, 150f);
+            _autoSellWindow = new Rect(790f, 250f, 250f, 150f);
+
+            _autoSellComponent = Game.Instance.gameObject.AddComponent<AutoSellComponent>();
             _craftingComponent = Game.Instance.gameObject.AddComponent<CraftingComponent>();
             _miscComponent = Game.Instance.gameObject.AddComponent<MiscComponent>();
         }
@@ -65,6 +71,11 @@ namespace ShopTitansCheat
             if (_optionsListWindowVisualVisible)
             {
                 _optionsListWindow = GUILayout.Window(5, _optionsListWindow, RenderUi, "Random Options.");
+            }
+
+            if (_autoSellVisualVisible)
+            {
+                _autoSellWindow = GUILayout.Window(6, _autoSellWindow, RenderUi, "Random Options.");
             }
         }
 
@@ -95,15 +106,24 @@ namespace ShopTitansCheat
                 case 5:
                     RandomOptionsMenu();
                     break;
+
+                case 6:
+                    AutoSellMenu();
+                    break;
             }
 
             GUI.DragWindow();
         }
 
+        private void AutoSellMenu()
+        {
+            GUILayout.TextArea("Auto Sell");
+            _autoSellComponent.AutoSellToNpc = GUILayout.Toggle(_autoSellComponent.AutoSellToNpc, "Auto Sell");
+        }
+
         private void RandomOptionsMenu()
         {
             GUILayout.TextArea("Random Options");
-            _miscComponent.AutoSellToNpc = GUILayout.Toggle(_miscComponent.AutoSellToNpc, "Auto Sell");
             _miscComponent.AutoFinishCraft = GUILayout.Toggle(_miscComponent.AutoFinishCraft, "Finish Crafts");
             _miscComponent.RemoveWindowPopup = GUILayout.Toggle(_miscComponent.RemoveWindowPopup, "Remove Window pop up.");
 
@@ -199,6 +219,11 @@ namespace ShopTitansCheat
             if (GUILayout.Button("Options"))
             {
                 _optionsListWindowVisualVisible = !_optionsListWindowVisualVisible;
+            }
+
+            if (GUILayout.Button("Auto Sell Options"))
+            {
+                _autoSellVisualVisible = !_autoSellVisualVisible;
             }
         }
     }

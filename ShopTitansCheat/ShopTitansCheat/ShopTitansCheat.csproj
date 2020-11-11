@@ -56,6 +56,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\AutoSellComponent.cs" />
     <Compile Include="Components\CraftingComponent.cs" />
     <Compile Include="Components\MiscComponent.cs" />
     <Compile Include="Core.cs" />
