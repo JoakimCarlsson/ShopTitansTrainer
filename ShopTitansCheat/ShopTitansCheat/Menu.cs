@@ -16,7 +16,9 @@ namespace ShopTitansCheat
         private Rect _craftingListWindow;
         private Rect _myCraftingListWindow;
         private Rect _qualityListWindow;
+        private Rect _optionsListWindow;
 
+        private bool _optionsListWindowVisualVisible;
         private bool _craftingVisualVisible;
         private bool _craftingListVisualVisible;
         private bool _myCraftingListVisualVisible;
@@ -34,6 +36,7 @@ namespace ShopTitansCheat
             _craftingListWindow = new Rect(530f, 60f, 250f, 150f);
             _myCraftingListWindow = new Rect(790f, 60f, 250f, 150f);
             _qualityListWindow = new Rect(1050f, 60f, 250f, 150f);
+            _optionsListWindow = new Rect(1050f, 250f, 250f, 150f);
             _craftingComponent = Game.Instance.gameObject.AddComponent<CraftingComponent>();
             _miscComponent = Game.Instance.gameObject.AddComponent<MiscComponent>();
         }
@@ -57,6 +60,11 @@ namespace ShopTitansCheat
                 _craftingListWindow = GUILayout.Window(2, _craftingListWindow, RenderUi, "Crafting Window");
                 _myCraftingListWindow = GUILayout.Window(3, _myCraftingListWindow, RenderUi, "Crafting Window");
                 _qualityListWindow = GUILayout.Window(4, _qualityListWindow, RenderUi, "Quality Window");
+            }
+
+            if (_optionsListWindowVisualVisible)
+            {
+                _optionsListWindow = GUILayout.Window(5, _optionsListWindow, RenderUi, "Random Options.");
             }
         }
 
@@ -83,9 +91,21 @@ namespace ShopTitansCheat
                 case 4:
                     SelectQualityMenu();
                     break;
+
+                case 5:
+                    RandomOptionsMenu();
+                    break;
             }
 
             GUI.DragWindow();
+        }
+
+        private void RandomOptionsMenu()
+        {
+            GUILayout.TextArea("Random Options");
+            _miscComponent.AutoSellToNpc = GUILayout.Toggle(_miscComponent.AutoSellToNpc, "Auto Sell");
+            _miscComponent.AutoFinishCraft = GUILayout.Toggle(_miscComponent.AutoFinishCraft, "Finish Crafts");
+
         }
 
         private void SelectQualityMenu()
@@ -177,7 +197,7 @@ namespace ShopTitansCheat
 
             if (GUILayout.Button("Options"))
             {
-
+                _optionsListWindowVisualVisible = !_optionsListWindowVisualVisible;
             }
         }
     }
