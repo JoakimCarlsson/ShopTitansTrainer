@@ -15,10 +15,12 @@ namespace ShopTitansCheat
         private Rect _craftingWindow;
         private Rect _craftingListWindow;
         private Rect _myCraftingListWindow;
+        private Rect _qualityListWindow;
 
         private bool _craftingVisualVisible;
         private bool _craftingListVisualVisible;
         private bool _myCraftingListVisualVisible;
+        private bool _qualityListVisualVisible;
 
         private readonly string _watermark = "Hello, this is a test";
 
@@ -28,6 +30,7 @@ namespace ShopTitansCheat
             _craftingWindow = new Rect(270f, 60f, 250f, 150f);
             _craftingListWindow = new Rect(530f, 60f, 250f, 150f);
             _myCraftingListWindow = new Rect(790f, 60f, 250f, 150f);
+            _qualityListWindow = new Rect(1050f, 60f, 250f, 150f);
         }
 
         private void Update()
@@ -46,6 +49,7 @@ namespace ShopTitansCheat
                 _craftingWindow = GUILayout.Window(1, _craftingWindow, RenderUi, "Crafting Window");
                 _craftingListWindow = GUILayout.Window(2, _craftingListWindow, RenderUi, "Crafting Window");
                 _myCraftingListWindow = GUILayout.Window(3, _myCraftingListWindow, RenderUi, "Crafting Window");
+                _qualityListWindow = GUILayout.Window(4, _qualityListWindow, RenderUi, "Quality Window");
             }
         }
 
@@ -59,6 +63,7 @@ namespace ShopTitansCheat
                         _craftingVisualVisible = !_craftingVisualVisible;
                         _myCraftingListVisualVisible = !_myCraftingListVisualVisible;
                         _craftingListVisualVisible = !_craftingListVisualVisible;
+                        _qualityListVisualVisible = !_qualityListVisualVisible;
                     }
                     break;
 
@@ -82,7 +87,6 @@ namespace ShopTitansCheat
 
                 case 2:
                     GUILayout.Label("Crafting List");
-                    GUILayout.BeginScrollView(Vector2.down);
                     foreach (Equipment item in Core.GetAllItems())
                     {
                         if (GUILayout.Button(item.Name))
@@ -90,7 +94,6 @@ namespace ShopTitansCheat
                             CraftingComponent.Items.Add(item);
                         }
                     }
-                    GUILayout.EndScrollView();
 
 
                     break;
@@ -100,7 +103,17 @@ namespace ShopTitansCheat
                     {
                         GUILayout.Button(item.Name);
                     }
-                        
+                    break;
+
+                case 4:
+                    GUILayout.Label("Select Quality");
+                    foreach (ItemQuality itemQuality in CraftingComponent.itemQualities)
+                    {
+                        if (GUILayout.Button(itemQuality.ToString()))
+                        {
+                            CraftingComponent.itemQuality = itemQuality;
+                        }
+                    }
                     break;
             }
 

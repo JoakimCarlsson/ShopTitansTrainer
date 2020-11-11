@@ -10,6 +10,15 @@ namespace ShopTitansCheat.Components
     {
         internal static bool Crafting = false;
         internal static List<Equipment> Items = new List<Equipment>();
+        internal static ItemQuality itemQuality;
+
+        internal static List<ItemQuality> itemQualities = new List<ItemQuality>
+        {
+            ItemQuality.Uncommon,
+            ItemQuality.Flawless,
+            ItemQuality.Epic,
+            ItemQuality.Legendary
+        };
 
         private int _i = 0;
         private string _craftItem = "flood";
@@ -32,10 +41,9 @@ namespace ShopTitansCheat.Components
             {
                 Equipment equipment = Core.PeekCraft(Items[0].Name)[0];
 
-                Game.UI.overlayMessage.PushMessage(
-                    $"{equipment.Name}, {equipment.ItemQuality}, {equipment.Double}, {_i}");
+                Game.UI.overlayMessage.PushMessage($"{equipment}, {_i}");
 
-                if (equipment.ItemQuality >= ItemQuality.Flawless)
+                if (equipment.ItemQuality >= itemQuality)
                 {
                     Crafting = false;
                 }

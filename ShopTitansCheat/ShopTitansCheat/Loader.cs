@@ -9,7 +9,6 @@ namespace ShopTitansCheat
 {
     public class Loader : MonoBehaviour
     {
-
         public static void Load()
         {
             AllocConsoleHandler.Open();
