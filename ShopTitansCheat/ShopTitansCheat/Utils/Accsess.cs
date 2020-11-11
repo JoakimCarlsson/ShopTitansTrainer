@@ -7,10 +7,9 @@ namespace ShopTitansCheat.Utils
     {
         internal static T GetPrivateField<T>(this object obj, string name)
         {
-            BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
-            Type type = obj.GetType();
-            FieldInfo field = type.GetField(name, flags);
-            return (T)field.GetValue(obj);
+            var bindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+            var field = obj.GetType().GetField(name, bindingFlags);
+            return (T)field?.GetValue(obj);
         }
         internal static void SetPrivateField(this object obj, string name, object value)
         {

@@ -77,7 +77,14 @@ namespace ShopTitansCheat
                     GUILayout.BeginHorizontal();
                     if (GUILayout.Button("Start"))
                     {
-                         CraftingComponent.Crafting = true;
+                        if (CraftingComponent.Items.Count == 0)
+                        {
+                          Game.UI.overlayMessage.PushMessage($"Please add items..");
+                        }
+                        else
+                        {
+                             CraftingComponent.Crafting = true;
+                        }
                     }
 
                     if (GUILayout.Button("Stop"))
