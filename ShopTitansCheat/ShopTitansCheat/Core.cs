@@ -46,7 +46,9 @@ namespace ShopTitansCheat
                         {
                             "item",
                             items.string_0
-                        }});
+                        }
+
+                        });
                         Game.UI.overlayMessage.PushMessage(string.Format(Game.Texts.GetText("craft_started"),
                             Game.Texts.GetText(items.string_0)));
                         Game.User.action_0();
@@ -55,6 +57,29 @@ namespace ShopTitansCheat
 
                 }
             }
+
+            return false;
+        }
+
+        public static bool StoreFinishedItem(string craftName)
+        {
+            foreach (var item in Game.User.observableDictionary_16.Values.Reverse())
+            {
+                if (item.string_0 != craftName)
+                    continue;
+                if (true)
+                {
+                    Console.WriteLine(item.long_0);
+                    Game.SimManager.SendUserAction("CraftStore", new Dictionary<string, object>
+                    {
+                        {
+                            "craftId",
+                            item.long_0
+                        }
+                    });
+                }
+            }
+
 
             return false;
         }
