@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using Riposte;
@@ -36,29 +37,50 @@ namespace ShopTitansCheat.Components
 
         private void DoCraft()
         {
-            if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
-                return;
-
-            if (!Core.StartCraft(Items[0].ShortName))
+            foreach (Equipment item in Items)
             {
-                Game.UI.overlayMessage.PushMessage($"Not enough resources, please do something about that retard.");
-                Crafting = false;
-                return;
-            }
-            Equipment equipment = Core.PeekCraft(Items[0].ShortName)[0];
+                if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
+                    return;
 
-            Console.WriteLine($"{equipment.ToString()} tries: {_i++}");
+                if (item.Done)
+                    continue;
 
-            if (equipment.ItemQuality >= ItemQuality.Flawless)
-            {
-                Console.WriteLine("WE ARE IN HERE FOR SOME REASON");
-                Crafting = false;
-                Game.UI.overlayMessage.PushMessage($"crafted: {equipment}");
+                if (!Core.StartCraft(item.ShortName))
+                {
+                    Game.UI.overlayMessage.PushMessage($"Not enough resources, please do something about that retard.");
+                    Crafting = false;
+
+                    return;
+                }
+                Equipment equipment = Core.PeekCraft(item.ShortName)[0];
+
+                Console.WriteLine($"{equipment} tries: {_i++}");
+
+                if (equipment.ItemQuality >= ItemQuality.Flawless)
+                {
+                    _i = 0;
+                    item.Done = true;
+                    item.FullName = $"{item.FullName}, {item.Done}";
+                    Crafting = false;
+                    Game.UI.overlayMessage.PushMessage($"crafted: {equipment}");
+                    StartCoroutine(Wait());
+
+                    return;
+                }
+                else
+                {
+                    Game.Instance.Restart();
+                    return;
+                }
             }
-            else
-            {
-                Game.Instance.Restart();
-            }
+
+        }
+
+        private IEnumerator Wait()
+        {
+            yield return new WaitForSeconds(20);
+            Console.WriteLine("WE WAITED FOR 20 SECONDS");
+            Crafting = true;
         }
     }
 }

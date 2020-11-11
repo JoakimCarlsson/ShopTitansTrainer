@@ -35,7 +35,6 @@ namespace ShopTitansCheat
         {
             foreach (GClass281 items in Game.User.observableDictionary_2.Values)
             {
-                Console.WriteLine(items.string_0);
                 if (items.string_0 == itemName)
                 {
                     ItemData itemData = Game.Data.method_257(items.string_0);

@@ -18,6 +18,7 @@
         public ItemQuality ItemQuality { get; set; }
         public string ShortName { get; set; }
         public string FullName { get; set; }
+        public bool Done { get; set; }
 
 
         public override string ToString()

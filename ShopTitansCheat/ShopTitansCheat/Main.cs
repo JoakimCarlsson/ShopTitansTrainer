@@ -90,6 +90,10 @@ namespace ShopTitansCheat
                     if (GUILayout.Button("Stop"))
                     {
                         CraftingComponent.Crafting = false;
+                        foreach (Equipment equipment in CraftingComponent.Items)
+                        {
+                            equipment.Done = false;
+                        }
                     }
 
                     GUILayout.EndHorizontal();
@@ -101,7 +105,12 @@ namespace ShopTitansCheat
                     {
                         if (GUILayout.Button(item.FullName))
                         {
-                            CraftingComponent.Items.Add(item);
+                            CraftingComponent.Items.Add(new Equipment
+                            {
+                                FullName = item.FullName,
+                                ShortName = item.ShortName,
+                                Done = false,
+                            });
                         }
                     }
 
