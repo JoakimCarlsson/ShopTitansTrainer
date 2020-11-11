@@ -117,13 +117,18 @@ namespace ShopTitansCheat
 
         private void AutoSellMenu()
         {
-            GUILayout.TextArea("Auto Sell");
+            GUILayout.Label("Auto Sell");
             _autoSellComponent.AutoSellToNpc = GUILayout.Toggle(_autoSellComponent.AutoSellToNpc, "Auto Sell");
+            _autoSellComponent.SmallTalk = GUILayout.Toggle(_autoSellComponent.SmallTalk, "Small Talk");
+            _autoSellComponent.Refuse = GUILayout.Toggle(_autoSellComponent.Refuse, "Refuse Items");
+            _autoSellComponent.SurchargeDiscount = GUILayout.Toggle(_autoSellComponent.SurchargeDiscount, "Surcharge Or Discount");
+            _autoSellComponent.Suggest = GUILayout.Toggle(_autoSellComponent.Suggest, "Suggest");
+            _autoSellComponent.BuyFromNpc = GUILayout.Toggle(_autoSellComponent.BuyFromNpc, "Buy From NPC");
         }
 
         private void RandomOptionsMenu()
         {
-            GUILayout.TextArea("Random Options");
+            GUILayout.Label("Random Options");
             _miscComponent.AutoFinishCraft = GUILayout.Toggle(_miscComponent.AutoFinishCraft, "Finish Crafts");
             _miscComponent.RemoveWindowPopup = GUILayout.Toggle(_miscComponent.RemoveWindowPopup, "Remove Window pop up.");
 
