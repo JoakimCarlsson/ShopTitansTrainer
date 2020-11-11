@@ -105,6 +105,7 @@ namespace ShopTitansCheat
             GUILayout.TextArea("Random Options");
             _miscComponent.AutoSellToNpc = GUILayout.Toggle(_miscComponent.AutoSellToNpc, "Auto Sell");
             _miscComponent.AutoFinishCraft = GUILayout.Toggle(_miscComponent.AutoFinishCraft, "Finish Crafts");
+            _miscComponent.RemoveWindowPopup = GUILayout.Toggle(_miscComponent.RemoveWindowPopup, "Remove Window pop up.");
 
         }
 
