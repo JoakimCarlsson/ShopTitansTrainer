@@ -22,7 +22,7 @@
 
         public override string ToString()
         {
-            return $"Name: {FullName}, Quality: {ItemQuality} Double: {Double},";
+            return $"Name: {ShortName}, Quality: {ItemQuality}, Double: {Double},";
         }
     }
 }

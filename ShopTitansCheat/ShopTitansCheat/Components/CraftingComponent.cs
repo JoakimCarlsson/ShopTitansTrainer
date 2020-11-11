@@ -36,14 +36,14 @@ namespace ShopTitansCheat.Components
 
         private void DoCraft()
         {
-            if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
+            if (Game.PlayState == null)
                 return;
 
             if (Core.StartCraft(Items[0].ShortName))
             {
                 Equipment equipment = Core.PeekCraft(Items[0].ShortName)[0];
 
-                Game.UI.overlayMessage.PushMessage($"{equipment}, {_i}");
+                Game.UI.overlayMessage.PushMessage($"{equipment} {_i}");
 
                 if (equipment.ItemQuality >= itemQuality)
                 {

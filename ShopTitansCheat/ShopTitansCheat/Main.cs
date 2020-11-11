@@ -41,8 +41,10 @@ namespace ShopTitansCheat
 
         private void OnGUI()
         {
-            if (_visible)
-                _mainWindow = GUILayout.Window(0, _mainWindow, RenderUi, _watermark);
+            if (!_visible)
+                return;
+            
+            _mainWindow = GUILayout.Window(0, _mainWindow, RenderUi, _watermark);
 
             if (_craftingVisualVisible)
             {
@@ -89,19 +91,21 @@ namespace ShopTitansCheat
                     GUILayout.Label("Crafting List");
                     foreach (Equipment item in Core.GetAllItems())
                     {
-                        if (GUILayout.Button(item.ShortName))
+                        if (GUILayout.Button(item.FullName))
                         {
                             CraftingComponent.Items.Add(item);
                         }
                     }
-
 
                     break;
                 case 3:
                     GUILayout.Label("Items To Craft");
                     foreach (Equipment item in CraftingComponent.Items)
                     {
-                        GUILayout.Button($"{item.FullName}, {CraftingComponent.itemQuality}");
+                        if (GUILayout.Button($"{item.FullName}, {CraftingComponent.itemQuality}"))
+                        {
+                            CraftingComponent.Items.Remove(item);
+                        }
                     }
                     break;
 
@@ -114,6 +118,7 @@ namespace ShopTitansCheat
                             CraftingComponent.itemQuality = itemQuality;
                         }
                     }
+
                     break;
             }
 
