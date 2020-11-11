@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Riposte;
 using ShopTitansCheat.Data;
@@ -44,14 +45,12 @@ namespace ShopTitansCheat.Components
 
                 if (item.Done)
                     continue;
-                else
-                    item.FullName = item.FullName;
 
                 if (!Core.StartCraft(item.ShortName))
                 {
                     Game.UI.overlayMessage.PushMessage($"Not enough resources, please do something about that retard.");
                     Crafting = false;
-
+                    Wait(5);
                     return;
                 }
                 Equipment equipment = Core.PeekCraft(item.ShortName)[0];
@@ -65,7 +64,15 @@ namespace ShopTitansCheat.Components
                     item.FullName = $"{item.FullName}, {item.Done}";
                     Crafting = false;
                     Game.UI.overlayMessage.PushMessage($"crafted: {equipment}");
-                    StartCoroutine(Wait());
+
+
+                    StartCoroutine(Wait(20));
+
+                    if (Items.All(i => i.Done))
+                    {
+                        Console.WriteLine("We are done\n Stopping.");
+                        Crafting = false;
+                    }
 
                     return;
                 }
@@ -78,10 +85,10 @@ namespace ShopTitansCheat.Components
 
         }
 
-        private IEnumerator Wait()
+        private IEnumerator Wait(int seconds)
         {
-            yield return new WaitForSeconds(20);
-            Console.WriteLine("WE WAITED FOR 20 SECONDS");
+            yield return new WaitForSeconds(seconds);
+            Console.WriteLine($"We waited {seconds} seconds.");
             Crafting = true;
         }
     }
