@@ -13,6 +13,8 @@ namespace ShopTitansCheat.Components
     {
         internal bool AutoFinishCraft;
         internal bool RemoveWindowPopup;
+        internal bool UseEnergy;
+        internal float UseEnergyAmount;
 
         private void Update()
         {
@@ -32,7 +34,11 @@ namespace ShopTitansCheat.Components
         {
             foreach (GClass301 gclass3 in Game.User.observableDictionary_16.Values.ToList(false))
             {
-                if (GClass167.smethod_0(gclass3).imethod_0())
+                if (UseEnergy && Game.User.method_38() > UseEnergyAmount)
+                {
+                    SpeedCraft();
+                }
+                else if (GClass167.smethod_0(gclass3).imethod_0())
                 {
                     Game.SimManager.SendUserAction("CraftStore", new Dictionary<string, object>
                     {
@@ -43,6 +49,47 @@ namespace ShopTitansCheat.Components
                     });
                 }
             }
+        }
+
+        private void SpeedCraft()
+        {
+            foreach (GClass301 craft in Game.User.observableDictionary_16.Values.ToList(false))
+            {
+                if (!craft.imethod_3())
+                {
+                    craft.imethod_6();
+                    Dictionary<string, object> dictionary = new Dictionary<string, object>
+                {
+                    {
+                        "type",
+                        1
+                    },
+                    {
+                        "id",
+                        craft.long_0
+                    }
+                };
+                    if (GClass238.smethod_0(Game.SimManager.CurrentContext, dictionary, null).imethod_0())
+                    {
+                        Game.SimManager.SendUserAction("SpeedUpTimer", dictionary);
+                    }
+                    else
+                    {
+                        Game.UI.overlayMessage.PushMessage(Game.Texts.GetText("not_enough_energy", null), OverlayMessageControl.MessageType.Error, null, UI.SpriteCategory.Icon);
+                    }
+                }
+                else
+                {
+                    Game.SimManager.SendUserAction("CraftStore", new Dictionary<string, object>
+                    {
+                        {
+                            "craftId",
+                            craft.long_0
+                        }
+                    });
+                }
+            }
+
         }
     }
 }

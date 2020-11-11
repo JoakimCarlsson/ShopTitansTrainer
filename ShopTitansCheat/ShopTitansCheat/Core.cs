@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,7 @@ using Riposte;
 using Riposte.Sim;
 using ShopTitansCheat.Data;
 using ShopTitansCheat.Utils;
+using UnityEngine;
 
 namespace ShopTitansCheat
 {
@@ -43,10 +45,10 @@ namespace ShopTitansCheat
                     {
                         Game.SimManager.SendUserAction("CraftItem", new Dictionary<string, object>
                         {
-                        {
-                            "item",
-                            items.string_0
-                        }
+                            {
+                                "item",
+                                items.string_0
+                            }
 
                         });
                         Game.UI.overlayMessage.PushMessage(string.Format(Game.Texts.GetText("craft_started"),
@@ -92,10 +94,15 @@ namespace ShopTitansCheat
                 if (item.string_0 != craftName)
                     continue;
 
-                equips.Add(new Equipment(Game.Texts.GetText(item.string_0), (ItemQuality)item.int_0, item.bool_0));
+                equips.Add(new Equipment(Game.Texts.GetText(item.string_0), (ItemQuality) item.int_0, item.bool_0));
             }
 
             return equips;
+        }
+
+        public static IEnumerator Wait(int seconds)
+        {
+            yield return new WaitForSeconds(seconds);
         }
     }
 }

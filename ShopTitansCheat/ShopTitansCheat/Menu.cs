@@ -130,8 +130,12 @@ namespace ShopTitansCheat
         {
             GUILayout.Label("Random Options");
             _miscComponent.AutoFinishCraft = GUILayout.Toggle(_miscComponent.AutoFinishCraft, "Finish Crafts");
-            _miscComponent.RemoveWindowPopup = GUILayout.Toggle(_miscComponent.RemoveWindowPopup, "Remove Window pop up.");
 
+            _miscComponent.UseEnergy = GUILayout.Toggle(_miscComponent.UseEnergy, $"Use Energy Over {(int)_miscComponent.UseEnergyAmount}");
+            if (_miscComponent.UseEnergy)
+               _miscComponent.UseEnergyAmount = GUILayout.HorizontalSlider(_miscComponent.UseEnergyAmount, 0, Game.User.method_39());
+
+            _miscComponent.RemoveWindowPopup = GUILayout.Toggle(_miscComponent.RemoveWindowPopup, "Remove Window pop up.");
         }
 
         private void SelectQualityMenu()
