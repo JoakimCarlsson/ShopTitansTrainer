@@ -1,3 +1,7 @@
+C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.CrashReportingModule.dll
+C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.IMGUIModule.xml
+C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.TerrainModule.xml
+C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.TilemapModule.xml
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\ShopTitansCheat.dll
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\ShopTitansCheat.pdb
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\Assembly-CSharp.dll
@@ -39,7 +43,6 @@ C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.StyleSheetsModule.dll
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.AssetBundleModule.dll
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.AudioModule.dll
-C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.CrashReportingModule.dll
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.GameCenterModule.dll
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.GridModule.dll
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.InputModule.dll
@@ -61,7 +64,6 @@ C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\Opencoding.LogHistory.dll
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.xml
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.CoreModule.xml
-C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.IMGUIModule.xml
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.PhysicsModule.xml
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.AnimationModule.xml
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.UnityWebRequestModule.xml
@@ -100,8 +102,6 @@ C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.SharedInternalsModule.xml
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.SpriteMaskModule.xml
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.SpriteShapeModule.xml
-C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.TerrainModule.xml
-C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.TilemapModule.xml
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.UnityWebRequestAudioModule.xml
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.UnityWebRequestTextureModule.xml
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Debug\UnityEngine.VideoModule.xml
@@ -110,3 +110,4 @@ C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Debug\ShopTitansCheat.csproj.CopyComplete
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Debug\ShopTitansCheat.dll
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Debug\ShopTitansCheat.pdb
+C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Debug\ShopTitansCheat.csprojAssemblyReference.cache

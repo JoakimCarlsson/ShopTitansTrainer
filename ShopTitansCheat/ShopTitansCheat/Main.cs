@@ -31,6 +31,8 @@ namespace ShopTitansCheat
             _craftingListWindow = new Rect(530f, 60f, 250f, 150f);
             _myCraftingListWindow = new Rect(790f, 60f, 250f, 150f);
             _qualityListWindow = new Rect(1050f, 60f, 250f, 150f);
+            Game.Instance.gameObject.AddComponent<CraftingComponent>();
+
         }
 
         private void Update()
@@ -75,7 +77,6 @@ namespace ShopTitansCheat
                     GUILayout.BeginHorizontal();
                     if (GUILayout.Button("Start"))
                     {
-                         Game.Instance.gameObject.AddComponent<CraftingComponent>();
                          CraftingComponent.Crafting = true;
                     }
 

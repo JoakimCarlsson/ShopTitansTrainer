@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Riposte;
 using ShopTitansCheat.Data;
+using ShopTitansCheat.Utils;
 using UnityEngine;
 
 namespace ShopTitansCheat.Components
@@ -26,8 +28,6 @@ namespace ShopTitansCheat.Components
 
         private void Update()
         {
-            Console.WriteLine(Game.PlayState.CurrentViewState);
-
             if (Crafting)
             {
                 DoCraft();
@@ -36,24 +36,28 @@ namespace ShopTitansCheat.Components
 
         private void DoCraft()
         {
-            if (Game.PlayState == null)
+            if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
                 return;
 
-            if (Core.StartCraft(Items[0].ShortName))
+            if (!Core.StartCraft(Items[0].ShortName))
             {
-                Equipment equipment = Core.PeekCraft(Items[0].ShortName)[0];
+                Game.UI.overlayMessage.PushMessage($"Not enough resources, please do something about that retard.");
+                Crafting = false;
+                return;
+            }
+            Equipment equipment = Core.PeekCraft(Items[0].ShortName)[0];
 
-                Game.UI.overlayMessage.PushMessage($"{equipment} {_i}");
+            Console.WriteLine($"{equipment.ToString()} tries: {_i++}");
 
-                if (equipment.ItemQuality >= itemQuality)
-                {
-                    Crafting = false;
-                }
-                else
-                {
-                    _i++;
-                    Game.Instance.Restart();
-                }
+            if (equipment.ItemQuality >= ItemQuality.Flawless)
+            {
+                Console.WriteLine("WE ARE IN HERE FOR SOME REASON");
+                Crafting = false;
+                Game.UI.overlayMessage.PushMessage($"crafted: {equipment}");
+            }
+            else
+            {
+                Game.Instance.Restart();
             }
         }
     }
