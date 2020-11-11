@@ -90,6 +90,7 @@ namespace ShopTitansCheat
                     if (GUILayout.Button("Stop"))
                     {
                         CraftingComponent.Crafting = false;
+
                         foreach (Equipment equipment in CraftingComponent.Items)
                         {
                             equipment.Done = false;
@@ -119,7 +120,7 @@ namespace ShopTitansCheat
                     GUILayout.Label("Items To Craft");
                     foreach (Equipment item in CraftingComponent.Items)
                     {
-                        if (GUILayout.Button($"{item.FullName}, {CraftingComponent.itemQuality}"))
+                        if (GUILayout.Button($"{item.FullName}, {item.ItemQuality}"))
                         {
                             CraftingComponent.Items.Remove(item);
                         }
@@ -132,7 +133,7 @@ namespace ShopTitansCheat
                     {
                         if (GUILayout.Button(itemQuality.ToString()))
                         {
-                            CraftingComponent.itemQuality = itemQuality;
+                            CraftingComponent.Items.Last().ItemQuality = itemQuality;
                         }
                     }
 

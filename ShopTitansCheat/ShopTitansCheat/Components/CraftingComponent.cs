@@ -44,6 +44,8 @@ namespace ShopTitansCheat.Components
 
                 if (item.Done)
                     continue;
+                else
+                    item.FullName = item.FullName;
 
                 if (!Core.StartCraft(item.ShortName))
                 {
@@ -56,7 +58,7 @@ namespace ShopTitansCheat.Components
 
                 Console.WriteLine($"{equipment} tries: {_i++}");
 
-                if (equipment.ItemQuality >= ItemQuality.Flawless)
+                if (equipment.ItemQuality >= item.ItemQuality)
                 {
                     _i = 0;
                     item.Done = true;
