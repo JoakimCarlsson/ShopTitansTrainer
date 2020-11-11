@@ -12,11 +12,11 @@ namespace ShopTitansCheat.Components
 {
     class CraftingComponent : MonoBehaviour
     {
-        internal static bool Crafting = false;
-        internal static List<Equipment> Items = new List<Equipment>();
-        internal static ItemQuality itemQuality;
+        internal bool Crafting = false;
+        internal List<Equipment> Items = new List<Equipment>();
+        internal ItemQuality itemQuality;
 
-        internal static List<ItemQuality> itemQualities = new List<ItemQuality>
+        internal List<ItemQuality> itemQualities = new List<ItemQuality>
         {
             ItemQuality.Uncommon,
             ItemQuality.Flawless,
@@ -50,7 +50,6 @@ namespace ShopTitansCheat.Components
                 {
                     Game.UI.overlayMessage.PushMessage($"Not enough resources, please do something about that retard.");
                     Crafting = false;
-                    Wait(5);
                     return;
                 }
                 Equipment equipment = Core.PeekCraft(item.ShortName)[0];
