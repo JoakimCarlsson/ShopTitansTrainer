@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
 using Riposte;
 using ShopTitansCheat.Components;
 using ShopTitansCheat.Data;
@@ -209,8 +211,36 @@ namespace ShopTitansCheat
                     equipment.Done = false;
                 }
             }
-
             GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("Save configuration"))
+            {
+                if (_craftingComponent.Items.Count == 0)
+                {
+                    Game.UI.overlayMessage.PushMessage("No Items Too Save !");
+                }
+                else
+                {
+                    File.WriteAllText("equip.json", JsonConvert.SerializeObject(_craftingComponent.Items));
+                    Game.UI.overlayMessage.PushMessage("Saved Sucesfully!");
+                }
+            }
+
+
+            if (GUILayout.Button("Load configuration"))
+            {
+                string text;
+
+                using (StreamReader streamReader = new StreamReader("equip.json"))
+                {
+                    text = streamReader.ReadToEnd();
+                }
+                var deserializeObject = JsonConvert.DeserializeObject<List<Equipment>>(text);
+                _craftingComponent.Items = deserializeObject;
+            }
+            GUILayout.EndHorizontal();
+
         }
 
         private void MainMenu()
