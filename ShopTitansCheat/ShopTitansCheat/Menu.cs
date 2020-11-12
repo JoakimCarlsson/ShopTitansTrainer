@@ -32,6 +32,7 @@ namespace ShopTitansCheat
         private CraftingComponent _craftingComponent;
         private MiscComponent _miscComponent;
         private AutoSellComponent _autoSellComponent;
+
         private string _searchText = "";
 
         private readonly string _watermark = "Hello, this is a test";
@@ -92,7 +93,7 @@ namespace ShopTitansCheat
                     break;
 
                 case 1:
-                    MainCraftingMenu();
+                    CraftingMenu();
                     break;
 
                 case 2:
@@ -148,7 +149,7 @@ namespace ShopTitansCheat
         private void SelectQualityMenu()
         {
             GUILayout.Label("Select Quality");
-            foreach (ItemQuality itemQuality in _craftingComponent.itemQualities)
+            foreach (ItemQuality itemQuality in _craftingComponent.ItemQualities)
             {
                 if (GUILayout.Button(itemQuality.ToString()))
                 {
@@ -192,9 +193,9 @@ namespace ShopTitansCheat
             }
         }
 
-        private void MainCraftingMenu()
+        private void CraftingMenu()
         {
-            GUILayout.Label("Test Crafting");
+            GUILayout.Label("Crafting");
 
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Start"))
@@ -205,68 +206,74 @@ namespace ShopTitansCheat
                 }
                 else
                 {
-                    Log.PrintConsoleMessage("Starting.", ConsoleColor.Green);
-                    _craftingComponent.Crafting = true;
+                    if (_craftingComponent.RegularCrafting)
+                    {
+                        _craftingComponent.StartRegularCraft(0.8f);
+                        Log.PrintConsoleMessage("Starting.", ConsoleColor.Green);
+                    }
+                    else
+                    {
+                        Log.PrintConsoleMessage("Starting.", ConsoleColor.Green);
+                        _craftingComponent.Crafting = true;
+                    }
                 }
             }
 
             if (GUILayout.Button("Stop"))
             {
-                _craftingComponent.Crafting = false;
-                Log.PrintConsoleMessage("Stopping.", ConsoleColor.Red);
-
-                foreach (Equipment equipment in _craftingComponent.Items)
+                if (_craftingComponent.RegularCrafting)
                 {
-                    equipment.Done = false;
-                    if (equipment.FullName.Contains(" True"))
-                        equipment.FullName.Replace(" True", "");
-                }
-            }
-            GUILayout.EndHorizontal();
-            GUILayout.BeginHorizontal();
-
-            if (GUILayout.Button("Save configuration"))
-            {
-                if (_craftingComponent.Items.Count == 0)
-                {
-                    Log.PrintMessageInGame("No Items Too Save !", OverlayMessageControl.MessageType.Error);
+                    _craftingComponent.StopRegularCraft();
+                    Log.PrintConsoleMessage("Stopping.", ConsoleColor.Red);
                 }
                 else
                 {
-                    File.WriteAllText("equip.json", JsonConvert.SerializeObject(_craftingComponent.Items));
-                    Log.PrintMessageInGame("Saved Sucesfully!", OverlayMessageControl.MessageType.Neutral);
+                    _craftingComponent.Crafting = false;
+                    Log.PrintConsoleMessage("Stopping.", ConsoleColor.Red);
                 }
-            }
 
-
-            if (GUILayout.Button("Load configuration"))
-            {
-                string text;
-
-                using (StreamReader streamReader = new StreamReader("equip.json"))
+                foreach (Equipment equipment in _craftingComponent.Items)
                 {
-                    text = streamReader.ReadToEnd();
+                    equipment.FullName = equipment.FullName.Replace(", True", "");
+                    equipment.Done = false;
                 }
-                var deserializeObject = JsonConvert.DeserializeObject<List<Equipment>>(text);
-                _craftingComponent.Items = deserializeObject;
             }
             GUILayout.EndHorizontal();
 
+
+            GUILayout.Label("Glitch Craft");
+            GUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("Save configuration"))
+                Config.SaveCraftingList(_craftingComponent, "equip");
+
+            if (GUILayout.Button("Load configuration"))
+                Config.LoadCraftingList(_craftingComponent, "equip");
+
+            GUILayout.EndHorizontal();
+
+            GUILayout.Label("Regular Craft");
+            GUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("Save configuration"))
+                Config.SaveCraftingList(_craftingComponent, "regular");
+
+            if (GUILayout.Button("Load configuration"))
+                Config.LoadCraftingList(_craftingComponent, "regular");
+
+            GUILayout.EndHorizontal();
+
+            _craftingComponent.RegularCrafting = GUILayout.Toggle(_craftingComponent.RegularCrafting, "Regular craft.");
         }
 
         private void MainMenu()
         {
-            if (GUILayout.Button("Glitch Crafting"))
+            if (GUILayout.Button("Crafting"))
             {
                 _craftingVisualVisible = !_craftingVisualVisible;
                 _myCraftingListVisualVisible = !_myCraftingListVisualVisible;
                 _craftingListVisualVisible = !_craftingListVisualVisible;
                 _qualityListVisualVisible = !_qualityListVisualVisible;
-            }
-
-            if (GUILayout.Button("Regular Bot"))
-            {
-
             }
 
             if (GUILayout.Button("Options"))

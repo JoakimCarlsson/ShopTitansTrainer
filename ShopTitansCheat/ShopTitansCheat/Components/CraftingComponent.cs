@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using Riposte;
 using ShopTitansCheat.Data;
 using ShopTitansCheat.Utils;
@@ -12,11 +11,11 @@ namespace ShopTitansCheat.Components
 {
     class CraftingComponent : MonoBehaviour
     {
-        internal bool Crafting = false;
+        internal bool Crafting;
+        internal bool RegularCrafting;
         internal List<Equipment> Items = new List<Equipment>();
-        internal ItemQuality itemQuality;
 
-        internal List<ItemQuality> itemQualities = new List<ItemQuality>
+        internal List<ItemQuality> ItemQualities = new List<ItemQuality>
         {
             ItemQuality.Uncommon,
             ItemQuality.Flawless,
@@ -25,21 +24,63 @@ namespace ShopTitansCheat.Components
         };
 
         private int _i = 1;
-
-
         private void Update()
-        {
-            if (Crafting)
-            {
-                DoCraft();
-            }
-        }
-
-        private void DoCraft()
         {
             if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
                 return;
 
+            if (Crafting)
+            {
+                if (!RegularCrafting)
+                    GlitchCraft();
+            }
+        }
+
+
+        internal void StartRegularCraft(float i)
+        {
+            InvokeRepeating(nameof(Craft), 0, i);
+        }
+
+        internal void StopRegularCraft()
+        {
+            CancelInvoke(nameof(Craft));
+        }
+
+        private void Craft()
+        {
+            foreach (Equipment item in Items)
+            {
+                if (item.Done)
+                    continue;
+
+                if (!Core.StartCraft(item.ShortName))
+                {
+                    Log.PrintConsoleMessage($"Not enough for {item.FullName}, continuing", ConsoleColor.Red);
+                    return;
+                }
+
+                Log.PrintConsoleMessage($"Sucesfully crafted {item.FullName}, {item.ItemQuality}", ConsoleColor.Green);
+                item.Done = true;
+                item.FullName = $"{item.FullName}, {item.Done}";
+
+                if (Items.All(i => i.Done))
+                {
+                    Log.PrintConsoleMessage($"Crafted everything in list. \tRestarting.", ConsoleColor.Green);
+
+                    foreach (Equipment equipment in Items)
+                    {
+                        equipment.FullName = equipment.FullName.Replace(", True", "");
+                        equipment.Done = false;
+                    }
+
+                    return;
+                }
+            }
+        }
+
+        private void GlitchCraft()
+        {
             foreach (Equipment item in Items)
             {
                 if (item.Done)
@@ -55,7 +96,6 @@ namespace ShopTitansCheat.Components
                 }
                 Equipment equipment = Core.PeekCraft(item.ShortName)[0];
 
-
                 if (equipment.ItemQuality >= item.ItemQuality)
                 {
                     Log.PrintConsoleMessage($"{equipment}, Tries: {_i}", ConsoleColor.Green);
@@ -65,29 +105,25 @@ namespace ShopTitansCheat.Components
                     item.FullName = $"{item.FullName}, {item.Done}";
                     Crafting = false;
 
-                    StartCoroutine(Wait(20));
+                    StartCoroutine(WaitThenStart(20));
 
                     if (Items.All(i => i.Done))
                     {
                         Log.PrintConsoleMessage("We are done\n Stopping.", ConsoleColor.Green);
-                        if (equipment.FullName.Contains("True"))
-                            equipment.FullName.Replace(" True", "");
                         Crafting = false;
                     }
 
                     return;
                 }
-                else
-                {
-                    Log.PrintConsoleMessage($"{equipment}, Tries: {_i++}", ConsoleColor.Yellow);
-                    Game.Instance.Restart();
-                    return;
-                }
+
+                Log.PrintConsoleMessage($"{equipment}, Tries: {_i++}", ConsoleColor.Yellow);
+                Game.Instance.Restart();
+                return;
             }
 
         }
 
-        private IEnumerator Wait(int seconds)
+        private IEnumerator WaitThenStart(int seconds)
         {
             yield return new WaitForSeconds(seconds);
             Log.PrintConsoleMessage($"We waited {seconds} seconds.", ConsoleColor.Green);
