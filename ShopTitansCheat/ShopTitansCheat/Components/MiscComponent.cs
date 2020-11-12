@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Riposte;
 using Riposte.Sim;
+using ShopTitansCheat.Utils;
 using UnityEngine;
 
 namespace ShopTitansCheat.Components
@@ -43,7 +44,7 @@ namespace ShopTitansCheat.Components
                 ItemData data = Game.Data.method_257(gclass2.string_0);
                 if (data.Value < 200000)
                 {
-                    Console.WriteLine($"{data.Name}, {data.Value}");
+                    //Console.WriteLine($"{data.Name}, {data.Value}");
                     continue;
                 }
                 Core.StartCraft(gclass2.string_0);
@@ -96,7 +97,7 @@ namespace ShopTitansCheat.Components
                     }
                     else
                     {
-                        Log.PrintMessage(Game.Texts.GetText("not_enough_energy", null), OverlayMessageControl.MessageType.Error);
+                        Log.PrintMessageInGame(Game.Texts.GetText("not_enough_energy", null), OverlayMessageControl.MessageType.Error);
                     }
                 }
                 else

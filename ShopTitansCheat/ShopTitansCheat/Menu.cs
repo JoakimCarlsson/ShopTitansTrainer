@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Riposte;
 using ShopTitansCheat.Components;
 using ShopTitansCheat.Data;
+using ShopTitansCheat.Utils;
 using UnityEngine;
 
 namespace ShopTitansCheat
@@ -194,7 +195,7 @@ namespace ShopTitansCheat
             {
                 if (_craftingComponent.Items.Count == 0)
                 {
-                    Log.PrintMessage($"Please add items..", OverlayMessageControl.MessageType.Error);
+                    Log.PrintMessageInGame($"Please add items..", OverlayMessageControl.MessageType.Error);
                 }
                 else
                 {
@@ -218,12 +219,12 @@ namespace ShopTitansCheat
             {
                 if (_craftingComponent.Items.Count == 0)
                 {
-                    Log.PrintMessage("No Items Too Save !", OverlayMessageControl.MessageType.Error);
+                    Log.PrintMessageInGame("No Items Too Save !", OverlayMessageControl.MessageType.Error);
                 }
                 else
                 {
                     File.WriteAllText("equip.json", JsonConvert.SerializeObject(_craftingComponent.Items));
-                    Log.PrintMessage("Saved Sucesfully!", OverlayMessageControl.MessageType.Neutral);
+                    Log.PrintMessageInGame("Saved Sucesfully!", OverlayMessageControl.MessageType.Neutral);
                 }
             }
 

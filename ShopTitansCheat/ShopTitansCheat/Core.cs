@@ -51,7 +51,7 @@ namespace ShopTitansCheat
                             }
 
                         });
-                        Log.PrintMessage(string.Format(Game.Texts.GetText("craft_started"), Game.Texts.GetText(items.string_0)), OverlayMessageControl.MessageType.Neutral);
+                        Log.PrintMessageInGame(string.Format(Game.Texts.GetText("craft_started"), Game.Texts.GetText(items.string_0)), OverlayMessageControl.MessageType.Neutral);
                         Game.User.action_0();
                         return true;
                     }

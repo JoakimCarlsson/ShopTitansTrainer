@@ -24,8 +24,7 @@ namespace ShopTitansCheat.Components
             ItemQuality.Legendary
         };
 
-        private int _i = 0;
-        private string _craftItem = "flood";
+        private int _i = 1;
 
 
         private void Update()
@@ -48,13 +47,13 @@ namespace ShopTitansCheat.Components
 
                 if (!Core.StartCraft(item.ShortName))
                 {
-                    Log.PrintMessage("Not enough resources, please do something about that retard.", OverlayMessageControl.MessageType.Error);
+                    Log.PrintMessageInGame("Not enough resources, please do something about that retard.", OverlayMessageControl.MessageType.Error);
                     Crafting = false;
                     return;
                 }
                 Equipment equipment = Core.PeekCraft(item.ShortName)[0];
 
-                Console.WriteLine($"{equipment} tries: {_i++}");
+                Log.PrintConsoleMessage($"{equipment}, Tries: {_i}", ConsoleColor.Yellow);
 
                 if (equipment.ItemQuality >= item.ItemQuality)
                 {
@@ -62,14 +61,13 @@ namespace ShopTitansCheat.Components
                     item.Done = true;
                     item.FullName = $"{item.FullName}, {item.Done}";
                     Crafting = false;
-                    Log.PrintMessage($"crafted: {equipment}", OverlayMessageControl.MessageType.Neutral);
-
+                    Log.PrintMessageInGame($"crafted: {equipment}", OverlayMessageControl.MessageType.Neutral);
 
                     StartCoroutine(Wait(20));
 
                     if (Items.All(i => i.Done))
                     {
-                        Console.WriteLine("We are done\n Stopping.");
+                        Log.PrintConsoleMessage("We are done\n Stopping.", ConsoleColor.Green);
                         Crafting = false;
                     }
 
@@ -87,7 +85,7 @@ namespace ShopTitansCheat.Components
         private IEnumerator Wait(int seconds)
         {
             yield return new WaitForSeconds(seconds);
-            Console.WriteLine($"We waited {seconds} seconds.");
+            Log.PrintConsoleMessage($"We waited {seconds} seconds.", ConsoleColor.Green);
             Crafting = true;
         }
     }

@@ -17,7 +17,9 @@ namespace ShopTitansCheat.Utils
         {
             AllocConsole();
             Console.SetOut(new StreamWriter(Console.OpenStandardOutput()) { AutoFlush = true });
-            Application.logMessageReceivedThreaded += (condition, stackTrace, type) => Console.WriteLine(condition + " " + stackTrace);
+
+            //If we want too see errors from unity;
+            //Application.logMessageReceivedThreaded += (condition, stackTrace, type) => Console.WriteLine(condition + " " + stackTrace);
         }
 
         public static void ClearAllocConsole()
