@@ -39,9 +39,9 @@ namespace ShopTitansCheat
             {
                 if (items.string_0 == itemName)
                 {
-                    ItemData itemData = Game.Data.method_257(items.string_0);
-                    GClass166.GClass350 test = GClass166.smethod_0(Game.SimManager.CurrentContext, itemData.Uid);
-                    if (test.imethod_0() && !test.method_0())
+                    //TODO MAKE SURE THIS WORKS.
+
+                    if (GClass166.smethod_0(Game.User.vmethod_0(), items.string_0).imethod_0())
                     {
                         Game.SimManager.SendUserAction("CraftItem", new Dictionary<string, object>
                         {
@@ -56,7 +56,6 @@ namespace ShopTitansCheat
                         Game.User.action_0();
                         return true;
                     }
-
                 }
             }
 

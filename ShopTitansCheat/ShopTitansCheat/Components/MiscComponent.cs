@@ -15,19 +15,40 @@ namespace ShopTitansCheat.Components
         internal bool RemoveWindowPopup;
         internal bool UseEnergy;
         internal float UseEnergyAmount;
+        internal bool CraftRandomStuff;
 
         private void Update()
         {
             if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
                 return;
 
+            //TODO data.EnergySpeedUp
             if (AutoFinishCraft)
                 FinishCraft();
 
             if (RemoveWindowPopup)
                 Game.UI.RemoveAllWindows(WindowsManager.MenuLayer.Popup);
+
+            if (CraftRandomStuff)
+                Craft();
         }
 
+        private void Craft()
+        {
+            List<GClass281> list = Game.User.observableDictionary_2.Values.ToList(false);
+            list.Shuffle();
+
+            foreach (GClass281 gclass2 in list)
+            {
+                ItemData data = Game.Data.method_257(gclass2.string_0);
+                if (data.Value < 200000)
+                {
+                    Console.WriteLine($"{data.Name}, {data.Value}");
+                    continue;
+                }
+                Core.StartCraft(gclass2.string_0);
+            }
+        }
 
 
         private void FinishCraft()
