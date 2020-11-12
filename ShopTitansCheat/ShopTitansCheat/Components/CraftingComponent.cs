@@ -48,7 +48,9 @@ namespace ShopTitansCheat.Components
                 if (!Core.StartCraft(item.ShortName))
                 {
                     Log.PrintMessageInGame("Not enough resources, please do something about that retard.", OverlayMessageControl.MessageType.Error);
+                    Log.PrintConsoleMessage("Not enough resources, please do something about that retard.", ConsoleColor.Red);
                     Crafting = false;
+                    Log.PrintConsoleMessage("Stopping.", ConsoleColor.Red);
                     return;
                 }
                 Equipment equipment = Core.PeekCraft(item.ShortName)[0];
@@ -56,7 +58,7 @@ namespace ShopTitansCheat.Components
 
                 if (equipment.ItemQuality >= item.ItemQuality)
                 {
-                    Log.PrintConsoleMessage($"{equipment}, Tries: {_i++}", ConsoleColor.Green);
+                    Log.PrintConsoleMessage($"{equipment}, Tries: {_i}", ConsoleColor.Green);
 
                     _i = 0;
                     item.Done = true;
@@ -68,6 +70,8 @@ namespace ShopTitansCheat.Components
                     if (Items.All(i => i.Done))
                     {
                         Log.PrintConsoleMessage("We are done\n Stopping.", ConsoleColor.Green);
+                        if (equipment.FullName.Contains("True"))
+                            equipment.FullName.Replace(" True", "");
                         Crafting = false;
                     }
 
@@ -75,7 +79,7 @@ namespace ShopTitansCheat.Components
                 }
                 else
                 {
-                    Log.PrintConsoleMessage($"{equipment}, Tries: {_i}", ConsoleColor.Yellow);
+                    Log.PrintConsoleMessage($"{equipment}, Tries: {_i++}", ConsoleColor.Yellow);
                     Game.Instance.Restart();
                     return;
                 }

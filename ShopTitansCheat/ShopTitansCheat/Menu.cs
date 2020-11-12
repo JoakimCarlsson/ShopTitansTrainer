@@ -32,6 +32,7 @@ namespace ShopTitansCheat
         private CraftingComponent _craftingComponent;
         private MiscComponent _miscComponent;
         private AutoSellComponent _autoSellComponent;
+        private string _searchText = "";
 
         private readonly string _watermark = "Hello, this is a test";
 
@@ -171,9 +172,14 @@ namespace ShopTitansCheat
         private void CraftingListMenu()
         {
             GUILayout.Label("Crafting List");
+            _searchText = GUILayout.TextField(_searchText, 15, "textfield");
 
             foreach (Equipment item in Core.GetAllItems())
             {
+                if (!string.IsNullOrEmpty(_searchText))
+                    if (!item.FullName.Contains(_searchText))
+                        continue;
+
                 if (GUILayout.Button(item.FullName))
                 {
                     _craftingComponent.Items.Add(new Equipment
@@ -199,6 +205,7 @@ namespace ShopTitansCheat
                 }
                 else
                 {
+                    Log.PrintConsoleMessage("Starting.", ConsoleColor.Green);
                     _craftingComponent.Crafting = true;
                 }
             }
@@ -206,10 +213,13 @@ namespace ShopTitansCheat
             if (GUILayout.Button("Stop"))
             {
                 _craftingComponent.Crafting = false;
+                Log.PrintConsoleMessage("Stopping.", ConsoleColor.Red);
 
                 foreach (Equipment equipment in _craftingComponent.Items)
                 {
                     equipment.Done = false;
+                    if (equipment.FullName.Contains(" True"))
+                        equipment.FullName.Replace(" True", "");
                 }
             }
             GUILayout.EndHorizontal();
