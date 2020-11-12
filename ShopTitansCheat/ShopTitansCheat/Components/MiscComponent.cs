@@ -96,7 +96,7 @@ namespace ShopTitansCheat.Components
                     }
                     else
                     {
-                        Game.UI.overlayMessage.PushMessage(Game.Texts.GetText("not_enough_energy", null), OverlayMessageControl.MessageType.Error, null, UI.SpriteCategory.Icon);
+                        Log.PrintMessage(Game.Texts.GetText("not_enough_energy", null), OverlayMessageControl.MessageType.Error);
                     }
                 }
                 else

@@ -48,7 +48,7 @@ namespace ShopTitansCheat.Components
 
                 if (!Core.StartCraft(item.ShortName))
                 {
-                    Game.UI.overlayMessage.PushMessage($"Not enough resources, please do something about that retard.");
+                    Log.PrintMessage("Not enough resources, please do something about that retard.", OverlayMessageControl.MessageType.Error);
                     Crafting = false;
                     return;
                 }
@@ -62,7 +62,7 @@ namespace ShopTitansCheat.Components
                     item.Done = true;
                     item.FullName = $"{item.FullName}, {item.Done}";
                     Crafting = false;
-                    Game.UI.overlayMessage.PushMessage($"crafted: {equipment}");
+                    Log.PrintMessage($"crafted: {equipment}", OverlayMessageControl.MessageType.Neutral);
 
 
                     StartCoroutine(Wait(20));

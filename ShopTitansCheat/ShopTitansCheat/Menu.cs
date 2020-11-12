@@ -194,7 +194,7 @@ namespace ShopTitansCheat
             {
                 if (_craftingComponent.Items.Count == 0)
                 {
-                    Game.UI.overlayMessage.PushMessage($"Please add items..");
+                    Log.PrintMessage($"Please add items..", OverlayMessageControl.MessageType.Error);
                 }
                 else
                 {
@@ -218,12 +218,12 @@ namespace ShopTitansCheat
             {
                 if (_craftingComponent.Items.Count == 0)
                 {
-                    Game.UI.overlayMessage.PushMessage("No Items Too Save !");
+                    Log.PrintMessage("No Items Too Save !", OverlayMessageControl.MessageType.Error);
                 }
                 else
                 {
                     File.WriteAllText("equip.json", JsonConvert.SerializeObject(_craftingComponent.Items));
-                    Game.UI.overlayMessage.PushMessage("Saved Sucesfully!");
+                    Log.PrintMessage("Saved Sucesfully!", OverlayMessageControl.MessageType.Neutral);
                 }
             }
 
