@@ -53,15 +53,15 @@ namespace ShopTitansCheat.Components
                 }
                 Equipment equipment = Core.PeekCraft(item.ShortName)[0];
 
-                Log.PrintConsoleMessage($"{equipment}, Tries: {_i}", ConsoleColor.Yellow);
 
                 if (equipment.ItemQuality >= item.ItemQuality)
                 {
+                    Log.PrintConsoleMessage($"{equipment}, Tries: {_i++}", ConsoleColor.Green);
+
                     _i = 0;
                     item.Done = true;
                     item.FullName = $"{item.FullName}, {item.Done}";
                     Crafting = false;
-                    Log.PrintMessageInGame($"crafted: {equipment}", OverlayMessageControl.MessageType.Neutral);
 
                     StartCoroutine(Wait(20));
 
@@ -75,6 +75,7 @@ namespace ShopTitansCheat.Components
                 }
                 else
                 {
+                    Log.PrintConsoleMessage($"{equipment}, Tries: {_i}", ConsoleColor.Yellow);
                     Game.Instance.Restart();
                     return;
                 }

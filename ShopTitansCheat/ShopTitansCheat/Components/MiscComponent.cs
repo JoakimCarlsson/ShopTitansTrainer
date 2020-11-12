@@ -43,10 +43,7 @@ namespace ShopTitansCheat.Components
             {
                 ItemData data = Game.Data.method_257(gclass2.string_0);
                 if (data.Value < 200000)
-                {
-                    //Console.WriteLine($"{data.Name}, {data.Value}");
                     continue;
-                }
                 Core.StartCraft(gclass2.string_0);
             }
         }

@@ -69,12 +69,11 @@ namespace ShopTitansCheat
                     continue;
                 if (true)
                 {
-                    Console.WriteLine(item.long_0);
                     Game.SimManager.SendUserAction("CraftStore", new Dictionary<string, object>
                     {
                         {
                             "craftId",
-                            item.long_0
+                            craftName
                         }
                     });
                 }

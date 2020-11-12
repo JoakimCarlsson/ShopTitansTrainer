@@ -14,7 +14,7 @@ namespace ShopTitansCheat.Utils
         {
             Console.BackgroundColor = backgroundColor;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine(message);
+            Console.WriteLine($"{DateTime.Now:T} {message}");
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
         }
