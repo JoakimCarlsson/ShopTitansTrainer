@@ -24,22 +24,21 @@ namespace ShopTitansCheat.Components
         };
 
         private int _i = 1;
-        private void Update()
-        {
-            if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
-                return;
 
-            if (Crafting)
-            {
-                if (!RegularCrafting)
-                    GlitchCraft();
-            }
+        private void Start()
+        {
+            //InvokeRepeating(nameof(Test), 0, 1);
         }
 
-
-        internal void StartRegularCraft(float i)
+        private void Test()
         {
-            InvokeRepeating(nameof(Craft), 0, i);
+            Resources.UnloadUnusedAssets();
+            GC.Collect();
+        }
+
+        internal void StartRegularCraft(float repeatRate)
+        {
+            InvokeRepeating(nameof(Craft), 0, repeatRate);
         }
 
         internal void StopRegularCraft()
@@ -47,8 +46,22 @@ namespace ShopTitansCheat.Components
             CancelInvoke(nameof(Craft));
         }
 
+        internal void StartGlitchCraft(float repeatRate)
+        {
+            Crafting = true;
+            InvokeRepeating(nameof(GlitchCraft), 0, repeatRate);
+        }
+
+        internal void StopGlitchCraft()
+        {
+            CancelInvoke(nameof(GlitchCraft));
+        }
+
         private void Craft()
         {
+            if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
+                return;
+
             foreach (Equipment item in Items)
             {
                 if (item.Done)
@@ -81,6 +94,9 @@ namespace ShopTitansCheat.Components
 
         private void GlitchCraft()
         {
+            if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState" || !Crafting)
+                return;
+
             foreach (Equipment item in Items)
             {
                 if (item.Done)
@@ -91,7 +107,8 @@ namespace ShopTitansCheat.Components
                     Log.PrintMessageInGame("Not enough resources, please do something about that retard.", OverlayMessageControl.MessageType.Error);
                     Log.PrintConsoleMessage("Not enough resources, please do something about that retard.", ConsoleColor.Red);
                     Crafting = false;
-                    Log.PrintConsoleMessage("Stopping.", ConsoleColor.Red);
+                    Log.PrintConsoleMessage("Waiting 20 secounds then trying again.", ConsoleColor.Red);
+                    StartCoroutine(WaitThenStart(20));
                     return;
                 }
                 Equipment equipment = Core.PeekCraft(item.ShortName)[0];
@@ -104,29 +121,29 @@ namespace ShopTitansCheat.Components
                     item.Done = true;
                     item.FullName = $"{item.FullName}, {item.Done}";
                     Crafting = false;
-
                     StartCoroutine(WaitThenStart(20));
 
                     if (Items.All(i => i.Done))
                     {
                         Log.PrintConsoleMessage("We are done\n Stopping.", ConsoleColor.Green);
                         Crafting = false;
+                        CancelInvoke(nameof(GlitchCraft));
                     }
 
                     return;
                 }
-
+                Resources.UnloadUnusedAssets();
+                GC.Collect();
                 Log.PrintConsoleMessage($"{equipment}, Tries: {_i++}", ConsoleColor.Yellow);
                 Game.Instance.Restart();
                 return;
             }
-
         }
 
         private IEnumerator WaitThenStart(int seconds)
         {
+            Log.PrintConsoleMessage($"Waiting {seconds} seconds.", ConsoleColor.Green);
             yield return new WaitForSeconds(seconds);
-            Log.PrintConsoleMessage($"We waited {seconds} seconds.", ConsoleColor.Green);
             Crafting = true;
         }
     }
