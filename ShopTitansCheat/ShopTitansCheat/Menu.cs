@@ -35,7 +35,7 @@ namespace ShopTitansCheat
 
         private string _searchText = "";
 
-        private readonly string _watermark = "Shop titans bot 0.12b";
+        private readonly string _watermark = "Hello, this is a test";
 
         private void Start()
         {
@@ -56,14 +56,13 @@ namespace ShopTitansCheat
         {
             if (Input.GetKeyDown(KeyCode.Insert))
                 _visible = !_visible;
-
         }
 
         private void OnGUI()
         {
             if (!_visible)
                 return;
-
+            
             _mainWindow = GUILayout.Window(0, _mainWindow, RenderUi, _watermark);
 
             if (_craftingVisualVisible)
@@ -215,7 +214,7 @@ namespace ShopTitansCheat
                     else
                     {
                         Log.PrintConsoleMessage("Starting.", ConsoleColor.Green);
-                        _craftingComponent.StartGlitchCraft(0.1f);
+                        _craftingComponent.Crafting = true;
                     }
                 }
             }
@@ -224,13 +223,13 @@ namespace ShopTitansCheat
             {
                 if (_craftingComponent.RegularCrafting)
                 {
-                    Log.PrintConsoleMessage("Stopping.", ConsoleColor.Red);
                     _craftingComponent.StopRegularCraft();
+                    Log.PrintConsoleMessage("Stopping.", ConsoleColor.Red);
                 }
                 else
                 {
+                    _craftingComponent.Crafting = false;
                     Log.PrintConsoleMessage("Stopping.", ConsoleColor.Red);
-                    _craftingComponent.StopGlitchCraft();
                 }
 
                 foreach (Equipment equipment in _craftingComponent.Items)
@@ -285,11 +284,6 @@ namespace ShopTitansCheat
             if (GUILayout.Button("Auto Sell Options"))
             {
                 _autoSellVisualVisible = !_autoSellVisualVisible;
-            }
-
-            if (GUILayout.Button("Don't press me if you don't want too. "))
-            {
-
             }
         }
     }
