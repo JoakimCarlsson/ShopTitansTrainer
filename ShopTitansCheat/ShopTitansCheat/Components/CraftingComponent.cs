@@ -88,10 +88,9 @@ namespace ShopTitansCheat.Components
 
                 if (!Core.StartCraft(item.ShortName))
                 {
-                    Log.PrintMessageInGame("Not enough resources, please do something about that retard.", OverlayMessageControl.MessageType.Error);
-                    Log.PrintConsoleMessage("Not enough resources, please do something about that retard.", ConsoleColor.Red);
+                    Log.PrintConsoleMessage($"Not enough resources for {item.FullName}\tWaiting 20 seconds", ConsoleColor.Red);
+                    StartCoroutine(WaitThenStart(20));
                     Crafting = false;
-                    Log.PrintConsoleMessage("Stopping.", ConsoleColor.Red);
                     return;
                 }
                 Equipment equipment = Core.PeekCraft(item.ShortName)[0];
@@ -100,7 +99,7 @@ namespace ShopTitansCheat.Components
                 {
                     Log.PrintConsoleMessage($"{equipment}, Tries: {_i}", ConsoleColor.Green);
 
-                    _i = 0;
+                    _i = 1;
                     item.Done = true;
                     item.FullName = $"{item.FullName}, {item.Done}";
                     Crafting = false;
@@ -115,18 +114,18 @@ namespace ShopTitansCheat.Components
 
                     return;
                 }
-
                 Log.PrintConsoleMessage($"{equipment}, Tries: {_i++}", ConsoleColor.Yellow);
+                Resources.UnloadUnusedAssets();
+                GC.Collect();
                 Game.Instance.Restart();
                 return;
             }
-
         }
 
         private IEnumerator WaitThenStart(int seconds)
         {
+            Log.PrintConsoleMessage($"We waited {seconds} seconds.", ConsoleColor.Blue);
             yield return new WaitForSeconds(seconds);
-            Log.PrintConsoleMessage($"We waited {seconds} seconds.", ConsoleColor.Green);
             Crafting = true;
         }
     }

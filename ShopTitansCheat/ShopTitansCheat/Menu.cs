@@ -35,7 +35,7 @@ namespace ShopTitansCheat
 
         private string _searchText = "";
 
-        private readonly string _watermark = "Hello, this is a test";
+        private readonly string _watermark = "Shop Titans Bot 0.05b";
 
         private void Start()
         {
