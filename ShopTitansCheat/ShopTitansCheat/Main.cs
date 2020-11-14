@@ -41,18 +41,18 @@ namespace ShopTitansCheat
                 if (Settings.Crafting.DoCrafting)
                     DoCrafting();
 
-                if (Settings.Misc.AutoFinishCraft)
-                    StoreFinished();
+
             }
 
             if (_frame % 66 == 0)
             {
-                //Auto Sell.
+                if (Settings.Misc.AutoFinishCraft)
+                    StoreFinished();
             }
 
             if (_frame % 111 == 0)
             {
-                //another thing
+                //auto sell
             }
 
             if (_frame % 77 == 0)
@@ -79,8 +79,7 @@ namespace ShopTitansCheat
                 if (_craftingComponent.GlitchCraft())
                 {
                     Settings.Crafting.DoCrafting = false;
-                    Resources.UnloadUnusedAssets();
-                    GC.Collect();
+
                     Log.PrintConsoleMessage("We are waiting 20 seconds.", ConsoleColor.Blue);
                     StartCoroutine(WaitThenStart(20));
                 }

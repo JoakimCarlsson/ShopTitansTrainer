@@ -71,6 +71,8 @@ namespace ShopTitansCheat.Components
                 }
 
                 Log.PrintConsoleMessage($"{equipment}, Tries: {_i++}", ConsoleColor.Yellow);
+                Resources.UnloadUnusedAssets();
+                GC.Collect();
                 Game.Instance.Restart();
                 return false;
             }

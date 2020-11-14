@@ -59,23 +59,6 @@ namespace ShopTitansCheat
             return false;
         }
 
-        internal static void StoreCraft()
-        {
-            foreach (GClass301 gclass3 in Game.User.observableDictionary_16.Values.ToList(false))
-            {
-                if (GClass167.smethod_0(gclass3).imethod_0())
-                {
-                    Game.SimManager.SendUserAction("CraftStore", new Dictionary<string, object>
-                    {
-                        {
-                            "craftId",
-                            gclass3.long_0
-                        }
-                    });
-                }
-            }
-        }
-
         public static List<Equipment> PeekCraft(string craftName)
         {
             List<Equipment> equips = new List<Equipment>();
@@ -88,11 +71,6 @@ namespace ShopTitansCheat
             }
 
             return equips;
-        }
-
-        public static IEnumerator Wait(int seconds)
-        {
-            yield return new WaitForSeconds(seconds);
         }
     }
 }
