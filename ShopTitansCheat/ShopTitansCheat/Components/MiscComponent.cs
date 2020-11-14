@@ -10,29 +10,18 @@ using UnityEngine;
 
 namespace ShopTitansCheat.Components
 {
-    class MiscComponent : MonoBehaviour
+    class MiscComponent
     {
-        internal bool AutoFinishCraft;
-        internal bool RemoveWindowPopup;
-        internal bool UseEnergy;
-        internal float UseEnergyAmount;
-        internal bool CraftRandomStuff;
-
         private void Update()
         {
-            if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
-                return;
-
-            
-
             //TODO data.EnergySpeedUp
-            if (AutoFinishCraft)
+            if (Settings.Misc.AutoFinishCraft)
                 FinishCraft();
 
-            if (RemoveWindowPopup)
+            if (Settings.Misc.RemoveWindowPopup)
                 Game.UI.RemoveAllWindows(WindowsManager.MenuLayer.Popup);
 
-            if (CraftRandomStuff)
+            if (Settings.Misc.CraftRandomStuff)
                 Craft();
         }
 
@@ -56,7 +45,7 @@ namespace ShopTitansCheat.Components
         {
             foreach (GClass301 gclass3 in Game.User.observableDictionary_16.Values.ToList(false))
             {
-                if (UseEnergy && Game.User.method_38() > UseEnergyAmount)
+                if (Settings.Misc.UseEnergy && Game.User.method_38() > Settings.Misc.UseEnergyAmount)
                 {
                     SpeedCraft();
                 }

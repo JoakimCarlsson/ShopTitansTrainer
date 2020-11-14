@@ -39,8 +39,6 @@ namespace ShopTitansCheat
             {
                 if (items.string_0 == itemName)
                 {
-                    //TODO MAKE SURE THIS WORKS.
-
                     if (GClass166.smethod_0(Game.User.vmethod_0(), items.string_0).imethod_0())
                     {
                         Game.SimManager.SendUserAction("CraftItem", new Dictionary<string, object>

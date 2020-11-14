@@ -29,13 +29,9 @@ namespace ShopTitansCheat
         private bool _myCraftingListVisualVisible;
         private bool _qualityListVisualVisible;
 
-        private CraftingComponent _craftingComponent;
-        private MiscComponent _miscComponent;
-        private AutoSellComponent _autoSellComponent;
-
         private string _searchText = "";
 
-        private readonly string _watermark = "Shop Titans Bot 0.08b";
+        private readonly string _watermark = "Shop Titans Bot 0.10b";
 
         private void Start()
         {
@@ -46,10 +42,6 @@ namespace ShopTitansCheat
             _qualityListWindow = new Rect(1050f, 60f, 250f, 150f);
             _optionsListWindow = new Rect(1050f, 250f, 250f, 150f);
             _autoSellWindow = new Rect(790f, 250f, 250f, 150f);
-
-            _autoSellComponent = Game.Instance.gameObject.AddComponent<AutoSellComponent>();
-            _craftingComponent = Game.Instance.gameObject.AddComponent<CraftingComponent>();
-            _miscComponent = Game.Instance.gameObject.AddComponent<MiscComponent>();
         }
 
         private void Update()
@@ -62,7 +54,7 @@ namespace ShopTitansCheat
         {
             if (!_visible)
                 return;
-            
+
             _mainWindow = GUILayout.Window(0, _mainWindow, RenderUi, _watermark);
 
             if (_craftingVisualVisible)
@@ -123,37 +115,37 @@ namespace ShopTitansCheat
         private void AutoSellMenu()
         {
             GUILayout.Label("Auto Sell");
-            _autoSellComponent.AutoSellToNpc = GUILayout.Toggle(_autoSellComponent.AutoSellToNpc, "Auto Sell");
-            _autoSellComponent.SmallTalk = GUILayout.Toggle(_autoSellComponent.SmallTalk, "Small Talk");
-            _autoSellComponent.Refuse = GUILayout.Toggle(_autoSellComponent.Refuse, "Refuse Items");
-            _autoSellComponent.SurchargeDiscount = GUILayout.Toggle(_autoSellComponent.SurchargeDiscount, "Surcharge Or Discount");
-            _autoSellComponent.Suggest = GUILayout.Toggle(_autoSellComponent.Suggest, "Suggest");
-            _autoSellComponent.BuyFromNpc = GUILayout.Toggle(_autoSellComponent.BuyFromNpc, "Buy From NPC");
+            //_autoSellComponent.AutoSellToNpc = GUILayout.Toggle(_autoSellComponent.AutoSellToNpc, "Auto Sell");
+            //_autoSellComponent.SmallTalk = GUILayout.Toggle(_autoSellComponent.SmallTalk, "Small Talk");
+            //_autoSellComponent.Refuse = GUILayout.Toggle(_autoSellComponent.Refuse, "Refuse Items");
+            //_autoSellComponent.SurchargeDiscount = GUILayout.Toggle(_autoSellComponent.SurchargeDiscount, "Surcharge Or Discount");
+            //_autoSellComponent.Suggest = GUILayout.Toggle(_autoSellComponent.Suggest, "Suggest");
+            //_autoSellComponent.BuyFromNpc = GUILayout.Toggle(_autoSellComponent.BuyFromNpc, "Buy From NPC");
         }
 
         private void RandomOptionsMenu()
         {
             GUILayout.Label("Random Options");
-            _miscComponent.AutoFinishCraft = GUILayout.Toggle(_miscComponent.AutoFinishCraft, "Finish Crafts");
+            Settings.Misc.AutoFinishCraft = GUILayout.Toggle(Settings.Misc.AutoFinishCraft, "Finish Crafts");
 
-            _miscComponent.UseEnergy = GUILayout.Toggle(_miscComponent.UseEnergy, $"Use Energy Over {(int)_miscComponent.UseEnergyAmount}");
+            Settings.Misc.UseEnergy = GUILayout.Toggle(Settings.Misc.UseEnergy, $"Use Energy Over {(int)Settings.Misc.UseEnergyAmount}");
 
-            if (_miscComponent.UseEnergy)
+            if (Settings.Misc.UseEnergy)
                 if (Game.User != null)
-                    _miscComponent.UseEnergyAmount = GUILayout.HorizontalSlider(_miscComponent.UseEnergyAmount, 0, Game.User.method_39());
+                    Settings.Misc.UseEnergyAmount = GUILayout.HorizontalSlider(Settings.Misc.UseEnergyAmount, 0, Game.User.method_39());
 
-            _miscComponent.CraftRandomStuff = GUILayout.Toggle(_miscComponent.CraftRandomStuff, "Craft Random Stuff");
-            _miscComponent.RemoveWindowPopup = GUILayout.Toggle(_miscComponent.RemoveWindowPopup, "Remove Window pop up.");
+            Settings.Misc.CraftRandomStuff = GUILayout.Toggle(Settings.Misc.CraftRandomStuff, "Craft Random Stuff");
+            Settings.Misc.RemoveWindowPopup = GUILayout.Toggle(Settings.Misc.RemoveWindowPopup, "Remove Window pop up.");
         }
 
         private void SelectQualityMenu()
         {
             GUILayout.Label("Select Quality");
-            foreach (ItemQuality itemQuality in _craftingComponent.ItemQualities)
+            foreach (ItemQuality itemQuality in Settings.Crafting.ItemQualities)
             {
                 if (GUILayout.Button(itemQuality.ToString()))
                 {
-                    _craftingComponent.Items.Last().ItemQuality = itemQuality;
+                    Settings.Crafting.CraftingEquipmentsList.Last().ItemQuality = itemQuality;
                 }
             }
         }
@@ -161,11 +153,11 @@ namespace ShopTitansCheat
         private void ItemsToCraftMenu()
         {
             GUILayout.Label("Items To Craft");
-            foreach (Equipment item in _craftingComponent.Items)
+            foreach (Equipment item in Settings.Crafting.CraftingEquipmentsList)
             {
                 if (GUILayout.Button($"{item.FullName}, {item.ItemQuality}"))
                 {
-                    _craftingComponent.Items.Remove(item);
+                    Settings.Crafting.CraftingEquipmentsList.Remove(item);
                 }
             }
         }
@@ -183,7 +175,7 @@ namespace ShopTitansCheat
 
                 if (GUILayout.Button(item.FullName))
                 {
-                    _craftingComponent.Items.Add(new Equipment
+                    Settings.Crafting.CraftingEquipmentsList.Add(new Equipment
                     {
                         FullName = item.FullName,
                         ShortName = item.ShortName,
@@ -200,39 +192,21 @@ namespace ShopTitansCheat
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Start"))
             {
-                if (_craftingComponent.Items.Count == 0)
+                if (Settings.Crafting.CraftingEquipmentsList.Count == 0)
                 {
                     Log.PrintMessageInGame($"Please add items..", OverlayMessageControl.MessageType.Error);
                 }
                 else
                 {
-                    if (_craftingComponent.RegularCrafting)
-                    {
-                        _craftingComponent.StartRegularCraft(0.8f);
-                        Log.PrintConsoleMessage("Starting.", ConsoleColor.Green);
-                    }
-                    else
-                    {
-                        Log.PrintConsoleMessage("Starting.", ConsoleColor.Green);
-                        _craftingComponent.Crafting = true;
-                    }
+                    Settings.Crafting.DoCrafting = true;
                 }
             }
 
             if (GUILayout.Button("Stop"))
             {
-                if (_craftingComponent.RegularCrafting)
-                {
-                    _craftingComponent.StopRegularCraft();
-                    Log.PrintConsoleMessage("Stopping.", ConsoleColor.Red);
-                }
-                else
-                {
-                    _craftingComponent.Crafting = false;
-                    Log.PrintConsoleMessage("Stopping.", ConsoleColor.Red);
-                }
+                Settings.Crafting.DoCrafting = false;
 
-                foreach (Equipment equipment in _craftingComponent.Items)
+                foreach (Equipment equipment in Settings.Crafting.CraftingEquipmentsList)
                 {
                     equipment.FullName = equipment.FullName.Replace(", True", "");
                     equipment.Done = false;
@@ -245,10 +219,10 @@ namespace ShopTitansCheat
             GUILayout.BeginHorizontal();
 
             if (GUILayout.Button("Save configuration"))
-                Config.SaveCraftingList(_craftingComponent, "equip");
+                Config.SaveCraftingList("equip");
 
             if (GUILayout.Button("Load configuration"))
-                Config.LoadCraftingList(_craftingComponent, "equip");
+                Config.LoadCraftingList("equip");
 
             GUILayout.EndHorizontal();
 
@@ -256,14 +230,14 @@ namespace ShopTitansCheat
             GUILayout.BeginHorizontal();
 
             if (GUILayout.Button("Save configuration"))
-                Config.SaveCraftingList(_craftingComponent, "regular");
+                Config.SaveCraftingList("regular");
 
             if (GUILayout.Button("Load configuration"))
-                Config.LoadCraftingList(_craftingComponent, "regular");
+                Config.LoadCraftingList("regular");
 
             GUILayout.EndHorizontal();
 
-            _craftingComponent.RegularCrafting = GUILayout.Toggle(_craftingComponent.RegularCrafting, "Regular craft.");
+            Settings.Crafting.RegularCrafting = GUILayout.Toggle(Settings.Crafting.RegularCrafting, "Regular craft.");
         }
 
         private void MainMenu()
@@ -288,12 +262,12 @@ namespace ShopTitansCheat
 
             if (GUILayout.Button("Meme"))
             {
-                Log.PrintConsoleMessage(Game.User.observableProperty_7, ConsoleColor.Yellow);
-                Log.PrintConsoleMessage(Game.User.observableProperty_8, ConsoleColor.Yellow);
+
             }
 
             if (GUILayout.Button("Testing...."))
             {
+                AssetBundle.Destroy(Game.Instance.UI_ref.gameObject);
                 foreach (AssetBundle allLoadedAssetBundle in AssetBundle.GetAllLoadedAssetBundles())
                 {
                     Log.PrintConsoleMessage(allLoadedAssetBundle.name, ConsoleColor.Cyan);

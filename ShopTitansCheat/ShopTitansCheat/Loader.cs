@@ -12,7 +12,7 @@ namespace ShopTitansCheat
         public static void Load()
         {
             AllocConsoleHandler.Open();
-            Game.Instance.gameObject.AddComponent<Menu>();
+            Game.Instance.gameObject.AddComponent<Main>();
         }
     }
 }

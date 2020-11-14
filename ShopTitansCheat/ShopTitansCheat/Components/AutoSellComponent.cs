@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace ShopTitansCheat.Components
 {
-    class AutoSellComponent : MonoBehaviour
+    class AutoSellComponent
     {
         internal bool AutoSellToNpc;
         internal bool SmallTalk;
@@ -17,18 +17,6 @@ namespace ShopTitansCheat.Components
         internal bool SurchargeDiscount;
         internal bool Suggest;
         internal bool BuyFromNpc;
-
-        private void Update()
-        {
-            //Current Energy: Game.User.method_38()
-            //Max Energy: Game.User.method_39()
-
-            if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
-                return;
-           
-            if (AutoSellToNpc)
-                AutoSell();
-        }
 
         private void AutoSell()
         {

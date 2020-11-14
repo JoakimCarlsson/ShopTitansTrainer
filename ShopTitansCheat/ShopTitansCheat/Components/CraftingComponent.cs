@@ -9,54 +9,13 @@ using UnityEngine;
 
 namespace ShopTitansCheat.Components
 {
-    class CraftingComponent : MonoBehaviour
+    class CraftingComponent
     {
-        internal bool Crafting;
-        internal bool RegularCrafting;
-        internal List<Equipment> Items = new List<Equipment>();
-
-        private int _frame;
-
-        internal List<ItemQuality> ItemQualities = new List<ItemQuality>
-        {
-            ItemQuality.Uncommon,
-            ItemQuality.Flawless,
-            ItemQuality.Epic,
-            ItemQuality.Legendary
-        };
-
         private int _i = 1;
 
-        private void Update()
+        internal void Craft()
         {
-            if (Crafting)
-            {
-                _frame++;
-                
-                if (!Game.IsActivePlayState)
-                    return;
-                
-                if (_frame % 9 == 0)
-                {
-                    if (!RegularCrafting)
-                        GlitchCraft();
-                }
-            }
-        }
-
-        internal void StartRegularCraft(float i)
-        {
-            InvokeRepeating(nameof(Craft), 0, i);
-        }
-
-        internal void StopRegularCraft()
-        {
-            CancelInvoke(nameof(Craft));
-        }
-
-        private void Craft()
-        {
-            foreach (Equipment item in Items)
+            foreach (Equipment item in Settings.Crafting.CraftingEquipmentsList)
             {
                 if (item.Done)
                     continue;
@@ -71,11 +30,11 @@ namespace ShopTitansCheat.Components
                 item.Done = true;
                 item.FullName = $"{item.FullName}, {item.Done}";
 
-                if (Items.All(i => i.Done))
+                if (Settings.Crafting.CraftingEquipmentsList.All(i => i.Done))
                 {
                     Log.PrintConsoleMessage($"Crafted everything in list. \tRestarting.", ConsoleColor.Green);
 
-                    foreach (Equipment equipment in Items)
+                    foreach (Equipment equipment in Settings.Crafting.CraftingEquipmentsList)
                     {
                         equipment.FullName = equipment.FullName.Replace(", True", "");
                         equipment.Done = false;
@@ -86,19 +45,17 @@ namespace ShopTitansCheat.Components
             }
         }
 
-        private void GlitchCraft()
+        internal bool GlitchCraft()
         {
-            foreach (Equipment item in Items)
+            foreach (Equipment item in Settings.Crafting.CraftingEquipmentsList)
             {
                 if (item.Done)
                     continue;
 
                 if (!Core.StartCraft(item.ShortName))
                 {
-                    Log.PrintConsoleMessage($"Not enough resources for {item.FullName}\tWaiting 20 seconds", ConsoleColor.Red);
-                    StartCoroutine(WaitThenStart(20));
-                    Crafting = false;
-                    return;
+                    Log.PrintConsoleMessage($"Not enough resources for {item.FullName}", ConsoleColor.Red);
+                    return true;
                 }
 
                 Equipment equipment = Core.PeekCraft(item.ShortName)[0];
@@ -110,32 +67,27 @@ namespace ShopTitansCheat.Components
                     _i = 1;
                     item.Done = true;
                     item.FullName = $"{item.FullName}, {item.Done}";
-                    Crafting = false;
-
-                    StartCoroutine(WaitThenStart(20));
-
-                    if (Items.All(i => i.Done))
-                    {
-                        Log.PrintConsoleMessage("We are done\n Stopping.", ConsoleColor.Green);
-                        Crafting = false;
-                    }
-
-                    return;
+                    return true;
                 }
 
                 Log.PrintConsoleMessage($"{equipment}, Tries: {_i++}", ConsoleColor.Yellow);
-                Resources.UnloadUnusedAssets();
-                GC.Collect();
                 Game.Instance.Restart();
-                return;
+                return false;
             }
+
+            if (Settings.Crafting.CraftingEquipmentsList.All(i => i.Done))
+            {
+                Log.PrintConsoleMessage("We are done\n Stopping.", ConsoleColor.Green);
+                return true;
+            }
+
+            return false;
         }
 
         private IEnumerator WaitThenStart(int seconds)
         {
             Log.PrintConsoleMessage($"We are waiting {seconds} seconds.", ConsoleColor.Blue);
             yield return new WaitForSeconds(seconds);
-            Crafting = true;
         }
     }
 }
