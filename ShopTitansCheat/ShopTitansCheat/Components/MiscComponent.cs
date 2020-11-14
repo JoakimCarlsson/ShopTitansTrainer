@@ -23,6 +23,8 @@ namespace ShopTitansCheat.Components
             if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
                 return;
 
+            
+
             //TODO data.EnergySpeedUp
             if (AutoFinishCraft)
                 FinishCraft();

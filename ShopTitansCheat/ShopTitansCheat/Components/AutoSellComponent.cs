@@ -20,7 +20,6 @@ namespace ShopTitansCheat.Components
 
         private void Update()
         {
-
             //Current Energy: Game.User.method_38()
             //Max Energy: Game.User.method_39()
 

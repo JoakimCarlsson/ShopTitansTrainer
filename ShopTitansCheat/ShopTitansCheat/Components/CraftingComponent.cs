@@ -15,6 +15,8 @@ namespace ShopTitansCheat.Components
         internal bool RegularCrafting;
         internal List<Equipment> Items = new List<Equipment>();
 
+        private int _frame;
+
         internal List<ItemQuality> ItemQualities = new List<ItemQuality>
         {
             ItemQuality.Uncommon,
@@ -24,18 +26,23 @@ namespace ShopTitansCheat.Components
         };
 
         private int _i = 1;
+
         private void Update()
         {
-            if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
-                return;
-
             if (Crafting)
             {
-                if (!RegularCrafting)
-                    GlitchCraft();
+                _frame++;
+                
+                if (!Game.IsActivePlayState)
+                    return;
+                
+                if (_frame % 9 == 0)
+                {
+                    if (!RegularCrafting)
+                        GlitchCraft();
+                }
             }
         }
-
 
         internal void StartRegularCraft(float i)
         {
@@ -93,6 +100,7 @@ namespace ShopTitansCheat.Components
                     Crafting = false;
                     return;
                 }
+
                 Equipment equipment = Core.PeekCraft(item.ShortName)[0];
 
                 if (equipment.ItemQuality >= item.ItemQuality)
@@ -114,6 +122,7 @@ namespace ShopTitansCheat.Components
 
                     return;
                 }
+
                 Log.PrintConsoleMessage($"{equipment}, Tries: {_i++}", ConsoleColor.Yellow);
                 Resources.UnloadUnusedAssets();
                 GC.Collect();
@@ -124,7 +133,7 @@ namespace ShopTitansCheat.Components
 
         private IEnumerator WaitThenStart(int seconds)
         {
-            Log.PrintConsoleMessage($"We waited {seconds} seconds.", ConsoleColor.Blue);
+            Log.PrintConsoleMessage($"We are waiting {seconds} seconds.", ConsoleColor.Blue);
             yield return new WaitForSeconds(seconds);
             Crafting = true;
         }

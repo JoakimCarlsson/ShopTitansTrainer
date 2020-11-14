@@ -20,11 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c144d6f-1dbc-428d-bf24-45ebe938f4fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Components/MenuComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vs/ShopTitansCheat/v16/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../.vs/ShopTitansCheat/v16/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ShopTitansCheat.dir/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ShopTitansCheat.dir/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ShopTitansCheat.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ShopTitansCheat.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/AutoSellComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/AutoSellComponent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Components/CraftingComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/CraftingComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Core.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShopTitansCheat.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ShopTitansCheat.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/ShopTitansCheat.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/ShopTitansCheat.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/ShopTitansCheat.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/ShopTitansCheat.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/ShopTitansCheat.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/ShopTitansCheat.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/ShopTitansCheat.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/ShopTitansCheat.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/ShopTitansCheat.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/ShopTitansCheat.pdb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +40,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/Carlsson/source/repos/ShopTitansBot/ShopTitansCheat/ShopTitansCheat/Components/CraftingComponent.cs" root0="SKIP_HIGHLIGHTING" />
-  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -44,10 +47,11 @@
         <option value="$PROJECT_DIR$/Data/Equipment.cs" />
         <option value="$PROJECT_DIR$/Data/ItemQuality.cs" />
         <option value="$PROJECT_DIR$/Loader.cs" />
-        <option value="$PROJECT_DIR$/Components/CraftingComponent.cs" />
         <option value="$PROJECT_DIR$/Core.cs" />
-        <option value="$PROJECT_DIR$/Menu.cs" />
         <option value="$PROJECT_DIR$/Components/MenuComponent.cs" />
+        <option value="$PROJECT_DIR$/Components/AutoSellComponent.cs" />
+        <option value="$PROJECT_DIR$/Components/CraftingComponent.cs" />
+        <option value="$PROJECT_DIR$/Menu.cs" />
       </list>
     </option>
   </component>
@@ -95,6 +99,7 @@
       <workItem from="1605008758707" duration="773000" />
       <workItem from="1605009591024" duration="91000" />
       <workItem from="1605028627822" duration="5532000" />
+      <workItem from="1605333410334" duration="2744000" />
     </task>
     <task id="LOCAL−00001" summary="We can now craft stuff.">
       <created>1605029020378</created>

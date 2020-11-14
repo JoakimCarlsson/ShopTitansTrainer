@@ -35,7 +35,7 @@ namespace ShopTitansCheat
 
         private string _searchText = "";
 
-        private readonly string _watermark = "Shop Titans Bot 0.05b";
+        private readonly string _watermark = "Shop Titans Bot 0.08b";
 
         private void Start()
         {
@@ -284,6 +284,20 @@ namespace ShopTitansCheat
             if (GUILayout.Button("Auto Sell Options"))
             {
                 _autoSellVisualVisible = !_autoSellVisualVisible;
+            }
+
+            if (GUILayout.Button("Meme"))
+            {
+                Log.PrintConsoleMessage(Game.User.observableProperty_7, ConsoleColor.Yellow);
+                Log.PrintConsoleMessage(Game.User.observableProperty_8, ConsoleColor.Yellow);
+            }
+
+            if (GUILayout.Button("Testing...."))
+            {
+                foreach (AssetBundle allLoadedAssetBundle in AssetBundle.GetAllLoadedAssetBundles())
+                {
+                    Log.PrintConsoleMessage(allLoadedAssetBundle.name, ConsoleColor.Cyan);
+                }
             }
         }
     }
