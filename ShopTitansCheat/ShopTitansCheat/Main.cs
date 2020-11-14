@@ -23,7 +23,7 @@ namespace ShopTitansCheat
         private void Start()
         {
             _menu = Game.Instance.gameObject.AddComponent<Menu>();
-           // Game.Scheduler.Register(Scheduler.Priority.BeginFrame, Update);
+            // Game.Scheduler.Register(Scheduler.Priority.BeginFrame, Update);
 
             _craftingComponent = new CraftingComponent();
             _autoSellComponent = new AutoSellComponent();
@@ -36,16 +36,18 @@ namespace ShopTitansCheat
                 return;
 
             _frame++;
-
-            if (Settings.Crafting.DoCrafting)
+            if (_frame % 9 == 0)
             {
-                Crafting();
-                StoreCrafted();
+                if (Settings.Crafting.DoCrafting)
+                    DoCrafting();
+
+                if (Settings.Misc.AutoFinishCraft)
+                    StoreFinished();
             }
 
             if (_frame % 66 == 0)
             {
-                //Something else
+                //Auto Sell.
             }
 
             if (_frame % 111 == 0)
@@ -59,36 +61,33 @@ namespace ShopTitansCheat
             }
         }
 
-        private void StoreCrafted()
+        private void StoreFinished()
         {
-            
+            _miscComponent.FinishCraft();
         }
 
-        private void Crafting()
+        private void DoCrafting()
         {
-            if (_frame % 9 == 0)
+            if (Settings.Crafting.RegularCrafting)
             {
-                if (Settings.Crafting.RegularCrafting)
+                _craftingComponent.Craft();
+                Settings.Crafting.DoCrafting = false;
+                StartCoroutine(WaitThenStart(20));
+            }
+            else
+            {
+                if (_craftingComponent.GlitchCraft())
                 {
-                    _craftingComponent.Craft();
                     Settings.Crafting.DoCrafting = false;
+                    Resources.UnloadUnusedAssets();
+                    GC.Collect();
+                    Log.PrintConsoleMessage("We are waiting 20 seconds.", ConsoleColor.Blue);
                     StartCoroutine(WaitThenStart(20));
                 }
                 else
                 {
-                    if (_craftingComponent.GlitchCraft())
-                    {
-                        Settings.Crafting.DoCrafting = false;
-                        Resources.UnloadUnusedAssets();
-                        GC.Collect();
-                        Log.PrintConsoleMessage("We are waiting 20 seconds.", ConsoleColor.Blue);
-                        StartCoroutine(WaitThenStart(20));
-                    }
-                    else
-                    {
-                        Settings.Crafting.DoCrafting = false;
-                        StartCoroutine(WaitThenStart(0.1f));
-                    }
+                    Settings.Crafting.DoCrafting = false;
+                    StartCoroutine(WaitThenStart(0.1f));
                 }
             }
         }

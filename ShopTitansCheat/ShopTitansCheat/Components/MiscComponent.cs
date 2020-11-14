@@ -14,10 +14,6 @@ namespace ShopTitansCheat.Components
     {
         private void Update()
         {
-            //TODO data.EnergySpeedUp
-            if (Settings.Misc.AutoFinishCraft)
-                FinishCraft();
-
             if (Settings.Misc.RemoveWindowPopup)
                 Game.UI.RemoveAllWindows(WindowsManager.MenuLayer.Popup);
 
@@ -41,8 +37,10 @@ namespace ShopTitansCheat.Components
         }
 
 
-        private void FinishCraft()
+        internal void FinishCraft()
         {
+            //TODO data.EnergySpeedUp
+
             foreach (GClass301 gclass3 in Game.User.observableDictionary_16.Values.ToList(false))
             {
                 if (Settings.Misc.UseEnergy && Game.User.method_38() > Settings.Misc.UseEnergyAmount)

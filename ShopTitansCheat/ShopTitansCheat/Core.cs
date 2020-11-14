@@ -59,26 +59,21 @@ namespace ShopTitansCheat
             return false;
         }
 
-        public static bool StoreFinishedItem(string craftName)
+        internal static void StoreCraft()
         {
-            foreach (var item in Game.User.observableDictionary_16.Values.Reverse())
+            foreach (GClass301 gclass3 in Game.User.observableDictionary_16.Values.ToList(false))
             {
-                if (item.string_0 != craftName)
-                    continue;
-                if (true)
+                if (GClass167.smethod_0(gclass3).imethod_0())
                 {
                     Game.SimManager.SendUserAction("CraftStore", new Dictionary<string, object>
                     {
                         {
                             "craftId",
-                            craftName
+                            gclass3.long_0
                         }
                     });
                 }
             }
-
-
-            return false;
         }
 
         public static List<Equipment> PeekCraft(string craftName)
