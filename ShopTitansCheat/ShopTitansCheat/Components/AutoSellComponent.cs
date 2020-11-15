@@ -11,14 +11,7 @@ namespace ShopTitansCheat.Components
 {
     class AutoSellComponent
     {
-        internal bool AutoSellToNpc;
-        internal bool SmallTalk;
-        internal bool Refuse;
-        internal bool SurchargeDiscount;
-        internal bool Suggest;
-        internal bool BuyFromNpc;
-
-        private void AutoSell()
+        internal void AutoSell()
         {
             foreach (GClass339 gclass10 in Game.User.observableDictionary_7.Values)
             {
@@ -26,19 +19,19 @@ namespace ShopTitansCheat.Components
                 if (gclass10.method_3() > 0L && gclass11.method_58() == "VAIAsk")
                 {
                     StartConversationWithNpc(gclass10);
-                    if (SmallTalk)
+                    if (Settings.AutoSell.SmallTalk)
                         SmallTalkWithNpc(gclass10);
 
-                    if (SurchargeDiscount)
+                    if (Settings.AutoSell.SurchargeDiscount)
                         SurchargeOrDiscount(gclass10);
-                    if (BuyFromNpc)
+                    if (Settings.AutoSell.BuyFromNpc)
                         BuyNpcItem(gclass11, gclass10);
 
-                    if (Suggest)
+                    if (Settings.AutoSell.Suggest)
                         SuggestItem(gclass11, gclass10);
 
                     SellItem(gclass11, gclass10);
-                    if (Refuse)
+                    if (Settings.AutoSell.Refuse)
                         RefuseItem(gclass11, gclass10);
                 }
             }

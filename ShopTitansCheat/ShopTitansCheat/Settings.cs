@@ -34,7 +34,18 @@ namespace ShopTitansCheat
             internal static bool CraftRandomStuff = false;
         }
 
-        //Auto Sell Stuff
+        internal class AutoSell
+        {
+            internal static bool AutoSellToNpc = false;
+            internal static bool SmallTalk = false;
+            internal static bool Refuse = false;
+            internal static bool SurchargeDiscount = false;
+            internal static bool Suggest = false;
+            internal static bool BuyFromNpc = false;
+
+            internal static long SurchargeAmount = 0;
+            internal static long DiscountAmount = 0;
+        }
 
     }
 }

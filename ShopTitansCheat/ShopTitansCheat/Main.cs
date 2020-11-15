@@ -52,7 +52,8 @@ namespace ShopTitansCheat
 
             if (_frame % 111 == 0)
             {
-                //auto sell
+                if (Settings.AutoSell.AutoSellToNpc)
+                 _autoSellComponent.AutoSell();
             }
 
             if (_frame % 77 == 0)
