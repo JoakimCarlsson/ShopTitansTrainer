@@ -72,5 +72,12 @@ namespace ShopTitansCheat
 
             return equips;
         }
+
+        public static void CollectGarbage()
+        {
+            Resources.UnloadUnusedAssets();
+            GC.Collect();
+            Log.PrintConsoleMessage("Garbage collected", ConsoleColor.Cyan);
+        }
     }
 }
