@@ -8,6 +8,8 @@ using Riposte;
 using ShopTitansCheat.Components;
 using ShopTitansCheat.Utils;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Debug = UnityEngine.Debug;
 
 namespace ShopTitansCheat
 {
@@ -20,10 +22,11 @@ namespace ShopTitansCheat
         private AutoSellComponent _autoSellComponent;
         private MiscComponent _miscComponent;
 
+
         private void Start()
         {
             _menu = Game.Instance.gameObject.AddComponent<Menu>();
-            // Game.Scheduler.Register(Scheduler.Priority.BeginFrame, Update);
+            Game.Scheduler.Register(Scheduler.Priority.BeginFrame, Update);
 
             _craftingComponent = new CraftingComponent();
             _autoSellComponent = new AutoSellComponent();
@@ -32,32 +35,42 @@ namespace ShopTitansCheat
 
         private void Update()
         {
+
             if (!Game.IsActivePlayState)
                 return;
 
             _frame++;
-            if (_frame % 9 == 0)
-            {
-                if (Settings.Crafting.DoCrafting)
+            //if (_frame % 9 == 0)
+            //{
+            //    if (Settings.Crafting.DoCrafting)
+            //        DoCrafting();
+            //}
+            if (Settings.Crafting.DoCrafting)
+                if (_frame % 66 == 0)
+                {
+                    Log.PrintConsoleMessage("Trying To Craft", ConsoleColor.Cyan);
+
                     DoCrafting();
-            }
+                }
 
-            if (_frame % 66 == 0)
-            {
-                if (Settings.Misc.AutoFinishCraft)
+            if (Settings.Misc.AutoFinishCraft && !Settings.Crafting.DoCrafting)
+                if (_frame % 111 == 0)
+                {
+                    Log.PrintConsoleMessage("Trying Store Craft", ConsoleColor.DarkBlue);
+
                     StoreFinished();
-            }
 
-            if (_frame % 111 == 0)
-            {
-                if (Settings.AutoSell.AutoSellToNpc)
+                }
+
+            if (Settings.AutoSell.AutoSellToNpc && !Settings.Crafting.DoCrafting)
+                if (_frame % 77 == 0)
+                {
+                    Log.PrintConsoleMessage("Trying Auto Sell", ConsoleColor.DarkCyan);
                     AutoSell();
-            }
+                }
 
-            if (_frame % 77 == 0)
-            {
-                //another another thing.
-            }
+            if (Settings.Misc.RemoveWindowPopup)
+                Game.UI.RemoveAllWindows(WindowsManager.MenuLayer.Popup);
         }
 
         private void AutoSell()

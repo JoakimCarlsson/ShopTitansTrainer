@@ -33,6 +33,8 @@ namespace ShopTitansCheat
 
         private readonly string _watermark = "Shop Titans Bot 0.10b";
 
+        private List<Equipment> BluePrints = Core.GetAllItems();
+
         private void Start()
         {
             _mainWindow = new Rect(20f, 60f, 250f, 50f);
@@ -167,7 +169,7 @@ namespace ShopTitansCheat
             GUILayout.Label("Crafting List");
             _searchText = GUILayout.TextField(_searchText, 15, "textfield");
 
-            foreach (Equipment item in Core.GetAllItems())
+            foreach (Equipment item in BluePrints)
             {
                 if (!string.IsNullOrEmpty(_searchText))
                     if (!item.FullName.Contains(_searchText))
