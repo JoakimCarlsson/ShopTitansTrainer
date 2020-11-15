@@ -115,12 +115,12 @@ namespace ShopTitansCheat
         private void AutoSellMenu()
         {
             GUILayout.Label("Auto Sell");
-            //_autoSellComponent.AutoSellToNpc = GUILayout.Toggle(_autoSellComponent.AutoSellToNpc, "Auto Sell");
-            //_autoSellComponent.SmallTalk = GUILayout.Toggle(_autoSellComponent.SmallTalk, "Small Talk");
-            //_autoSellComponent.Refuse = GUILayout.Toggle(_autoSellComponent.Refuse, "Refuse Items");
-            //_autoSellComponent.SurchargeDiscount = GUILayout.Toggle(_autoSellComponent.SurchargeDiscount, "Surcharge Or Discount");
-            //_autoSellComponent.Suggest = GUILayout.Toggle(_autoSellComponent.Suggest, "Suggest");
-            //_autoSellComponent.BuyFromNpc = GUILayout.Toggle(_autoSellComponent.BuyFromNpc, "Buy From NPC");
+            Settings.AutoSell.AutoSellToNpc = GUILayout.Toggle(Settings.AutoSell.AutoSellToNpc, "Auto Sell");
+            Settings.AutoSell.SmallTalk = GUILayout.Toggle(Settings.AutoSell.SmallTalk, "Small Talk");
+            Settings.AutoSell.Refuse = GUILayout.Toggle(Settings.AutoSell.Refuse, "Refuse Items");
+            Settings.AutoSell.SurchargeDiscount = GUILayout.Toggle(Settings.AutoSell.SurchargeDiscount, "Surcharge Or Discount");
+            Settings.AutoSell.Suggest = GUILayout.Toggle(Settings.AutoSell.Suggest, "Suggest");
+            Settings.AutoSell.BuyFromNpc = GUILayout.Toggle(Settings.AutoSell.BuyFromNpc, "Buy From NPC");
         }
 
         private void RandomOptionsMenu()

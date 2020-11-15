@@ -40,8 +40,6 @@ namespace ShopTitansCheat
             {
                 if (Settings.Crafting.DoCrafting)
                     DoCrafting();
-
-
             }
 
             if (_frame % 66 == 0)
@@ -53,13 +51,18 @@ namespace ShopTitansCheat
             if (_frame % 111 == 0)
             {
                 if (Settings.AutoSell.AutoSellToNpc)
-                 _autoSellComponent.AutoSell();
+                    AutoSell();
             }
 
             if (_frame % 77 == 0)
             {
                 //another another thing.
             }
+        }
+
+        private void AutoSell()
+        {
+            _autoSellComponent.AutoSell();
         }
 
         private void StoreFinished()
