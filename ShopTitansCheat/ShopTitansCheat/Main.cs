@@ -30,7 +30,7 @@ namespace ShopTitansCheat
             _miscComponent = new MiscComponent();
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (!Game.IsActivePlayState)
                 return;

@@ -260,18 +260,16 @@ namespace ShopTitansCheat
                 _autoSellVisualVisible = !_autoSellVisualVisible;
             }
 
-            if (GUILayout.Button("Meme"))
+            if (GUILayout.Button("Lower Performance."))
             {
-
+                Application.targetFrameRate = 10;
+                Application.backgroundLoadingPriority = ThreadPriority.High;
             }
 
-            if (GUILayout.Button("Testing...."))
+            if (GUILayout.Button("Higher Performance."))
             {
-                AssetBundle.Destroy(Game.Instance.UI_ref.gameObject);
-                foreach (AssetBundle allLoadedAssetBundle in AssetBundle.GetAllLoadedAssetBundles())
-                {
-                    Log.PrintConsoleMessage(allLoadedAssetBundle.name, ConsoleColor.Cyan);
-                }
+                Application.targetFrameRate = 144;
+                Application.backgroundLoadingPriority = ThreadPriority.High;
             }
         }
     }
