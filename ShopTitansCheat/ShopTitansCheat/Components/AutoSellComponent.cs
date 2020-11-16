@@ -19,11 +19,13 @@ namespace ShopTitansCheat.Components
                 if (gclass10.method_3() > 0L && gclass11.method_58() == "VAIAsk")
                 {
                     StartConversationWithNpc(gclass10);
+
                     if (Settings.AutoSell.SmallTalk)
                         SmallTalkWithNpc(gclass10);
 
                     if (Settings.AutoSell.SurchargeDiscount)
                         SurchargeOrDiscount(gclass10);
+
                     if (Settings.AutoSell.BuyFromNpc)
                         BuyNpcItem(gclass11, gclass10);
 
@@ -31,6 +33,7 @@ namespace ShopTitansCheat.Components
                         SuggestItem(gclass11, gclass10);
 
                     SellItem(gclass11, gclass10);
+
                     if (Settings.AutoSell.Refuse)
                         RefuseItem(gclass11, gclass10);
                 }

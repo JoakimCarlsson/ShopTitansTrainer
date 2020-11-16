@@ -22,7 +22,6 @@ namespace ShopTitansCheat
         private AutoSellComponent _autoSellComponent;
         private MiscComponent _miscComponent;
 
-
         private void Start()
         {
             _menu = Game.Instance.gameObject.AddComponent<Menu>();
@@ -35,23 +34,24 @@ namespace ShopTitansCheat
 
         private void Update()
         {
-
             if (!Game.IsActivePlayState)
                 return;
 
             _frame++;
-            //if (_frame % 9 == 0)
+            //if (_frame % 30 == 0)
             //{
-            //    if (Settings.Crafting.DoCrafting)
-            //        DoCrafting();
+            //    Log.PrintConsoleMessage("GC.Collect", ConsoleColor.Yellow);
+            //    System.GC.Collect();
             //}
-            if (Settings.Crafting.DoCrafting)
-                if (_frame % 66 == 0)
-                {
-                    Log.PrintConsoleMessage("Trying To Craft", ConsoleColor.Cyan);
 
-                    DoCrafting();
-                }
+            if (Settings.Crafting.ThisIsATempBool)
+                if (Settings.Crafting.DoCrafting)
+                    if (_frame % 66 == 0)
+                    {
+                        Log.PrintConsoleMessage("Trying To Craft", ConsoleColor.Cyan);
+
+                        DoCrafting();
+                    }
 
             if (Settings.Misc.AutoFinishCraft && !Settings.Crafting.DoCrafting)
                 if (_frame % 111 == 0)
@@ -110,7 +110,6 @@ namespace ShopTitansCheat
 
         private IEnumerator WaitThenStart(float seconds)
         {
-
             yield return new WaitForSeconds(seconds);
             Settings.Crafting.DoCrafting = true;
         }

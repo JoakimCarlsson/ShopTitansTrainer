@@ -47,6 +47,8 @@ namespace ShopTitansCheat.Components
 
         internal bool GlitchCraft()
         {
+            //Core.CollectGarbage();
+
             foreach (Equipment item in Settings.Crafting.CraftingEquipmentsList)
             {
                 if (item.Done)
@@ -71,9 +73,6 @@ namespace ShopTitansCheat.Components
                 }
 
                 Log.PrintConsoleMessage($"{equipment}, Tries: {_i++}", ConsoleColor.Yellow);
-
-                Core.CollectGarbage();
-
                 Game.Instance.Restart();
                 return false;
             }

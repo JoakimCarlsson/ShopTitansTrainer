@@ -31,7 +31,7 @@ namespace ShopTitansCheat
 
         private string _searchText = "";
 
-        private readonly string _watermark = "Shop Titans Bot 0.10b";
+        private readonly string _watermark = "I want too kill my self";
 
         private List<Equipment> BluePrints = Core.GetAllItems();
 
@@ -50,6 +50,8 @@ namespace ShopTitansCheat
         {
             if (Input.GetKeyDown(KeyCode.Insert))
                 _visible = !_visible;
+
+
         }
 
         private void OnGUI()
@@ -123,6 +125,12 @@ namespace ShopTitansCheat
             Settings.AutoSell.SurchargeDiscount = GUILayout.Toggle(Settings.AutoSell.SurchargeDiscount, "Surcharge Or Discount");
             Settings.AutoSell.Suggest = GUILayout.Toggle(Settings.AutoSell.Suggest, "Suggest");
             Settings.AutoSell.BuyFromNpc = GUILayout.Toggle(Settings.AutoSell.BuyFromNpc, "Buy From NPC");
+
+            GUILayout.Label( $"Surcharge Over {(int)Settings.AutoSell.SurchargeAmount}");
+            Settings.AutoSell.SurchargeAmount = (int) GUILayout.HorizontalSlider(Settings.AutoSell.SurchargeAmount, 0, 1000000);
+
+            GUILayout.Label($"Discount  Under {(int)Settings.AutoSell.DiscountAmount}");
+            Settings.AutoSell.DiscountAmount = (int) GUILayout.HorizontalSlider(Settings.AutoSell.DiscountAmount, 0, 1000000);
         }
 
         private void RandomOptionsMenu()
@@ -200,6 +208,7 @@ namespace ShopTitansCheat
                 }
                 else
                 {
+                    Settings.Crafting.ThisIsATempBool = true;
                     Settings.Crafting.DoCrafting = true;
                 }
             }
@@ -207,6 +216,7 @@ namespace ShopTitansCheat
             if (GUILayout.Button("Stop"))
             {
                 Settings.Crafting.DoCrafting = false;
+                Settings.Crafting.ThisIsATempBool = false;
 
                 foreach (Equipment equipment in Settings.Crafting.CraftingEquipmentsList)
                 {
@@ -270,8 +280,19 @@ namespace ShopTitansCheat
 
             if (GUILayout.Button("Higher Performance."))
             {
-                Application.targetFrameRate = 144;
+                Application.targetFrameRate = 60;
                 Application.backgroundLoadingPriority = ThreadPriority.High;
+            }
+
+            if (GUILayout.Button("Test button"))
+            {
+                Game.AssetBundleMgr.Shutdown();
+            }
+
+            if (GUILayout.Button("Panic"))
+            {
+                Destroy(Game.Instance.gameObject.GetComponentInParent<Main>());
+                Destroy(Game.Instance.gameObject.GetComponentInParent<Menu>());
             }
         }
     }

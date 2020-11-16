@@ -11,6 +11,7 @@ namespace ShopTitansCheat
     {
         internal class Crafting
         {
+            internal static bool ThisIsATempBool = false;
             internal static bool DoCrafting = false;
             internal static bool RegularCrafting = false;
 

@@ -12,8 +12,11 @@ using UnityEngine;
 
 namespace ShopTitansCheat
 {
-    internal class Core
+
+    internal class Core : MonoBehaviour
     {
+        //private IEnumerator<GClass281> _bluePrints = Game.User.observableDictionary_2.Values.GetEnumerator();
+
         public static List<Equipment> GetAllItems()
         {
             List<Equipment> strs = new List<Equipment>();
@@ -35,39 +38,47 @@ namespace ShopTitansCheat
 
         public static bool StartCraft(string itemName)
         {
-            foreach (GClass281 items in Game.User.observableDictionary_2.Values)
+            using (IEnumerator<GClass281> enumerator = Game.User.observableDictionary_2.Values.GetEnumerator())
             {
-                if (items.string_0 == itemName)
+                while (enumerator.MoveNext())
                 {
-                    if (GClass166.smethod_0(Game.User.vmethod_0(), items.string_0).imethod_0())
+                    GClass281 current = enumerator.Current;
+                    if (current != null && current.string_0 == itemName)
                     {
-                        Game.SimManager.SendUserAction("CraftItem", new Dictionary<string, object>
+                        if (GClass166.smethod_0(Game.User.vmethod_0(), current.string_0).imethod_0())
+                        {
+                            Game.SimManager.SendUserAction("CraftItem", new Dictionary<string, object>
                         {
                             {
                                 "item",
-                                items.string_0
+                                current.string_0
                             }
 
                         });
-                        Log.PrintMessageInGame(string.Format(Game.Texts.GetText("craft_started"), Game.Texts.GetText(items.string_0)), OverlayMessageControl.MessageType.Neutral);
-                        Game.User.action_0();
-                        return true;
+                            Log.PrintMessageInGame(string.Format(Game.Texts.GetText("craft_started"), Game.Texts.GetText(current.string_0)), OverlayMessageControl.MessageType.Neutral);
+                            Game.User.action_0();
+                            return true;
+                        }
                     }
                 }
+                return false;
             }
-
-            return false;
         }
 
         public static List<Equipment> PeekCraft(string craftName)
         {
             List<Equipment> equips = new List<Equipment>();
-            foreach (var item in Game.User.observableDictionary_16.Values.Reverse())
-            {
-                if (item.string_0 != craftName)
-                    continue;
 
-                equips.Add(new Equipment(Game.Texts.GetText(item.string_0), (ItemQuality) item.int_0, item.bool_0));
+            using (var enumerator = Game.User.observableDictionary_16.Values.Reverse().GetEnumerator())
+            {
+                while (enumerator.MoveNext())
+                {
+                    var current = enumerator.Current;
+                    if (current.string_0 != craftName)
+                        continue;
+
+                    equips.Add(new Equipment(Game.Texts.GetText(current.string_0), (ItemQuality)current.int_0, current.bool_0));
+                }
             }
 
             return equips;
@@ -78,6 +89,22 @@ namespace ShopTitansCheat
             Resources.UnloadUnusedAssets();
             GC.Collect();
             Log.PrintConsoleMessage("Garbage collected", ConsoleColor.Cyan);
+        }
+
+        public static void Test()
+        {
+            Console.WriteLine($"GameObject: {Game.Instance.gameObject.activeSelf}");
+            //Console.WriteLine($"SomethingElsehg: {}");
+            //Game.Instance.GOCache.gameObject.SetActive(false);
+            //Console.WriteLine(Game.Instance.GOCache.gameObject.activeSelf);
+            //Destroy(Game.Instance.GOCache.gameObject);
+            //Game.Instance.BaseHairStyleCache.gameObject.SetActive(false);
+            //Game.Instance.FacialHairCache.gameObject.SetActive(false);
+            //Game.Instance.GOChestCache.gameObject.SetActive(false);
+            //Game.Instance.GOFurnitureCache.gameObject.SetActive(false);
+            //Game.Instance.GOPetCache.gameObject.SetActive(false);
+            //Game.Instance.GOItemCache.gameObject.SetActive(false);
+            //Game.Instance.GOBossCache.gameObject.SetActive(false);
         }
     }
 }
