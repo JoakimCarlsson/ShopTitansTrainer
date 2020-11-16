@@ -144,7 +144,6 @@ namespace ShopTitansCheat
                 if (Game.User != null)
                     Settings.Misc.UseEnergyAmount = GUILayout.HorizontalSlider(Settings.Misc.UseEnergyAmount, 0, Game.User.method_39());
 
-            Settings.Misc.CraftRandomStuff = GUILayout.Toggle(Settings.Misc.CraftRandomStuff, "Craft Random Stuff");
             Settings.Misc.RemoveWindowPopup = GUILayout.Toggle(Settings.Misc.RemoveWindowPopup, "Remove Window pop up.");
         }
 
@@ -200,6 +199,8 @@ namespace ShopTitansCheat
             GUILayout.Label("Crafting");
 
             GUILayout.BeginHorizontal();
+
+
             if (GUILayout.Button("Start"))
             {
                 if (Settings.Crafting.CraftingEquipmentsList.Count == 0)
@@ -225,6 +226,10 @@ namespace ShopTitansCheat
                 }
             }
             GUILayout.EndHorizontal();
+
+            Settings.Crafting.CraftRandomStuff = GUILayout.Toggle(Settings.Crafting.CraftRandomStuff, $"Craft Random Stuff Over Value {Settings.Crafting.CraftRandomStuffValue}");
+            if (Settings.Crafting.CraftRandomStuff)
+                Settings.Crafting.CraftRandomStuffValue = (int)GUILayout.HorizontalSlider(Settings.Crafting.CraftRandomStuffValue, 0, 1000000);
 
 
             GUILayout.Label("Glitch Craft");

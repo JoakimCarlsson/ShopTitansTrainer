@@ -14,6 +14,9 @@ namespace ShopTitansCheat
             internal static bool ThisIsATempBool = false;
             internal static bool DoCrafting = false;
             internal static bool RegularCrafting = false;
+            internal static bool CraftRandomStuff = false;
+
+            internal static int CraftRandomStuffValue = 0;
 
             internal static List<ItemQuality> ItemQualities = new List<ItemQuality>
             {
@@ -32,7 +35,6 @@ namespace ShopTitansCheat
             internal static bool RemoveWindowPopup = false;
             internal static bool UseEnergy = false;
             internal static float UseEnergyAmount = 0;
-            internal static bool CraftRandomStuff = false;
         }
 
         internal class AutoSell

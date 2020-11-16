@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Riposte;
+using Riposte.Sim;
 using ShopTitansCheat.Data;
 using ShopTitansCheat.Utils;
 using UnityEngine;
@@ -84,6 +85,19 @@ namespace ShopTitansCheat.Components
             }
 
             return false;
+        }
+
+        internal void CraftRandomStuffOverValue(int value)
+        {
+            foreach (GClass281 blueprint in Game.User.observableDictionary_2.Values)
+            {
+                ItemData itemData = Game.Data.method_257(blueprint.string_0);
+
+                if (itemData.Value < value)
+                    continue;
+
+                Core.StartCraft(blueprint.string_0);
+            }
         }
 
         private IEnumerator WaitThenStart(int seconds)

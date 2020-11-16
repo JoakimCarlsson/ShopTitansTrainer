@@ -16,9 +16,6 @@ namespace ShopTitansCheat.Components
         {
             if (Settings.Misc.RemoveWindowPopup)
                 Game.UI.RemoveAllWindows(WindowsManager.MenuLayer.Popup);
-
-            if (Settings.Misc.CraftRandomStuff)
-                Craft();
         }
 
         private void Craft()

@@ -45,13 +45,23 @@ namespace ShopTitansCheat
             //}
 
             if (Settings.Crafting.ThisIsATempBool)
-                if (Settings.Crafting.DoCrafting)
-                    if (_frame % 66 == 0)
+            {
+                if (_frame % 66 == 0)
+                {
+                    if (Settings.Crafting.DoCrafting && !Settings.Crafting.CraftRandomStuff)
                     {
                         Log.PrintConsoleMessage("Trying To Craft", ConsoleColor.Cyan);
 
                         DoCrafting();
                     }
+
+                    if (Settings.Crafting.DoCrafting && Settings.Crafting.CraftRandomStuff)
+                    {
+                        Log.PrintConsoleMessage("Trying To Craft", ConsoleColor.Cyan);
+                        CraftRandomStuff();
+                    }
+                }
+            }
 
             if (Settings.Misc.AutoFinishCraft && !Settings.Crafting.DoCrafting)
                 if (_frame % 111 == 0)
@@ -71,6 +81,11 @@ namespace ShopTitansCheat
 
             if (Settings.Misc.RemoveWindowPopup)
                 Game.UI.RemoveAllWindows(WindowsManager.MenuLayer.Popup);
+        }
+
+        private void CraftRandomStuff()
+        {
+            _craftingComponent.CraftRandomStuffOverValue(Settings.Crafting.CraftRandomStuffValue);
         }
 
         private void AutoSell()
