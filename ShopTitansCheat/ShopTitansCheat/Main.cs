@@ -51,13 +51,12 @@ namespace ShopTitansCheat
                     if (Settings.Crafting.DoCrafting && !Settings.Crafting.CraftRandomStuff)
                     {
                         Log.PrintConsoleMessage("Trying To Craft", ConsoleColor.Cyan);
-
                         DoCrafting();
                     }
 
                     if (Settings.Crafting.DoCrafting && Settings.Crafting.CraftRandomStuff)
                     {
-                        Log.PrintConsoleMessage("Trying To Craft", ConsoleColor.Cyan);
+                        Log.PrintConsoleMessage("Trying To Craft RandomStuff", ConsoleColor.Cyan);
                         CraftRandomStuff();
                     }
                 }
@@ -86,6 +85,9 @@ namespace ShopTitansCheat
         private void CraftRandomStuff()
         {
             _craftingComponent.CraftRandomStuffOverValue(Settings.Crafting.CraftRandomStuffValue);
+                Log.PrintConsoleMessage("We are waiting 5 seconds.", ConsoleColor.Blue);
+                Settings.Crafting.DoCrafting = false;
+                StartCoroutine(WaitThenStart(5));
         }
 
         private void AutoSell()

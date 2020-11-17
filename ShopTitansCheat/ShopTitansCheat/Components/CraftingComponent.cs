@@ -48,8 +48,6 @@ namespace ShopTitansCheat.Components
 
         internal bool GlitchCraft()
         {
-            //Core.CollectGarbage();
-
             foreach (Equipment item in Settings.Crafting.CraftingEquipmentsList)
             {
                 if (item.Done)
@@ -75,6 +73,7 @@ namespace ShopTitansCheat.Components
 
                 Log.PrintConsoleMessage($"{equipment}, Tries: {_i++}", ConsoleColor.Yellow);
                 Game.Instance.Restart();
+                Core.CollectGarbage();
                 return false;
             }
 
@@ -87,17 +86,30 @@ namespace ShopTitansCheat.Components
             return false;
         }
 
-        internal void CraftRandomStuffOverValue(int value)
+        internal bool CraftRandomStuffOverValue(int value)
         {
-            foreach (GClass281 blueprint in Game.User.observableDictionary_2.Values)
+            List<GClass281> tmpList = Game.User.observableDictionary_2.Values.ToList();
+            tmpList.Shuffle();
+
+            foreach (GClass281 blueprint in tmpList)
             {
                 ItemData itemData = Game.Data.method_257(blueprint.string_0);
+                string fullName = Game.Texts.GetText(blueprint.method_0());
 
-                if (itemData.Value < value)
+                if (itemData.Value < value || fullName.Contains("Element") || fullName.Contains("Spirit"))
                     continue;
 
-                Core.StartCraft(blueprint.string_0);
+                if (Core.StartCraft(blueprint.string_0))
+                {
+                    Log.PrintConsoleMessage($"started crafting: {blueprint.string_0}", ConsoleColor.Green);
+                    return true;
+                }
+
+                Log.PrintConsoleMessage($"not enough materials too craft: {fullName}", ConsoleColor.Red);
+
+                return false;
             }
+            return false;
         }
 
         private IEnumerator WaitThenStart(int seconds)

@@ -7,6 +7,7 @@ using ShopTitansCheat.Components;
 using ShopTitansCheat.Data;
 using ShopTitansCheat.Utils;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 namespace ShopTitansCheat
 {
@@ -50,7 +51,6 @@ namespace ShopTitansCheat
         {
             if (Input.GetKeyDown(KeyCode.Insert))
                 _visible = !_visible;
-
 
         }
 
@@ -291,14 +291,32 @@ namespace ShopTitansCheat
 
             if (GUILayout.Button("Test button"))
             {
-                Game.AssetBundleMgr.Shutdown();
+                Texture[] textures = Resources.FindObjectsOfTypeAll<Texture>();
+                Texture[] textures2D = Resources.FindObjectsOfTypeAll<Texture2D>();
+                Texture[] textures3D = Resources.FindObjectsOfTypeAll<Texture3D>();
+
+                Console.WriteLine($"Textures Count {textures.Length}");
+                Console.WriteLine($"Textures2D Count {textures2D.Length}");
+                Console.WriteLine($"Textures3D Count {textures3D.Length}");
+
+                foreach (Texture texture in textures2D)
+                {
+                    texture.height = 0;
+                    texture.width = 0;
+                }
             }
 
             if (GUILayout.Button("Panic"))
             {
                 Destroy(Game.Instance.gameObject.GetComponentInParent<Main>());
                 Destroy(Game.Instance.gameObject.GetComponentInParent<Menu>());
+
             }
+        }
+
+        static double ConvertBytesToMegabytes(long bytes)
+        {
+            return (bytes / 1024f) / 1024f;
         }
     }
 }
