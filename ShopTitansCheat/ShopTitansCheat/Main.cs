@@ -81,9 +81,9 @@ namespace ShopTitansCheat
         private void CraftRandomStuff()
         {
             _craftingComponent.CraftRandomStuffOverValue(Settings.Crafting.CraftRandomStuffValue);
-                Log.PrintConsoleMessage("We are waiting 5 seconds.", ConsoleColor.Blue);
+                Log.PrintConsoleMessage("We are waiting 2 seconds.", ConsoleColor.Blue);
                 Settings.Crafting.DoCrafting = false;
-                StartCoroutine(WaitThenStart(5));
+                StartCoroutine(WaitThenStart(2));
         }
 
         private void AutoSell()

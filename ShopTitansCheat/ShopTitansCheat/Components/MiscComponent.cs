@@ -12,28 +12,6 @@ namespace ShopTitansCheat.Components
 {
     class MiscComponent
     {
-        private void Update()
-        {
-            if (Settings.Misc.RemoveWindowPopup)
-                Game.UI.RemoveAllWindows(WindowsManager.MenuLayer.Popup);
-        }
-
-        private void Craft()
-        {
-            List<GClass281> list = Game.User.observableDictionary_2.Values.ToList(false);
-            list.Shuffle();
-
-            foreach (GClass281 gclass2 in list)
-            {
-                ItemData data = Game.Data.method_257(gclass2.string_0);
-                if (data.Value < 200000)
-                    continue;
-
-                Core.StartCraft(gclass2.string_0);
-            }
-        }
-
-
         internal void FinishCraft()
         {
             //TODO data.EnergySpeedUp
@@ -63,6 +41,7 @@ namespace ShopTitansCheat.Components
         {
             foreach (GClass301 craft in Game.User.observableDictionary_16.Values.ToList(false))
             {
+
                 if (!craft.imethod_3())
                 {
                     craft.imethod_6();

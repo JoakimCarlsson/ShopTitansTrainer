@@ -34,6 +34,11 @@ namespace ShopTitansCheat
             return strs;
         }
 
+        public static List<ItemData.ItemType> GetItemTypes()
+        {
+            return new List<ItemData.ItemType>();
+        }
+
         public static bool StartCraft(string itemName)
         {
             using (IEnumerator<GClass281> enumerator = Game.User.observableDictionary_2.Values.GetEnumerator())

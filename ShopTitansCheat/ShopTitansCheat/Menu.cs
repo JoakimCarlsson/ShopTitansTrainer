@@ -198,9 +198,44 @@ namespace ShopTitansCheat
         {
             GUILayout.Label("Crafting");
 
+
+
+            GUILayout.Label("Item List 1");
             GUILayout.BeginHorizontal();
 
+            if (GUILayout.Button("Save configuration"))
+                Config.SaveCraftingList("equip");
 
+            if (GUILayout.Button("Load configuration"))
+                Config.LoadCraftingList("equip");
+            GUILayout.EndHorizontal();
+
+            GUILayout.Label("Item List 2");
+            GUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("Save configuration"))
+                Config.SaveCraftingList("regular");
+
+            if (GUILayout.Button("Load configuration"))
+                Config.LoadCraftingList("regular");
+
+            GUILayout.EndHorizontal();
+
+            GUILayout.Space(10);
+
+            GUILayout.Label("Toggle me if you want normal crafting");
+            Settings.Crafting.RegularCrafting = GUILayout.Toggle(Settings.Crafting.RegularCrafting, "Regular craft.");
+
+            GUILayout.Label("Will craft random items.");
+            Settings.Crafting.CraftRandomStuff = GUILayout.Toggle(Settings.Crafting.CraftRandomStuff, $"Craft Random Stuff Over Value {Settings.Crafting.CraftRandomStuffValue}");
+            if (Settings.Crafting.CraftRandomStuff)
+            {
+                Settings.Crafting.CraftRandomStuffValue = (int)GUILayout.HorizontalSlider(Settings.Crafting.CraftRandomStuffValue, 0, 1000000);
+                Settings.Crafting.IncludeElements = GUILayout.Toggle(Settings.Crafting.IncludeElements, "Include Elements");
+                Settings.Crafting.IncludeRune = GUILayout.Toggle(Settings.Crafting.IncludeRune, "Include Runes");
+            }
+
+            GUILayout.BeginHorizontal();
             if (GUILayout.Button("Start"))
             {
                 if (Settings.Crafting.CraftingEquipmentsList.Count == 0)
@@ -226,35 +261,6 @@ namespace ShopTitansCheat
                 }
             }
             GUILayout.EndHorizontal();
-
-            Settings.Crafting.CraftRandomStuff = GUILayout.Toggle(Settings.Crafting.CraftRandomStuff, $"Craft Random Stuff Over Value {Settings.Crafting.CraftRandomStuffValue}");
-            if (Settings.Crafting.CraftRandomStuff)
-                Settings.Crafting.CraftRandomStuffValue = (int)GUILayout.HorizontalSlider(Settings.Crafting.CraftRandomStuffValue, 0, 1000000);
-
-
-            GUILayout.Label("Glitch Craft");
-            GUILayout.BeginHorizontal();
-
-            if (GUILayout.Button("Save configuration"))
-                Config.SaveCraftingList("equip");
-
-            if (GUILayout.Button("Load configuration"))
-                Config.LoadCraftingList("equip");
-
-            GUILayout.EndHorizontal();
-
-            GUILayout.Label("Regular Craft");
-            GUILayout.BeginHorizontal();
-
-            if (GUILayout.Button("Save configuration"))
-                Config.SaveCraftingList("regular");
-
-            if (GUILayout.Button("Load configuration"))
-                Config.LoadCraftingList("regular");
-
-            GUILayout.EndHorizontal();
-
-            Settings.Crafting.RegularCrafting = GUILayout.Toggle(Settings.Crafting.RegularCrafting, "Regular craft.");
         }
 
         private void MainMenu()
@@ -291,18 +297,6 @@ namespace ShopTitansCheat
 
             if (GUILayout.Button("Test button"))
             {
-                foreach (var gClass281 in Game.User.observableDictionary_16.Values)
-                {
-                    Console.WriteLine($"int_1: {(ItemQuality)gClass281.int_1}");
-                    Console.WriteLine($"int_0: {(ItemQuality)gClass281.int_0}");
-                }   
-            }
-
-            if (GUILayout.Button("Panic"))
-            {
-                Destroy(Game.Instance.gameObject.GetComponentInParent<Main>());
-                Destroy(Game.Instance.gameObject.GetComponentInParent<Menu>());
-
             }
         }
 

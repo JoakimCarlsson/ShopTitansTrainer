@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Riposte.Sim;
 using ShopTitansCheat.Data;
+using UnityEngine;
 
 namespace ShopTitansCheat
 {
@@ -15,8 +17,10 @@ namespace ShopTitansCheat
             internal static bool DoCrafting = false;
             internal static bool RegularCrafting = false;
             internal static bool CraftRandomStuff = false;
-
             internal static int CraftRandomStuffValue = 0;
+
+            internal static bool IncludeRune = false;
+            internal static bool IncludeElements = false;
 
             internal static List<ItemQuality> ItemQualities = new List<ItemQuality>
             {

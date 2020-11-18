@@ -90,13 +90,16 @@ namespace ShopTitansCheat.Components
         {
             List<GClass281> tmpList = Game.User.observableDictionary_2.Values.ToList();
             tmpList.Shuffle();
-
             foreach (GClass281 blueprint in tmpList)
             {
                 ItemData itemData = Game.Data.method_257(blueprint.string_0);
                 string fullName = Game.Texts.GetText(blueprint.method_0());
 
-                if (itemData.Value < value || fullName.Contains("Element") || fullName.Contains("Spirit"))
+                if (!Settings.Crafting.IncludeElements || !Settings.Crafting.IncludeRune)
+                    if (itemData.Type == ItemData.ItemType.Tag || itemData.Type == ItemData.ItemType.Rune)
+                        continue;
+
+                if (itemData.Value < value)
                     continue;
 
                 if (Core.StartCraft(blueprint.string_0))
@@ -110,12 +113,6 @@ namespace ShopTitansCheat.Components
                 return false;
             }
             return false;
-        }
-
-        private IEnumerator WaitThenStart(int seconds)
-        {
-            Log.PrintConsoleMessage($"We are waiting {seconds} seconds.", ConsoleColor.Blue);
-            yield return new WaitForSeconds(seconds);
         }
     }
 }
