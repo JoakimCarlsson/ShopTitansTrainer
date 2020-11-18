@@ -73,7 +73,7 @@ namespace ShopTitansCheat.Components
 
                 Log.PrintConsoleMessage($"{equipment}, Tries: {_i++}", ConsoleColor.Yellow);
                 Game.Instance.Restart();
-                Core.CollectGarbage();
+              //  Core.CollectGarbage();
                 return false;
             }
 

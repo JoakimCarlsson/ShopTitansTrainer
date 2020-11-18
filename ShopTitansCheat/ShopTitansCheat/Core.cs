@@ -15,8 +15,6 @@ namespace ShopTitansCheat
 
     internal class Core : MonoBehaviour
     {
-        //private IEnumerator<GClass281> _bluePrints = Game.User.observableDictionary_2.Values.GetEnumerator();
-
         public static List<Equipment> GetAllItems()
         {
             List<Equipment> strs = new List<Equipment>();

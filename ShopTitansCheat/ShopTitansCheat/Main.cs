@@ -16,7 +16,6 @@ namespace ShopTitansCheat
     class Main : MonoBehaviour
     {
         private int _frame;
-
         private Menu _menu;
         private CraftingComponent _craftingComponent;
         private AutoSellComponent _autoSellComponent;
@@ -27,23 +26,20 @@ namespace ShopTitansCheat
             _menu = Game.Instance.gameObject.AddComponent<Menu>();
             Game.Scheduler.Register(Scheduler.Priority.BeginFrame, Update);
 
+            Console.WriteLine("IF YOU READ THIS U ARE GAY");
+
             _craftingComponent = new CraftingComponent();
             _autoSellComponent = new AutoSellComponent();
             _miscComponent = new MiscComponent();
+
         }
 
         private void Update()
         {
-            if (!Game.IsActivePlayState)
+            if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
                 return;
 
             _frame++;
-            //if (_frame % 30 == 0)
-            //{
-            //    Log.PrintConsoleMessage("GC.Collect", ConsoleColor.Yellow);
-            //    System.GC.Collect();
-            //}
-
             if (Settings.Crafting.ThisIsATempBool)
             {
                 if (_frame % 66 == 0)
@@ -113,7 +109,7 @@ namespace ShopTitansCheat
                 if (_craftingComponent.GlitchCraft())
                 {
                     Settings.Crafting.DoCrafting = false;
-
+                    Core.CollectGarbage();
                     Log.PrintConsoleMessage("We are waiting 20 seconds.", ConsoleColor.Blue);
                     StartCoroutine(WaitThenStart(20));
                 }

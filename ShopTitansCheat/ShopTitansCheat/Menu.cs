@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using Riposte;
+using Riposte.Sim;
 using ShopTitansCheat.Components;
 using ShopTitansCheat.Data;
 using ShopTitansCheat.Utils;
@@ -32,8 +33,7 @@ namespace ShopTitansCheat
 
         private string _searchText = "";
 
-        private readonly string _watermark = "I want too kill my self";
-
+        private readonly string _watermark = "Shop Titans Bot 0.21";
         private List<Equipment> BluePrints = Core.GetAllItems();
 
         private void Start()
@@ -126,11 +126,11 @@ namespace ShopTitansCheat
             Settings.AutoSell.Suggest = GUILayout.Toggle(Settings.AutoSell.Suggest, "Suggest");
             Settings.AutoSell.BuyFromNpc = GUILayout.Toggle(Settings.AutoSell.BuyFromNpc, "Buy From NPC");
 
-            GUILayout.Label( $"Surcharge Over {(int)Settings.AutoSell.SurchargeAmount}");
-            Settings.AutoSell.SurchargeAmount = (int) GUILayout.HorizontalSlider(Settings.AutoSell.SurchargeAmount, 0, 1000000);
+            GUILayout.Label($"Surcharge Over {(int)Settings.AutoSell.SurchargeAmount}");
+            Settings.AutoSell.SurchargeAmount = (int)GUILayout.HorizontalSlider(Settings.AutoSell.SurchargeAmount, 0, 1000000);
 
             GUILayout.Label($"Discount  Under {(int)Settings.AutoSell.DiscountAmount}");
-            Settings.AutoSell.DiscountAmount = (int) GUILayout.HorizontalSlider(Settings.AutoSell.DiscountAmount, 0, 1000000);
+            Settings.AutoSell.DiscountAmount = (int)GUILayout.HorizontalSlider(Settings.AutoSell.DiscountAmount, 0, 1000000);
         }
 
         private void RandomOptionsMenu()
@@ -285,25 +285,17 @@ namespace ShopTitansCheat
 
             if (GUILayout.Button("Higher Performance."))
             {
-                Application.targetFrameRate = 60;
+                Application.targetFrameRate = 144;
                 Application.backgroundLoadingPriority = ThreadPriority.High;
             }
 
             if (GUILayout.Button("Test button"))
             {
-                Texture[] textures = Resources.FindObjectsOfTypeAll<Texture>();
-                Texture[] textures2D = Resources.FindObjectsOfTypeAll<Texture2D>();
-                Texture[] textures3D = Resources.FindObjectsOfTypeAll<Texture3D>();
-
-                Console.WriteLine($"Textures Count {textures.Length}");
-                Console.WriteLine($"Textures2D Count {textures2D.Length}");
-                Console.WriteLine($"Textures3D Count {textures3D.Length}");
-
-                foreach (Texture texture in textures2D)
+                foreach (var gClass281 in Game.User.observableDictionary_16.Values)
                 {
-                    texture.height = 0;
-                    texture.width = 0;
-                }
+                    Console.WriteLine($"int_1: {(ItemQuality)gClass281.int_1}");
+                    Console.WriteLine($"int_0: {(ItemQuality)gClass281.int_0}");
+                }   
             }
 
             if (GUILayout.Button("Panic"))
