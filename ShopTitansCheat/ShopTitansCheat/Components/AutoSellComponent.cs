@@ -40,7 +40,7 @@ namespace ShopTitansCheat.Components
             }
         }
 
-        private static void SurchargeOrDiscount(GClass339 gclass10)
+        private void SurchargeOrDiscount(GClass339 gclass10)
         {
             if (Game.User.method_38() < Game.User.method_39() / 2)
             {
@@ -84,7 +84,7 @@ namespace ShopTitansCheat.Components
             });
         }
 
-        private static void RefuseItem(GClass548 gclass11, GClass339 gclass10)
+        private void RefuseItem(GClass548 gclass11, GClass339 gclass10)
         {
             if (gclass11.method_90() == GClass255.InteractionType.Initialize)
             {
@@ -102,7 +102,7 @@ namespace ShopTitansCheat.Components
             }
         }
 
-        private static void SellItem(GClass548 gclass11, GClass339 gclass10)
+        private void SellItem(GClass548 gclass11, GClass339 gclass10)
         {
             if (gclass11.method_90() == GClass255.InteractionType.Initialize)
             {
@@ -120,7 +120,7 @@ namespace ShopTitansCheat.Components
             }
         }
 
-        private static void SuggestItem(GClass548 gclass11, GClass339 gclass10)
+        private void SuggestItem(GClass548 gclass11, GClass339 gclass10)
         {
             if (gclass11.method_90() == GClass255.InteractionType.Initialize)
             {
@@ -148,7 +148,7 @@ namespace ShopTitansCheat.Components
             }
         }
 
-        private static void BuyNpcItem(GClass548 gclass11, GClass339 gclass10)
+        private void BuyNpcItem(GClass548 gclass11, GClass339 gclass10)
         {
             if (gclass11.method_90() == GClass255.InteractionType.Initialize)
             {
@@ -166,7 +166,7 @@ namespace ShopTitansCheat.Components
             }
         }
 
-        private static void SmallTalkWithNpc(GClass339 gclass10)
+        private void SmallTalkWithNpc(GClass339 gclass10)
         {
             Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
             {
@@ -181,7 +181,7 @@ namespace ShopTitansCheat.Components
             });
         }
 
-        private static void StartConversationWithNpc(GClass339 gclass10)
+        private void StartConversationWithNpc(GClass339 gclass10)
         {
             Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
             {

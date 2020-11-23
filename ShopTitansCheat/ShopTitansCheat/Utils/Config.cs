@@ -5,12 +5,21 @@ using Newtonsoft.Json;
 using Riposte;
 using ShopTitansCheat.Components;
 using ShopTitansCheat.Data;
+using UnityEngine;
 
 namespace ShopTitansCheat.Utils
 {
     class Config
     {
-        internal static void SaveCraftingList(string fileName)
+        private static readonly Lazy<Config> Lazy = new Lazy<Config>(() => new Config());
+        public static Config Instance => Lazy.Value;
+
+        Config()
+        {
+            
+        }
+
+        internal void SaveCraftingList(string fileName)
         {
             if (Settings.Crafting.CraftingEquipmentsList.Count == 0)
             {
@@ -23,7 +32,7 @@ namespace ShopTitansCheat.Utils
             }
         }
 
-        public static void LoadCraftingList(string fileName)
+        internal void LoadCraftingList(string fileName)
         {
             string text;
 

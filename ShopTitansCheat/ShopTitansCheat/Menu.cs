@@ -209,20 +209,20 @@ namespace ShopTitansCheat
             GUILayout.BeginHorizontal();
 
             if (GUILayout.Button("Save configuration"))
-                Config.SaveCraftingList("equip");
+                Config.Instance.SaveCraftingList("equip");
 
             if (GUILayout.Button("Load configuration"))
-                Config.LoadCraftingList("equip");
+                Config.Instance.LoadCraftingList("equip");
             GUILayout.EndHorizontal();
 
             GUILayout.Label("Item List 2");
             GUILayout.BeginHorizontal();
 
             if (GUILayout.Button("Save configuration"))
-                Config.SaveCraftingList("regular");
+                Config.Instance.SaveCraftingList("regular");
 
             if (GUILayout.Button("Load configuration"))
-                Config.LoadCraftingList("regular");
+                Config.Instance.LoadCraftingList("regular");
 
             GUILayout.EndHorizontal();
 
@@ -301,7 +301,7 @@ namespace ShopTitansCheat
             }
         }
 
-        public static List<Equipment> GetAllItems()
+        public List<Equipment> GetAllItems()
         {
             List<Equipment> strs = new List<Equipment>();
             if (Game.PlayState != null)

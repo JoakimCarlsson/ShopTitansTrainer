@@ -115,7 +115,7 @@ namespace ShopTitansCheat.Components
             return false;
         }
 
-        public static bool StartCraft(string itemName)
+        public bool StartCraft(string itemName)
         {
             using (IEnumerator<GClass281> enumerator = Game.User.observableDictionary_2.Values.GetEnumerator())
             {
@@ -144,7 +144,7 @@ namespace ShopTitansCheat.Components
             }
         }
 
-        public static List<Equipment> PeekCraft(string craftName)
+        public List<Equipment> PeekCraft(string craftName)
         {
             List<Equipment> equips = new List<Equipment>();
 
