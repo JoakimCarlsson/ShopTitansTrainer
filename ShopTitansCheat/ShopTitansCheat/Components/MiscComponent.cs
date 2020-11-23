@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Riposte;
-using Riposte.Sim;
 using ShopTitansCheat.Utils;
-using UnityEngine;
 
 namespace ShopTitansCheat.Components
 {
@@ -14,9 +9,7 @@ namespace ShopTitansCheat.Components
     {
         internal void FinishCraft()
         {
-            //TODO data.EnergySpeedUp
-
-            foreach (GClass301 gclass3 in Game.User.observableDictionary_16.Values.ToList(false))
+            foreach (GClass301 gclass3 in Game.User.observableDictionary_16.Values.ToList())
             {
                 if (Settings.Misc.UseEnergy && Game.User.method_38() > Settings.Misc.UseEnergyAmount)
                 {
@@ -39,7 +32,7 @@ namespace ShopTitansCheat.Components
 
         private void SpeedCraft()
         {
-            foreach (GClass301 craft in Game.User.observableDictionary_16.Values.ToList(false))
+            foreach (GClass301 craft in Game.User.observableDictionary_16.Values.ToList())
             {
 
                 if (!craft.imethod_3())

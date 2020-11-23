@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using Newtonsoft.Json;
+﻿using System.Collections.Generic;
 using Riposte;
-using Riposte.Sim;
-using ShopTitansCheat.Components;
 using ShopTitansCheat.Data;
 using ShopTitansCheat.Utils;
 using UnityEngine;
-using UnityEngine.Profiling;
 
 namespace ShopTitansCheat
 {

@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Riposte;
 using ShopTitansCheat.Components;
 using ShopTitansCheat.Utils;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using Debug = UnityEngine.Debug;
 
 namespace ShopTitansCheat
 {
@@ -31,7 +25,6 @@ namespace ShopTitansCheat
             _miscComponent = new MiscComponent();
 
             Console.WriteLine("You suck at snake.");
-
         }
 
         private void Update()

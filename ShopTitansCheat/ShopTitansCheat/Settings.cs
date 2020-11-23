@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Riposte.Sim;
+﻿using System.Collections.Generic;
 using ShopTitansCheat.Data;
-using UnityEngine;
 
 namespace ShopTitansCheat
 {
