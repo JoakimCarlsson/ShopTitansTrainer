@@ -33,7 +33,7 @@ namespace ShopTitansCheat
 
         private string _searchText = "";
 
-        private readonly string _watermark = "Shop Titans Bot 0.21";
+        private readonly string _watermark = "Shop Titans Bot 0.22";
         private List<Equipment> _bluePrints = new List<Equipment>();
 
         private void Start()
@@ -49,11 +49,11 @@ namespace ShopTitansCheat
 
         private void Update()
         {
-            if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
-                return;
-
             if (Input.GetKeyDown(KeyCode.Insert))
                 _visible = !_visible;
+
+            if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
+                return;
 
             if (_bluePrints.Count == 0)
                 _bluePrints = GetAllItems();

@@ -30,6 +30,8 @@ namespace ShopTitansCheat
             _autoSellComponent = new AutoSellComponent();
             _miscComponent = new MiscComponent();
 
+            Console.WriteLine("You suck at snake.");
+
         }
 
         private void Update()

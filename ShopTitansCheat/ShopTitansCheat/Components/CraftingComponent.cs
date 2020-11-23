@@ -73,7 +73,6 @@ namespace ShopTitansCheat.Components
 
                 Log.Instance.PrintConsoleMessage($"{equipment}, Tries: {_i++}", ConsoleColor.Yellow);
                 Game.Instance.Restart();
-              //  Core.CollectGarbage();
                 return false;
             }
 
@@ -115,36 +114,26 @@ namespace ShopTitansCheat.Components
             return false;
         }
 
-        public bool StartCraft(string itemName)
+        private bool StartCraft(string itemName)
         {
-            using (IEnumerator<GClass281> enumerator = Game.User.observableDictionary_2.Values.GetEnumerator())
+            if (GClass166.smethod_0(Game.User.vmethod_0(), itemName).imethod_0())
             {
-                while (enumerator.MoveNext())
+                Game.SimManager.SendUserAction("CraftItem", new Dictionary<string, object>
                 {
-                    GClass281 current = enumerator.Current;
-                    if (current != null && current.string_0 == itemName)
                     {
-                        if (GClass166.smethod_0(Game.User.vmethod_0(), current.string_0).imethod_0())
-                        {
-                            Game.SimManager.SendUserAction("CraftItem", new Dictionary<string, object>
-                            {
-                                {
-                                    "item",
-                                    current.string_0
-                                }
-
-                            });
-                            Log.Instance.PrintMessageInGame(string.Format(Game.Texts.GetText("craft_started"), Game.Texts.GetText(current.string_0)), OverlayMessageControl.MessageType.Neutral);
-                            Game.User.action_0();
-                            return true;
-                        }
+                        "item",
+                        itemName
                     }
-                }
-                return false;
+
+                });
+                Log.Instance.PrintMessageInGame(string.Format(Game.Texts.GetText("craft_started"), Game.Texts.GetText(itemName)), OverlayMessageControl.MessageType.Neutral);
+                Game.User.action_0();
+                return true;
             }
+            return false;
         }
 
-        public List<Equipment> PeekCraft(string craftName)
+        private List<Equipment> PeekCraft(string craftName)
         {
             List<Equipment> equips = new List<Equipment>();
 
@@ -159,7 +148,6 @@ namespace ShopTitansCheat.Components
                     equips.Add(new Equipment(Game.Texts.GetText(current.string_0), (ItemQuality)current.int_0, current.bool_0));
                 }
             }
-
             return equips;
         }
     }
