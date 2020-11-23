@@ -63,7 +63,6 @@
     <Compile Include="Components\AutoSellComponent.cs" />
     <Compile Include="Components\CraftingComponent.cs" />
     <Compile Include="Components\MiscComponent.cs" />
-    <Compile Include="Core.cs" />
     <Compile Include="Data\Equipment.cs" />
     <Compile Include="Data\ItemQuality.cs" />
     <Compile Include="Loader.cs" />

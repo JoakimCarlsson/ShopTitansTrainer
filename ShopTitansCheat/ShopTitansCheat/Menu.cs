@@ -34,7 +34,7 @@ namespace ShopTitansCheat
         private string _searchText = "";
 
         private readonly string _watermark = "Shop Titans Bot 0.21";
-        private List<Equipment> BluePrints = Core.GetAllItems();
+        private List<Equipment> _bluePrints = new List<Equipment>();
 
         private void Start()
         {
@@ -49,9 +49,14 @@ namespace ShopTitansCheat
 
         private void Update()
         {
+            if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
+                return;
+
             if (Input.GetKeyDown(KeyCode.Insert))
                 _visible = !_visible;
 
+            if (_bluePrints.Count == 0)
+                _bluePrints = GetAllItems();
         }
 
         private void OnGUI()
@@ -176,7 +181,7 @@ namespace ShopTitansCheat
             GUILayout.Label("Crafting List");
             _searchText = GUILayout.TextField(_searchText, 15, "textfield");
 
-            foreach (Equipment item in BluePrints)
+            foreach (Equipment item in _bluePrints)
             {
                 if (!string.IsNullOrEmpty(_searchText))
                     if (!item.FullName.Contains(_searchText))
@@ -291,18 +296,27 @@ namespace ShopTitansCheat
 
             if (GUILayout.Button("Higher Performance."))
             {
-                Application.targetFrameRate = 144;
+                Application.targetFrameRate = 60;
                 Application.backgroundLoadingPriority = ThreadPriority.High;
-            }
-
-            if (GUILayout.Button("Test button"))
-            {
             }
         }
 
-        static double ConvertBytesToMegabytes(long bytes)
+        public static List<Equipment> GetAllItems()
         {
-            return (bytes / 1024f) / 1024f;
+            List<Equipment> strs = new List<Equipment>();
+            if (Game.PlayState != null)
+            {
+                foreach (GClass281 item in Game.User.observableDictionary_2.Values)
+                {
+                    strs.Add(new Equipment
+                    {
+                        ShortName = item.string_0,
+                        FullName = Game.Texts.GetText(item.method_0()),
+                    });
+                }
+            }
+
+            return strs;
         }
     }
 }

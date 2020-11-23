@@ -26,8 +26,6 @@ namespace ShopTitansCheat
             _menu = Game.Instance.gameObject.AddComponent<Menu>();
             Game.Scheduler.Register(Scheduler.Priority.BeginFrame, Update);
 
-            Console.WriteLine("IF YOU READ THIS U ARE GAY");
-
             _craftingComponent = new CraftingComponent();
             _autoSellComponent = new AutoSellComponent();
             _miscComponent = new MiscComponent();
@@ -58,16 +56,14 @@ namespace ShopTitansCheat
                 }
             }
 
-            if (Settings.Misc.AutoFinishCraft && !Settings.Crafting.DoCrafting)
+            if (Settings.Misc.AutoFinishCraft)
                 if (_frame % 111 == 0)
                 {
                     Log.PrintConsoleMessage("Trying Store Craft", ConsoleColor.DarkBlue);
-
                     StoreFinished();
-
                 }
 
-            if (Settings.AutoSell.AutoSellToNpc && !Settings.Crafting.DoCrafting)
+            if (Settings.AutoSell.AutoSellToNpc)
                 if (_frame % 77 == 0)
                 {
                     Log.PrintConsoleMessage("Trying Auto Sell", ConsoleColor.DarkCyan);
@@ -109,7 +105,7 @@ namespace ShopTitansCheat
                 if (_craftingComponent.GlitchCraft())
                 {
                     Settings.Crafting.DoCrafting = false;
-                    Core.CollectGarbage();
+                    Game.Instance.GarbageCollect();
                     Log.PrintConsoleMessage("We are waiting 20 seconds.", ConsoleColor.Blue);
                     StartCoroutine(WaitThenStart(20));
                 }

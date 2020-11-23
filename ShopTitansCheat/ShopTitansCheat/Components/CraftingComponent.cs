@@ -21,7 +21,7 @@ namespace ShopTitansCheat.Components
                 if (item.Done)
                     continue;
 
-                if (!Core.StartCraft(item.ShortName))
+                if (!StartCraft(item.ShortName))
                 {
                     Log.PrintConsoleMessage($"Not enough for {item.FullName}, continuing", ConsoleColor.Red);
                     return;
@@ -53,13 +53,13 @@ namespace ShopTitansCheat.Components
                 if (item.Done)
                     continue;
 
-                if (!Core.StartCraft(item.ShortName))
+                if (!StartCraft(item.ShortName))
                 {
                     Log.PrintConsoleMessage($"Not enough resources for {item.FullName}", ConsoleColor.Red);
                     return true;
                 }
 
-                Equipment equipment = Core.PeekCraft(item.ShortName)[0];
+                Equipment equipment = PeekCraft(item.ShortName)[0];
 
                 if (equipment.ItemQuality >= item.ItemQuality)
                 {
@@ -102,7 +102,7 @@ namespace ShopTitansCheat.Components
                 if (itemData.Value < value)
                     continue;
 
-                if (Core.StartCraft(blueprint.string_0))
+                if (StartCraft(blueprint.string_0))
                 {
                     Log.PrintConsoleMessage($"started crafting: {blueprint.string_0}", ConsoleColor.Green);
                     return true;
@@ -113,6 +113,54 @@ namespace ShopTitansCheat.Components
                 return false;
             }
             return false;
+        }
+
+        public static bool StartCraft(string itemName)
+        {
+            using (IEnumerator<GClass281> enumerator = Game.User.observableDictionary_2.Values.GetEnumerator())
+            {
+                while (enumerator.MoveNext())
+                {
+                    GClass281 current = enumerator.Current;
+                    if (current != null && current.string_0 == itemName)
+                    {
+                        if (GClass166.smethod_0(Game.User.vmethod_0(), current.string_0).imethod_0())
+                        {
+                            Game.SimManager.SendUserAction("CraftItem", new Dictionary<string, object>
+                            {
+                                {
+                                    "item",
+                                    current.string_0
+                                }
+
+                            });
+                            Log.PrintMessageInGame(string.Format(Game.Texts.GetText("craft_started"), Game.Texts.GetText(current.string_0)), OverlayMessageControl.MessageType.Neutral);
+                            Game.User.action_0();
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+        }
+
+        public static List<Equipment> PeekCraft(string craftName)
+        {
+            List<Equipment> equips = new List<Equipment>();
+
+            using (var enumerator = Game.User.observableDictionary_16.Values.Reverse().GetEnumerator())
+            {
+                while (enumerator.MoveNext())
+                {
+                    var current = enumerator.Current;
+                    if (current.string_0 != craftName)
+                        continue;
+
+                    equips.Add(new Equipment(Game.Texts.GetText(current.string_0), (ItemQuality)current.int_0, current.bool_0));
+                }
+            }
+
+            return equips;
         }
     }
 }
