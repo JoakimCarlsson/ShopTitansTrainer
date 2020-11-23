@@ -245,7 +245,7 @@ namespace ShopTitansCheat
             {
                 if (Settings.Crafting.CraftingEquipmentsList.Count == 0)
                 {
-                    Log.PrintMessageInGame($"Please add items..", OverlayMessageControl.MessageType.Error);
+                    Log.Instance.PrintMessageInGame($"Please add items..", OverlayMessageControl.MessageType.Error);
                 }
                 else
                 {

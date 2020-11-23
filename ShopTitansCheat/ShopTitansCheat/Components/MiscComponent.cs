@@ -24,7 +24,7 @@ namespace ShopTitansCheat.Components
                 }
                 else if (GClass167.smethod_0(gclass3).imethod_0())
                 {
-                    Log.PrintConsoleMessage($"{gclass3.string_0} stored.", ConsoleColor.Green);
+                    Log.Instance.PrintConsoleMessage($"{gclass3.string_0} stored.", ConsoleColor.Green);
 
                     Game.SimManager.SendUserAction("CraftStore", new Dictionary<string, object>
                     {
@@ -62,7 +62,7 @@ namespace ShopTitansCheat.Components
                     }
                     else
                     {
-                        Log.PrintMessageInGame(Game.Texts.GetText("not_enough_energy", null), OverlayMessageControl.MessageType.Error);
+                        Log.Instance.PrintMessageInGame(Game.Texts.GetText("not_enough_energy", null), OverlayMessageControl.MessageType.Error);
                     }
                 }
                 else

@@ -44,13 +44,13 @@ namespace ShopTitansCheat
                 {
                     if (Settings.Crafting.DoCrafting && !Settings.Crafting.CraftRandomStuff)
                     {
-                        Log.PrintConsoleMessage("Trying To Craft", ConsoleColor.Cyan);
+                        Log.Instance.PrintConsoleMessage("Trying To Craft", ConsoleColor.Cyan);
                         DoCrafting();
                     }
 
                     if (Settings.Crafting.DoCrafting && Settings.Crafting.CraftRandomStuff)
                     {
-                        Log.PrintConsoleMessage("Trying To Craft RandomStuff", ConsoleColor.Cyan);
+                        Log.Instance.PrintConsoleMessage("Trying To Craft RandomStuff", ConsoleColor.Cyan);
                         CraftRandomStuff();
                     }
                 }
@@ -59,14 +59,14 @@ namespace ShopTitansCheat
             if (Settings.Misc.AutoFinishCraft)
                 if (_frame % 111 == 0)
                 {
-                    Log.PrintConsoleMessage("Trying Store Craft", ConsoleColor.DarkBlue);
+                    Log.Instance.PrintConsoleMessage("Trying Store Craft", ConsoleColor.DarkBlue);
                     StoreFinished();
                 }
 
             if (Settings.AutoSell.AutoSellToNpc)
                 if (_frame % 77 == 0)
                 {
-                    Log.PrintConsoleMessage("Trying Auto Sell", ConsoleColor.DarkCyan);
+                    Log.Instance.PrintConsoleMessage("Trying Auto Sell", ConsoleColor.DarkCyan);
                     AutoSell();
                 }
 
@@ -77,7 +77,7 @@ namespace ShopTitansCheat
         private void CraftRandomStuff()
         {
             _craftingComponent.CraftRandomStuffOverValue(Settings.Crafting.CraftRandomStuffValue);
-                Log.PrintConsoleMessage("We are waiting 2 seconds.", ConsoleColor.Blue);
+                Log.Instance.PrintConsoleMessage("We are waiting 2 seconds.", ConsoleColor.Blue);
                 Settings.Crafting.DoCrafting = false;
                 StartCoroutine(WaitThenStart(2));
         }
@@ -106,7 +106,7 @@ namespace ShopTitansCheat
                 {
                     Settings.Crafting.DoCrafting = false;
                     Game.Instance.GarbageCollect();
-                    Log.PrintConsoleMessage("We are waiting 20 seconds.", ConsoleColor.Blue);
+                    Log.Instance.PrintConsoleMessage("We are waiting 20 seconds.", ConsoleColor.Blue);
                     StartCoroutine(WaitThenStart(20));
                 }
                 else

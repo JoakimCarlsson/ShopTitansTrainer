@@ -23,17 +23,17 @@ namespace ShopTitansCheat.Components
 
                 if (!StartCraft(item.ShortName))
                 {
-                    Log.PrintConsoleMessage($"Not enough for {item.FullName}, continuing", ConsoleColor.Red);
+                    Log.Instance.PrintConsoleMessage($"Not enough for {item.FullName}, continuing", ConsoleColor.Red);
                     return;
                 }
 
-                Log.PrintConsoleMessage($"Sucesfully crafted {item.FullName}, {item.ItemQuality}", ConsoleColor.Green);
+                Log.Instance.PrintConsoleMessage($"Sucesfully crafted {item.FullName}, {item.ItemQuality}", ConsoleColor.Green);
                 item.Done = true;
                 item.FullName = $"{item.FullName}, {item.Done}";
 
                 if (Settings.Crafting.CraftingEquipmentsList.All(i => i.Done))
                 {
-                    Log.PrintConsoleMessage($"Crafted everything in list. \tRestarting.", ConsoleColor.Green);
+                    Log.Instance.PrintConsoleMessage($"Crafted everything in list. \tRestarting.", ConsoleColor.Green);
 
                     foreach (Equipment equipment in Settings.Crafting.CraftingEquipmentsList)
                     {
@@ -55,7 +55,7 @@ namespace ShopTitansCheat.Components
 
                 if (!StartCraft(item.ShortName))
                 {
-                    Log.PrintConsoleMessage($"Not enough resources for {item.FullName}", ConsoleColor.Red);
+                    Log.Instance.PrintConsoleMessage($"Not enough resources for {item.FullName}", ConsoleColor.Red);
                     return true;
                 }
 
@@ -63,7 +63,7 @@ namespace ShopTitansCheat.Components
 
                 if (equipment.ItemQuality >= item.ItemQuality)
                 {
-                    Log.PrintConsoleMessage($"{equipment}, Tries: {_i}", ConsoleColor.Green);
+                    Log.Instance.PrintConsoleMessage($"{equipment}, Tries: {_i}", ConsoleColor.Green);
 
                     _i = 1;
                     item.Done = true;
@@ -71,7 +71,7 @@ namespace ShopTitansCheat.Components
                     return true;
                 }
 
-                Log.PrintConsoleMessage($"{equipment}, Tries: {_i++}", ConsoleColor.Yellow);
+                Log.Instance.PrintConsoleMessage($"{equipment}, Tries: {_i++}", ConsoleColor.Yellow);
                 Game.Instance.Restart();
               //  Core.CollectGarbage();
                 return false;
@@ -79,7 +79,7 @@ namespace ShopTitansCheat.Components
 
             if (Settings.Crafting.CraftingEquipmentsList.All(i => i.Done))
             {
-                Log.PrintConsoleMessage("We are done\n Stopping.", ConsoleColor.Green);
+                Log.Instance.PrintConsoleMessage("We are done\n Stopping.", ConsoleColor.Green);
                 return true;
             }
 
@@ -104,11 +104,11 @@ namespace ShopTitansCheat.Components
 
                 if (StartCraft(blueprint.string_0))
                 {
-                    Log.PrintConsoleMessage($"started crafting: {blueprint.string_0}", ConsoleColor.Green);
+                    Log.Instance.PrintConsoleMessage($"started crafting: {blueprint.string_0}", ConsoleColor.Green);
                     return true;
                 }
 
-                Log.PrintConsoleMessage($"not enough materials too craft: {fullName}", ConsoleColor.Red);
+                Log.Instance.PrintConsoleMessage($"not enough materials too craft: {fullName}", ConsoleColor.Red);
 
                 return false;
             }
@@ -134,7 +134,7 @@ namespace ShopTitansCheat.Components
                                 }
 
                             });
-                            Log.PrintMessageInGame(string.Format(Game.Texts.GetText("craft_started"), Game.Texts.GetText(current.string_0)), OverlayMessageControl.MessageType.Neutral);
+                            Log.Instance.PrintMessageInGame(string.Format(Game.Texts.GetText("craft_started"), Game.Texts.GetText(current.string_0)), OverlayMessageControl.MessageType.Neutral);
                             Game.User.action_0();
                             return true;
                         }

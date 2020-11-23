@@ -23,12 +23,12 @@ namespace ShopTitansCheat.Utils
         {
             if (Settings.Crafting.CraftingEquipmentsList.Count == 0)
             {
-                Log.PrintMessageInGame("No Items Too Save !", OverlayMessageControl.MessageType.Error);
+                Log.Instance.PrintMessageInGame("No Items Too Save !", OverlayMessageControl.MessageType.Error);
             }
             else
             {
                 File.WriteAllText($"{fileName}.json", JsonConvert.SerializeObject(Settings.Crafting.CraftingEquipmentsList));
-                Log.PrintMessageInGame("Saved Sucesfully!", OverlayMessageControl.MessageType.Neutral);
+                Log.Instance.PrintMessageInGame("Saved Sucesfully!", OverlayMessageControl.MessageType.Neutral);
             }
         }
 
