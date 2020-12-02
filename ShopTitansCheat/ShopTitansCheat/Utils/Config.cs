@@ -27,7 +27,7 @@ namespace ShopTitansCheat.Utils
             }
             else
             {
-                File.WriteAllText($"{fileName}.json", JsonConvert.SerializeObject(Settings.Crafting.CraftingEquipmentsList));
+                File.WriteAllText($"{fileName}.json", JsonConvert.SerializeObject(Settings.Crafting.CraftingEquipmentsList, Formatting.Indented));
                 Log.Instance.PrintMessageInGame("Saved Sucesfully!", OverlayMessageControl.MessageType.Neutral);
             }
         }

@@ -13,36 +13,36 @@ namespace ShopTitansCheat.Components
     {
         internal void AutoSell()
         {
-            foreach (GClass339 gclass10 in Game.User.observableDictionary_7.Values)
+            foreach (GClass347 gclass10 in Game.User.observableDictionary_9.Values)
             {
-                GClass548 gclass11 = Game.SimManager.CurrentContext.method_23().method_19(gclass10.imethod_0()) as GClass548;
+                GClass558 gclass11 = Game.SimManager.CurrentContext.method_24().method_19(gclass10.imethod_0()) as GClass558;
                 if (gclass10.method_3() > 0L && gclass11.method_58() == "VAIAsk")
                 {
                     StartConversationWithNpc(gclass10);
-
+        
                     if (Settings.AutoSell.SmallTalk)
                         SmallTalkWithNpc(gclass10);
-
+        
                     if (Settings.AutoSell.SurchargeDiscount)
                         SurchargeOrDiscount(gclass10);
-
+        
                     if (Settings.AutoSell.BuyFromNpc)
                         BuyNpcItem(gclass11, gclass10);
-
+        
                     if (Settings.AutoSell.Suggest)
                         SuggestItem(gclass11, gclass10);
-
+        
                     SellItem(gclass11, gclass10);
-
+        
                     if (Settings.AutoSell.Refuse)
                         RefuseItem(gclass11, gclass10);
                 }
             }
         }
-
-        private void SurchargeOrDiscount(GClass339 gclass10)
+        
+        private void SurchargeOrDiscount(GClass347 gclass10)
         {
-            if (Game.User.method_38() < Game.User.method_39() / 2)
+            if (Game.User.method_44() < Game.User.method_45() / 2)
             {
                 Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
                 {
@@ -56,7 +56,7 @@ namespace ShopTitansCheat.Components
                     }
                 });
             }
-            else if (Game.User.method_38() == Game.User.method_39())
+            else if (Game.User.method_44() == Game.User.method_45())
             {
                 Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
                 {
@@ -70,7 +70,7 @@ namespace ShopTitansCheat.Components
                     }
                 });
             }
-
+        
             Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
             {
                 {
@@ -83,10 +83,10 @@ namespace ShopTitansCheat.Components
                 }
             });
         }
-
-        private void RefuseItem(GClass548 gclass11, GClass339 gclass10)
+        
+        private void RefuseItem(GClass558 gclass11, GClass347 gclass10)
         {
-            if (gclass11.method_90() == GClass255.InteractionType.Initialize)
+            if (gclass11.method_90() == GClass261.InteractionType.Initialize)
             {
                 Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
                 {
@@ -101,10 +101,10 @@ namespace ShopTitansCheat.Components
                 });
             }
         }
-
-        private void SellItem(GClass548 gclass11, GClass339 gclass10)
+        
+        private void SellItem(GClass558 gclass11, GClass347 gclass10)
         {
-            if (gclass11.method_90() == GClass255.InteractionType.Initialize)
+            if (gclass11.method_90() == GClass261.InteractionType.Initialize)
             {
                 Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
                 {
@@ -119,14 +119,14 @@ namespace ShopTitansCheat.Components
                 });
             }
         }
-
-        private void SuggestItem(GClass548 gclass11, GClass339 gclass10)
+        
+        private void SuggestItem(GClass558 gclass11, GClass347 gclass10)
         {
-            if (gclass11.method_90() == GClass255.InteractionType.Initialize)
+            if (gclass11.method_90() == GClass261.InteractionType.Initialize)
             {
                 foreach (Item item in Game.User.observableDictionary_0.Values)
                 {
-                    if (gclass10.gclass276_0.method_8().method_25(item.Data.Type))
+                    if (gclass10.gclass282_0.method_11().method_25(item.Data.Type))
                     {
                         Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
                         {
@@ -147,10 +147,10 @@ namespace ShopTitansCheat.Components
                 }
             }
         }
-
-        private void BuyNpcItem(GClass548 gclass11, GClass339 gclass10)
+        
+        private void BuyNpcItem(GClass558 gclass11, GClass347 gclass10)
         {
-            if (gclass11.method_90() == GClass255.InteractionType.Initialize)
+            if (gclass11.method_90() == GClass261.InteractionType.Initialize)
             {
                 Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
                 {
@@ -165,8 +165,8 @@ namespace ShopTitansCheat.Components
                 });
             }
         }
-
-        private void SmallTalkWithNpc(GClass339 gclass10)
+        
+        private void SmallTalkWithNpc(GClass347 gclass10)
         {
             Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
             {
@@ -180,8 +180,8 @@ namespace ShopTitansCheat.Components
                 }
             });
         }
-
-        private void StartConversationWithNpc(GClass339 gclass10)
+        
+        private void StartConversationWithNpc(GClass347 gclass10)
         {
             Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
             {

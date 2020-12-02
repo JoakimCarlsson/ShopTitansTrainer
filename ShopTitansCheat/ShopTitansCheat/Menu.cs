@@ -141,7 +141,7 @@ namespace ShopTitansCheat
 
             if (Settings.Misc.UseEnergy)
                 if (Game.User != null)
-                    Settings.Misc.UseEnergyAmount = GUILayout.HorizontalSlider(Settings.Misc.UseEnergyAmount, 0, Game.User.method_39());
+                    Settings.Misc.UseEnergyAmount = GUILayout.HorizontalSlider(Settings.Misc.UseEnergyAmount, 0, Game.User.method_45());
 
             Settings.Misc.RemoveWindowPopup = GUILayout.Toggle(Settings.Misc.RemoveWindowPopup, "Remove Window pop up.");
         }
@@ -300,7 +300,7 @@ namespace ShopTitansCheat
             List<Equipment> strs = new List<Equipment>();
             if (Game.PlayState != null)
             {
-                foreach (GClass281 item in Game.User.observableDictionary_2.Values)
+                foreach (GClass287 item in Game.User.observableDictionary_2.Values)
                 {
                     strs.Add(new Equipment
                     {

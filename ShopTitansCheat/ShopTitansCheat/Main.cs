@@ -52,14 +52,14 @@ namespace ShopTitansCheat
             }
 
             if (Settings.Misc.AutoFinishCraft)
-                if (_frame % 111 == 0)
+                if (_frame % 77 == 0)
                 {
                     Log.Instance.PrintConsoleMessage("Trying Store Craft", ConsoleColor.DarkBlue);
                     StoreFinished();
                 }
 
             if (Settings.AutoSell.AutoSellToNpc)
-                if (_frame % 77 == 0)
+                if (_frame % 111 == 0)
                 {
                     Log.Instance.PrintConsoleMessage("Trying Auto Sell", ConsoleColor.DarkCyan);
                     AutoSell();
@@ -71,7 +71,7 @@ namespace ShopTitansCheat
 
         private void CraftRandomStuff()
         {
-            _craftingComponent.CraftRandomStuffOverValue(Settings.Crafting.CraftRandomStuffValue);
+                 _craftingComponent.CraftRandomStuffOverValue(Settings.Crafting.CraftRandomStuffValue);
                 Log.Instance.PrintConsoleMessage("We are waiting 2 seconds.", ConsoleColor.Blue);
                 Settings.Crafting.DoCrafting = false;
                 StartCoroutine(WaitThenStart(2));
@@ -79,7 +79,7 @@ namespace ShopTitansCheat
 
         private void AutoSell()
         {
-            _autoSellComponent.AutoSell();
+           _autoSellComponent.AutoSell();
         }
 
         private void StoreFinished()

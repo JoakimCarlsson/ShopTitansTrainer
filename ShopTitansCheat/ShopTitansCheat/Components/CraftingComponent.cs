@@ -85,28 +85,28 @@ namespace ShopTitansCheat.Components
 
         internal bool CraftRandomStuffOverValue(int value)
         {
-            List<GClass281> tmpList = Game.User.observableDictionary_2.Values.ToList();
+            List<GClass287> tmpList = Game.User.observableDictionary_2.Values.ToList();
             tmpList.Shuffle();
-            foreach (GClass281 blueprint in tmpList)
+            foreach (GClass287 blueprint in tmpList)
             {
-                ItemData itemData = Game.Data.method_257(blueprint.string_0);
+                ItemData itemData = Game.Data.method_265(blueprint.string_0);
                 string fullName = Game.Texts.GetText(blueprint.method_0());
-
+        
                 if (!Settings.Crafting.IncludeElements || !Settings.Crafting.IncludeRune)
                     if (itemData.Type == ItemData.ItemType.Tag || itemData.Type == ItemData.ItemType.Rune)
                         continue;
-
+        
                 if (itemData.Value < value)
                     continue;
-
+        
                 if (StartCraft(blueprint.string_0))
                 {
                     Log.Instance.PrintConsoleMessage($"started crafting: {blueprint.string_0}", ConsoleColor.Green);
                     return true;
                 }
-
+        
                 Log.Instance.PrintConsoleMessage($"not enough materials too craft: {fullName}", ConsoleColor.Red);
-
+        
                 return false;
             }
             return false;
@@ -114,7 +114,7 @@ namespace ShopTitansCheat.Components
 
         private bool StartCraft(string itemName)
         {
-            if (GClass166.smethod_0(Game.User.vmethod_0(), itemName).imethod_0())
+            if (GClass169.smethod_0(Game.User.vmethod_0(), itemName).imethod_0())
             {
                 Game.SimManager.SendUserAction("CraftItem", new Dictionary<string, object>
                 {
@@ -135,7 +135,7 @@ namespace ShopTitansCheat.Components
         {
             List<Equipment> equips = new List<Equipment>();
 
-            using (var enumerator = Game.User.observableDictionary_16.Values.Reverse().GetEnumerator())
+            using (var enumerator = Game.User.observableDictionary_18.Values.Reverse().GetEnumerator())
             {
                 while (enumerator.MoveNext())
                 {
