@@ -33,6 +33,7 @@ namespace ShopTitansCheat.UI
                     AutoSellMainMenu();
                     break;
             }
+            GUI.DragWindow();
         }
         private void AutoSellMainMenu()
         {

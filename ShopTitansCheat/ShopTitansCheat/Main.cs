@@ -2,6 +2,7 @@
 using System.Collections;
 using Riposte;
 using ShopTitansCheat.Components;
+using ShopTitansCheat.UI;
 using ShopTitansCheat.Utils;
 using UnityEngine;
 

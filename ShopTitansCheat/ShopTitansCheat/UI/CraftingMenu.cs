@@ -69,6 +69,8 @@ namespace ShopTitansCheat.UI
                     SelectQualityMenu();
                     break;
             }
+            GUI.DragWindow();
+
         }
         private void MainCraftingMenu()
         {

@@ -85,6 +85,8 @@ namespace ShopTitansCheat.UI
                     XpItemsMenuList();
                     break;
             }
+
+            GUI.DragWindow();
         }
 
         private void SkillMainMenu()
