@@ -109,4 +109,3 @@ C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.csproj.CopyComplete
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.dll
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.pdb
-C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.csprojAssemblyReference.cache

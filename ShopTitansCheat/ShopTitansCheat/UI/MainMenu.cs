@@ -13,17 +13,14 @@ namespace ShopTitansCheat
 
         private CraftingMenu _craftingMenu;
         private SkillMenu _skillMenu;
+        private AutoSellMenu _autoSellMenu;
 
         private Rect _mainWindow;
         //Options
         private Rect _optionsListWindow;
-        //Auto sell
-        private Rect _autoSellWindow;
-
         //options
         private bool _optionsListWindowVisualVisible;
         //autosell
-        private bool _autoSellVisualVisible;
 
         private readonly string _watermark = "Shop Titans Bot 0.24b";
 
@@ -33,11 +30,10 @@ namespace ShopTitansCheat
             //options
             _optionsListWindow = new Rect(1050f, 250f, 250f, 150f);
             //auto sell
-            _autoSellWindow = new Rect(790f, 250f, 250f, 150f);
-            //skills.
 
             _skillMenu = Game.Instance.gameObject.AddComponent<SkillMenu>();
             _craftingMenu = Game.Instance.gameObject.AddComponent<CraftingMenu>();
+            _autoSellMenu = Game.Instance.gameObject.AddComponent<AutoSellMenu>();
         }
 
         private void Update()
@@ -61,10 +57,6 @@ namespace ShopTitansCheat
                 _optionsListWindow = GUILayout.Window(5, _optionsListWindow, RenderUi, "Random Options.");
             }
 
-            if (_autoSellVisualVisible)
-            {
-                _autoSellWindow = GUILayout.Window(6, _autoSellWindow, RenderUi, "Random Options.");
-            }
         }
 
         private void RenderUi(int id)
@@ -78,30 +70,9 @@ namespace ShopTitansCheat
                 case 5:
                     RandomOptionsMenu();
                     break;
-
-                case 6:
-                    AutoSellMenu();
-                    break;
             }
 
             GUI.DragWindow();
-        }
-
-        private void AutoSellMenu()
-        {
-            GUILayout.Label("Auto Sell");
-            Settings.AutoSell.AutoSellToNpc = GUILayout.Toggle(Settings.AutoSell.AutoSellToNpc, "Auto Sell");
-            Settings.AutoSell.SmallTalk = GUILayout.Toggle(Settings.AutoSell.SmallTalk, "Small Talk");
-            Settings.AutoSell.Refuse = GUILayout.Toggle(Settings.AutoSell.Refuse, "Refuse Items");
-            Settings.AutoSell.SurchargeDiscount = GUILayout.Toggle(Settings.AutoSell.SurchargeDiscount, "Surcharge Or Discount");
-            Settings.AutoSell.Suggest = GUILayout.Toggle(Settings.AutoSell.Suggest, "Suggest");
-            Settings.AutoSell.BuyFromNpc = GUILayout.Toggle(Settings.AutoSell.BuyFromNpc, "Buy From NPC");
-
-            GUILayout.Label($"Surcharge Over {(int)Settings.AutoSell.SurchargeAmount}");
-            Settings.AutoSell.SurchargeAmount = (int)GUILayout.HorizontalSlider(Settings.AutoSell.SurchargeAmount, 0, 1000000);
-
-            GUILayout.Label($"Discount  Under {(int)Settings.AutoSell.DiscountAmount}");
-            Settings.AutoSell.DiscountAmount = (int)GUILayout.HorizontalSlider(Settings.AutoSell.DiscountAmount, 0, 1000000);
         }
 
         private void RandomOptionsMenu()
@@ -123,14 +94,10 @@ namespace ShopTitansCheat
         private void MainMenu()
         {
             if (GUILayout.Button("Crafting Component"))
-            {
                 _craftingMenu.Show();
-            }
 
             if (GUILayout.Button("Skill Component"))
-            {
                 _skillMenu.Show();
-            }
 
             if (GUILayout.Button("Quest Component"))
             {
@@ -147,10 +114,8 @@ namespace ShopTitansCheat
 
             }
 
-            if (GUILayout.Button("Auto Component"))
-            {
-                _autoSellVisualVisible = !_autoSellVisualVisible;
-            }
+            if (GUILayout.Button("Auto Sell Component"))
+                _autoSellMenu.Show();
 
             if (GUILayout.Button("Options"))
             {
