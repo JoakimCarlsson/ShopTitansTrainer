@@ -73,6 +73,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="UI\CraftingMenu.cs" />
+    <Compile Include="UI\SkillMenu.cs" />
     <Compile Include="Utils\Config.cs" />
     <Compile Include="Utils\Log.cs" />
     <Compile Include="UI\MainMenu.cs" />
