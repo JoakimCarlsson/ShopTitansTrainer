@@ -27,6 +27,11 @@ namespace ShopTitansCheat
             internal static List<Equipment> CraftingEquipmentsList = new List<Equipment>();
         }
 
+        internal class Skill
+        {
+            internal static bool DoSkill = false;
+        }
+
         internal class Misc
         {
             internal static bool AutoFinishCraft = false;

@@ -60,7 +60,6 @@ C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Release\P31RestKit.dll
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Release\Opencoding.Shared.dll
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Release\Opencoding.LogHistory.dll
-C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Release\UnityEngine.xml
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Release\UnityEngine.CoreModule.xml
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Release\UnityEngine.IMGUIModule.xml
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Release\UnityEngine.PhysicsModule.xml
@@ -110,4 +109,3 @@ C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.csproj.CopyComplete
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.dll
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.pdb
-C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.csprojAssemblyReference.cache

@@ -23,8 +23,6 @@ namespace ShopTitansCheat
             _craftingComponent = new CraftingComponent();
             _autoSellComponent = new AutoSellComponent();
             _miscComponent = new MiscComponent();
-
-            Console.WriteLine("You suck at snake.");
         }
 
         private void Update()
@@ -59,11 +57,11 @@ namespace ShopTitansCheat
                 }
 
             if (Settings.AutoSell.AutoSellToNpc)
-                if (_frame % 111 == 0)
-                {
-                    Log.Instance.PrintConsoleMessage("Trying Auto Sell", ConsoleColor.DarkCyan);
+                //if (_frame % 111 == 0)
+                //{
+                //    Log.Instance.PrintConsoleMessage("Trying Auto Sell", ConsoleColor.DarkCyan);
                     AutoSell();
-                }
+                //}
 
             if (Settings.Misc.RemoveWindowPopup)
                 Game.UI.RemoveAllWindows(WindowsManager.MenuLayer.Popup);
