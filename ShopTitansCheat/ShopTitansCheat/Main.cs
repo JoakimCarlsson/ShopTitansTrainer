@@ -61,8 +61,8 @@ namespace ShopTitansCheat
                 //if (_frame % 111 == 0)
                 //{
                 //    Log.Instance.PrintConsoleMessage("Trying Auto Sell", ConsoleColor.DarkCyan);
-                    AutoSell();
-                //}
+                AutoSell();
+            //}
 
             if (Settings.Misc.RemoveWindowPopup)
                 Game.UI.RemoveAllWindows(WindowsManager.MenuLayer.Popup);
@@ -70,15 +70,15 @@ namespace ShopTitansCheat
 
         private void CraftRandomStuff()
         {
-                 _craftingComponent.CraftRandomStuffOverValue(Settings.Crafting.CraftRandomStuffValue);
-                Log.Instance.PrintConsoleMessage("We are waiting 2 seconds.", ConsoleColor.Blue);
-                Settings.Crafting.DoCrafting = false;
-                StartCoroutine(WaitThenStart(2));
+            _craftingComponent.CraftRandomStuffOverValue(Settings.Crafting.CraftRandomStuffValue);
+            Log.Instance.PrintConsoleMessage("We are waiting 2 seconds.", ConsoleColor.Blue);
+            Settings.Crafting.DoCrafting = false;
+            StartCoroutine(WaitThenStart(2));
         }
 
         private void AutoSell()
         {
-           _autoSellComponent.AutoSell();
+            _autoSellComponent.AutoSell();
         }
 
         private void StoreFinished()

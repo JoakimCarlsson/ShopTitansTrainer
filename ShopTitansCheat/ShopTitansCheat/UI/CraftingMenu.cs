@@ -105,9 +105,11 @@ namespace ShopTitansCheat.UI
             Settings.Crafting.CraftRandomStuff = GUILayout.Toggle(Settings.Crafting.CraftRandomStuff, $"Craft Random Stuff Over Value {Settings.Crafting.CraftRandomStuffValue}");
             if (Settings.Crafting.CraftRandomStuff)
             {
-                //TODO IMPLEMENT TEXTBOX
                 _priceText = GUILayout.TextField(_priceText, 15, "textfield");
-                Settings.Crafting.CraftRandomStuffValue = int.Parse(_priceText);
+
+                int.TryParse(_priceText, out int number);
+
+                Settings.Crafting.CraftRandomStuffValue = number;
                 Settings.Crafting.IncludeElements = GUILayout.Toggle(Settings.Crafting.IncludeElements, "Include Elements");
                 Settings.Crafting.IncludeRune = GUILayout.Toggle(Settings.Crafting.IncludeRune, "Include Runes");
             }
