@@ -1,4 +1,6 @@
-﻿using Riposte;
+﻿using System;
+using System.Collections.Generic;
+using Riposte;
 using UnityEngine;
 
 namespace ShopTitansCheat.UI
@@ -64,7 +66,12 @@ namespace ShopTitansCheat.UI
 
             if (GUILayout.Button("Quest Component"))
             {
-
+                //foreach (KeyValuePair<string, object> textsDatum in Game.DataLoader.TextsData)
+                //{
+                //    string key = textsDatum.Key;
+                //    Console.WriteLine(key);
+                //    Console.WriteLine(textsDatum.Value as string);
+                //}
             }
 
             if (GUILayout.Button("Enchantment Component"))

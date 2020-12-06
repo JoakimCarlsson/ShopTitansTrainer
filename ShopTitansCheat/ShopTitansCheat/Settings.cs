@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using ShopTitansCheat.Data;
 
 namespace ShopTitansCheat
@@ -30,6 +31,9 @@ namespace ShopTitansCheat
         internal class Skill
         {
             internal static bool DoSkill = false;
+            internal static GClass282 SelectedHero;
+            internal static List<GClass338> XpItems = new List<GClass338>();
+            internal static List<string> Skills = new List<string>();
         }
 
         internal class Misc

@@ -21,7 +21,7 @@ namespace ShopTitansCheat.UI
         {
             if (_autoSellVisualVisible)
             {
-                _autoSellWindow = GUILayout.Window(1, _autoSellWindow, RenderUi, "Random Options.");
+                _autoSellWindow = GUILayout.Window(100, _autoSellWindow, RenderUi, "Random Options.");
             }
         }
 
@@ -29,7 +29,7 @@ namespace ShopTitansCheat.UI
         {
             switch (id)
             {
-                case 1:
+                case 100:
                     AutoSellMainMenu();
                     break;
             }

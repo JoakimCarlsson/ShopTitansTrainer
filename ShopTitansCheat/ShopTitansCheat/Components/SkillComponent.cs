@@ -9,18 +9,20 @@ namespace ShopTitansCheat.Components
 {
     class SkillComponent
     {
-        //private List<string> _heros = GetHeros();
-        //private List<string> _skills = GetSkills("test");
-        //private List<string> _xpDrinks = FindItems("XP Drink");
 
-        public static List<string> FindItems(string name)
+        public void DoStuff()
         {
-            List<string> tmpList = new List<string>();
+
+        }
+
+        public static List<GClass338> FindItems(string name)
+        {
+            List<GClass338> tmpList = new List<GClass338>();
             foreach (GClass338 item in Game.User.observableDictionary_1.Values)
             {
                 if (Game.Texts.GetText(item.string_0 + "_name").Contains(name))
                 {
-                    tmpList.Add(Game.Texts.GetText(item.string_0 + "_name"));
+                    tmpList.Add(item);
                 }
             }
             return tmpList;
@@ -40,14 +42,31 @@ namespace ShopTitansCheat.Components
             return tmpList;
         }
 
-        public static List<string> GetHeros()
+        public static List<GClass282> GetHeros()
         {
-            List<string> tmpList = new List<string>();
+            List<GClass282> tmpList = new List<GClass282>();
             foreach (GClass282 hero in Game.User.observableDictionary_4.Values)
             {
-                tmpList.Add(hero.Name);
+                tmpList.Add(hero);
             }
             return tmpList;
         }
+
+        //public static List<string> HeroSkills(GClass282 hero)
+        //{
+        //    List<string> list = new List<string>();
+        //    foreach (var z in Game.User.observableDictionary_4.Values)
+        //    {
+        //        if (!z.Name.Equals(hero.Name))
+        //        {
+        //            continue;
+        //        }
+        //        foreach (string item in z.Skills)
+        //        {
+        //            list.Add(Game.Texts.GetText($"skill_{item}_name"));
+        //        }
+        //    }
+        //    return list;
+        //}
     }
 }

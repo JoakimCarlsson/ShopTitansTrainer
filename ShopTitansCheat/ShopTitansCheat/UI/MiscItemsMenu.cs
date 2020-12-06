@@ -22,7 +22,7 @@ namespace ShopTitansCheat.UI
         {
             if (_optionsListWindowVisualVisible)
             {
-                _optionsListWindow = GUILayout.Window(1, _optionsListWindow, RenderUi, "Random Options.");
+                _optionsListWindow = GUILayout.Window(101, _optionsListWindow, RenderUi, "Random Options.");
             }
         }
 
@@ -30,7 +30,7 @@ namespace ShopTitansCheat.UI
         {
             switch (id)
             {
-                case 1:
+                case 101:
                     RandomOptionsMenu();
                     break;
             }

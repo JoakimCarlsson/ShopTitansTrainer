@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Riposte;
+using Riposte.Sim;
 using ShopTitansCheat.Components;
 using UnityEngine;
 
@@ -20,14 +22,14 @@ namespace ShopTitansCheat.UI
         private bool _heroSkillVisualVisible;
         private bool _xpItemsListVisualVisible;
 
-        private List<string> _heroList = new List<string>();
+        private List<GClass282> _heroList = new List<GClass282>();
         private List<string> _heroSkillsList = new List<string>();
-        private List<string> _xpItemsList = new List<string>();
+        private List<GClass338> _xpItemsList = new List<GClass338>();
 
-
+        private string _searchText = "";
         private void Start()
         {
-            _xpItemsListWindow = new Rect(530f, 60f, 250f, 150f); 
+            _xpItemsListWindow = new Rect(530f, 60f, 250f, 150f);
             _heroSkillsWindow = new Rect(790f, 60f, 250f, 150f);
             _heroListWindow = new Rect(1050f, 60f, 250f, 150f);
             _skillWindow = new Rect(270f, 60f, 250f, 150f);
@@ -35,13 +37,12 @@ namespace ShopTitansCheat.UI
 
         private void Update()
         {
-
             if (_heroList.Count == 0)
                 _heroList = SkillComponent.GetHeros();
 
             if (_heroSkillsList.Count == 0)
                 _heroSkillsList = SkillComponent.GetSkills();
-
+            
             if (_xpItemsList.Count == 0)
                 _xpItemsList = SkillComponent.FindItems("XP Drink");
         }
@@ -91,35 +92,89 @@ namespace ShopTitansCheat.UI
 
         private void SkillMainMenu()
         {
-            GUILayout.Label("Main skills menu");
+            try
+            {
+                GUILayout.Label("Main skills menu");
+                GUILayout.Label(Settings.Skill.SelectedHero != null ? $"Selected Hero: {Settings.Skill.SelectedHero.Name}" : "Selected Hero: None.");
 
+                GUILayout.Label("Selected Skills: ");
+                foreach (string skill in Settings.Skill.Skills)
+                {
+                    if (GUILayout.Button(skill))
+                        Settings.Skill.Skills.Remove(skill);
+                }
+                GUILayout.Space(10);
+
+                GUILayout.Label("Selected XP Items");
+                foreach (GClass338 item in Settings.Skill.XpItems)
+                {
+                    if (GUILayout.Button(Game.Texts.GetText(item.string_0 + "_name")))
+                        Settings.Skill.XpItems.Remove(item);
+                }
+
+                GUILayout.Space(10);
+                if (GUILayout.Button("Start"))
+                {
+                    
+                }
+
+                if (GUILayout.Button("Stop"))
+                {
+                    
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         private void HeroMenuList()
         {
             GUILayout.Label("Heros");
-            foreach (string s in _heroList)
+            foreach (GClass282 hero in _heroList)
             {
-                GUILayout.Button(s);
+                if (GUILayout.Button(hero.Name))
+                {
+                    Settings.Skill.SelectedHero = hero;
+                }
             }
         }
 
         private void SkillsMenuList()
         {
             GUILayout.Label("Skill");
+            _searchText = GUILayout.TextField(_searchText, 15, "textfield");
 
-            foreach (string s in _heroSkillsList)
+            foreach (string skill in _heroSkillsList)
             {
-                GUILayout.Toggle(false, s);
+                if (!string.IsNullOrEmpty(_searchText))
+                    if (!skill.Contains(_searchText))
+                        continue;
+
+                if (GUILayout.Button(skill))
+                {
+                    if (Settings.Skill.Skills.Contains(skill))
+                        continue;
+                    
+                    Settings.Skill.Skills.Add(skill);
+                }
             }
         }
 
         private void XpItemsMenuList()
         {
             GUILayout.Label("XP Items.");
-            foreach (string s in _xpItemsList)
+            foreach (GClass338 item in _xpItemsList)
             {
-                GUILayout.Toggle(false, s);
+                string itemName = Game.Texts.GetText(item.string_0 + "_name");
+                if (GUILayout.Button(itemName))
+                {
+                    if (Settings.Skill.XpItems.Contains(item))
+                        continue;
+                    
+                    Settings.Skill.XpItems.Add(item);
+                }
             }
         }
     }
