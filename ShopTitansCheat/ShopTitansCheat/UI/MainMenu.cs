@@ -64,25 +64,20 @@ namespace ShopTitansCheat.UI
             if (GUILayout.Button("Skill Component"))
                 _skillMenu.Show();
 
-            if (GUILayout.Button("Quest Component"))
-            {
-                //foreach (KeyValuePair<string, object> textsDatum in Game.DataLoader.TextsData)
-                //{
-                //    string key = textsDatum.Key;
-                //    Console.WriteLine(key);
-                //    Console.WriteLine(textsDatum.Value as string);
-                //}
-            }
+            //if (GUILayout.Button("Quest Component"))
+            //{
 
-            if (GUILayout.Button("Enchantment Component"))
-            {
+            //}
 
-            }
+            //if (GUILayout.Button("Enchantment Component"))
+            //{
 
-            if (GUILayout.Button("Chest Component"))
-            {
+            //}
 
-            }
+            //if (GUILayout.Button("Chest Component"))
+            //{
+
+            //}
 
             if (GUILayout.Button("Auto Sell Component"))
                 _autoSellMenu.Show();
@@ -90,12 +85,10 @@ namespace ShopTitansCheat.UI
             if (GUILayout.Button("Options"))
                 _miscItemsMenu.Show();
 
-            GUI.color = Color.red;
-            if (GUILayout.Button("Click me"))
+            if (GUILayout.Button("Test button"))
             {
-                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+
             }
-            GUI.color = Color.white;
         }
     }
 }

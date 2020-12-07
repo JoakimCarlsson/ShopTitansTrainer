@@ -45,11 +45,11 @@ namespace ShopTitansCheat.UI
             Settings.AutoSell.Suggest = GUILayout.Toggle(Settings.AutoSell.Suggest, "Suggest");
             Settings.AutoSell.BuyFromNpc = GUILayout.Toggle(Settings.AutoSell.BuyFromNpc, "Buy From NPC");
 
-            GUILayout.Label($"Surcharge Over {(int)Settings.AutoSell.SurchargeAmount}");
-            Settings.AutoSell.SurchargeAmount = (int)GUILayout.HorizontalSlider(Settings.AutoSell.SurchargeAmount, 0, 1000000);
+            //GUILayout.Label($"Surcharge Over {(int)Settings.AutoSell.SurchargeAmount}");
+            //Settings.AutoSell.SurchargeAmount = (int)GUILayout.HorizontalSlider(Settings.AutoSell.SurchargeAmount, 0, 1000000);
 
-            GUILayout.Label($"Discount  Under {(int)Settings.AutoSell.DiscountAmount}");
-            Settings.AutoSell.DiscountAmount = (int)GUILayout.HorizontalSlider(Settings.AutoSell.DiscountAmount, 0, 1000000);
+            //GUILayout.Label($"Discount  Under {(int)Settings.AutoSell.DiscountAmount}");
+            //Settings.AutoSell.DiscountAmount = (int)GUILayout.HorizontalSlider(Settings.AutoSell.DiscountAmount, 0, 1000000);
         }
 
         public void Show()

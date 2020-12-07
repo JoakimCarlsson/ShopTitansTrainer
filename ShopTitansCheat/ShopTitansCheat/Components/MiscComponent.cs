@@ -14,7 +14,6 @@ namespace ShopTitansCheat.Components
             {
                 if (Settings.Misc.UseEnergy && Game.User.method_44() > Settings.Misc.UseEnergyAmount)
                 {
-                    Console.WriteLine(Game.User.method_44());
                     SpeedCraft();
                 }
                 else if (GClass170.smethod_0(gclass3).imethod_0())
