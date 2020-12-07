@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Riposte;
+using Riposte.Sim;
+using ShopTitansCheat.Components;
 using UnityEngine;
 
 namespace ShopTitansCheat.UI
@@ -70,11 +73,6 @@ namespace ShopTitansCheat.UI
             //}
 
             //if (GUILayout.Button("Enchantment Component"))
-            //{
-
-            //}
-
-            //if (GUILayout.Button("Chest Component"))
             //{
 
             //}
