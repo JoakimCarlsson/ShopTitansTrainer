@@ -15,6 +15,7 @@ namespace ShopTitansCheat.UI
         private SkillMenu _skillMenu;
         private AutoSellMenu _autoSellMenu;
         private MiscItemsMenu _miscItemsMenu;
+        private QuestMenu _questMenu;
 
         private Rect _mainWindow;
 
@@ -28,6 +29,7 @@ namespace ShopTitansCheat.UI
             _skillMenu = Game.Instance.gameObject.AddComponent<SkillMenu>();
             _craftingMenu = Game.Instance.gameObject.AddComponent<CraftingMenu>();
             _autoSellMenu = Game.Instance.gameObject.AddComponent<AutoSellMenu>();
+            _questMenu = Game.Instance.gameObject.AddComponent<QuestMenu>();
         }
 
         private void Update()
@@ -67,10 +69,10 @@ namespace ShopTitansCheat.UI
             if (GUILayout.Button("Skill Component"))
                 _skillMenu.Show();
 
-            //if (GUILayout.Button("Quest Component"))
-            //{
-
-            //}
+            if (GUILayout.Button("Quest Component"))
+            {
+                _questMenu.Show();
+            }
 
             //if (GUILayout.Button("Enchantment Component"))
             //{

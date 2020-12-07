@@ -74,6 +74,7 @@
     <Compile Include="UI\AutoSellMenu.cs" />
     <Compile Include="UI\CraftingMenu.cs" />
     <Compile Include="UI\MiscItemsMenu.cs" />
+    <Compile Include="UI\QuestMenu.cs" />
     <Compile Include="UI\SkillMenu.cs" />
     <Compile Include="Utils\Config.cs" />
     <Compile Include="Utils\Log.cs" />

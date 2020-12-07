@@ -15,9 +15,6 @@ namespace ShopTitansCheat.UI
         private Rect _qualityListWindow;
 
         private bool _craftingVisualVisible;
-        private bool _craftingListVisualVisible;
-        private bool _myCraftingListVisualVisible;
-        private bool _qualityListVisualVisible;
 
         private string _priceText = "0";
         private string _searchText = "";
@@ -211,9 +208,6 @@ namespace ShopTitansCheat.UI
         public void Show()
         {
             _craftingVisualVisible = !_craftingVisualVisible;
-            _myCraftingListVisualVisible = !_myCraftingListVisualVisible;
-            _craftingListVisualVisible = !_craftingListVisualVisible;
-            _qualityListVisualVisible = !_qualityListVisualVisible;
         }
     }
 }

@@ -109,10 +109,10 @@ C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.csproj.CopyComplete
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.dll
 C:\Users\Carlsson\source\repos\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.pdb
-C:\Users\Carlsson\Source\Repos\JoakimCarlsson\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Release\ShopTitansCheat.dll
-C:\Users\Carlsson\Source\Repos\JoakimCarlsson\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Release\ShopTitansCheat.pdb
-C:\Users\Carlsson\Source\Repos\JoakimCarlsson\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Release\Newtonsoft.Json.dll
-C:\Users\Carlsson\Source\Repos\JoakimCarlsson\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.csproj.CoreCompileInputs.cache
-C:\Users\Carlsson\Source\Repos\JoakimCarlsson\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.csproj.CopyComplete
-C:\Users\Carlsson\Source\Repos\JoakimCarlsson\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.dll
-C:\Users\Carlsson\Source\Repos\JoakimCarlsson\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.pdb
+C:\Users\Carlsson\source\repos\JoakimCarlsson\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Release\ShopTitansCheat.dll
+C:\Users\Carlsson\source\repos\JoakimCarlsson\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Release\ShopTitansCheat.pdb
+C:\Users\Carlsson\source\repos\JoakimCarlsson\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\bin\Release\Newtonsoft.Json.dll
+C:\Users\Carlsson\source\repos\JoakimCarlsson\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.csproj.CoreCompileInputs.cache
+C:\Users\Carlsson\source\repos\JoakimCarlsson\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.csproj.CopyComplete
+C:\Users\Carlsson\source\repos\JoakimCarlsson\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.dll
+C:\Users\Carlsson\source\repos\JoakimCarlsson\ShopTitansBot\ShopTitansCheat\ShopTitansCheat\obj\Release\ShopTitansCheat.pdb
