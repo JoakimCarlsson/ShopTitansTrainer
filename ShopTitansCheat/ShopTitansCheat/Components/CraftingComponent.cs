@@ -92,6 +92,12 @@ namespace ShopTitansCheat.Components
                 ItemData itemData = Game.Data.method_265(blueprint.string_0);
                 string fullName = Game.Texts.GetText(blueprint.method_0());
 
+                if (Settings.Crafting.CraftBookmarked)
+                {
+                    if (!blueprint.observableProperty_8)
+                        continue;
+                }
+
                 if (!Settings.Crafting.IncludeElements || !Settings.Crafting.IncludeRune)
                     if (itemData.Type == ItemData.ItemType.Tag || itemData.Type == ItemData.ItemType.Rune)
                         continue;

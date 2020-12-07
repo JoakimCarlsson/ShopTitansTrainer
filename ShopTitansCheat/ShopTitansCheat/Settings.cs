@@ -13,7 +13,7 @@ namespace ShopTitansCheat
             internal static bool RegularCrafting = false;
             internal static bool CraftRandomStuff = false;
             internal static int CraftRandomStuffValue = 0;
-
+            internal static bool CraftBookmarked = false;
             internal static bool IncludeRune = false;
             internal static bool IncludeElements = false;
 
