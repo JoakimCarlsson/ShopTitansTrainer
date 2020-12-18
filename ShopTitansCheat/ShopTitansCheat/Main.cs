@@ -15,12 +15,22 @@ namespace ShopTitansCheat
         private CraftingComponent _craftingComponent;
         private AutoSellComponent _autoSellComponent;
         private MiscComponent _miscComponent;
+        AlertPopupControl test;
 
+        public static AlertPopupControl Alert(string title, string body, Action callback = null)
+        {
+            if (callback == null)
+            {
+                callback = delegate
+                {
+                };
+            }
+            return AlertPopupControl.ShowButton(title, body, "I'm gay", callback);
+        }
         private void Start()
         {
             _menu = Game.Instance.gameObject.AddComponent<Menu>();
             Game.Scheduler.Register(Scheduler.Priority.BeginFrame, Update);
-
             _craftingComponent = new CraftingComponent();
             _autoSellComponent = new AutoSellComponent();
             _miscComponent = new MiscComponent();
@@ -30,6 +40,11 @@ namespace ShopTitansCheat
         {
             if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
                 return;
+
+            if (test == null)
+            {
+                 test = Alert("U are gay", "U are so gay");
+            }
 
             _frame++;
             if (Settings.Crafting.ThisIsATempBool)

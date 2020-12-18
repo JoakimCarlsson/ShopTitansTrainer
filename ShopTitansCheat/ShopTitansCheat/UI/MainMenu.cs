@@ -87,7 +87,6 @@ namespace ShopTitansCheat.UI
 
             if (GUILayout.Button("Test button"))
             {
-
             }
         }
     }

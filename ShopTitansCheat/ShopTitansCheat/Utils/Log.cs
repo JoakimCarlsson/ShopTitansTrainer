@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using Riposte;
+using Riposte.Sim;
 
 namespace ShopTitansCheat.Utils
 {
@@ -25,6 +27,11 @@ namespace ShopTitansCheat.Utils
             Console.WriteLine($"{DateTime.Now:T} {message}");
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
+        }
+
+        private void test()
+        {
+            
         }
     }
 }
