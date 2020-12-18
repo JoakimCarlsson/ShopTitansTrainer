@@ -53,8 +53,8 @@ namespace ShopTitansCheat.Components
 
                 if (!StartCraft(item.ShortName))
                 {
-                    Log.Instance.PrintConsoleMessage($"Not enough resources for {item.FullName}", ConsoleColor.Red);
-                    return true;
+                    Log.Instance.PrintConsoleMessage($"Not enough resources for {item.FullName}, moving onto next item.", ConsoleColor.Red);
+                    continue;
                 }
 
                 Equipment equipment = PeekCraft(item.ShortName)[0];
@@ -112,7 +112,7 @@ namespace ShopTitansCheat.Components
                 }
         
                 Log.Instance.PrintConsoleMessage($"not enough materials too craft: {fullName}", ConsoleColor.Red);
-        
+                
                 return false;
             }
             return false;
