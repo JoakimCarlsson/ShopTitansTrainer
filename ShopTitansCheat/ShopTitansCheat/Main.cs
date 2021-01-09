@@ -15,7 +15,6 @@ namespace ShopTitansCheat
         private CraftingComponent _craftingComponent;
         private AutoSellComponent _autoSellComponent;
         private MiscComponent _miscComponent;
-        AlertPopupControl test;
 
         public static AlertPopupControl Alert(string title, string body, Action callback = null)
         {
@@ -40,11 +39,6 @@ namespace ShopTitansCheat
         {
             if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
                 return;
-
-            if (test == null)
-            {
-                 test = Alert("U are gay", "U are so gay");
-            }
 
             _frame++;
             if (Settings.Crafting.ThisIsATempBool)
