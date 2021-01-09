@@ -19,3 +19,7 @@
 ## Screenshots
 ![Text](https://i.imgur.com/5umUUxz.jpeg)
 ![Text](https://i.imgur.com/uwJDLso.png)
+
+
+# Credits:
+* Menu: **B74k** https://www.unknowncheats.me/forum/unity/309399-minimal-unity-menu.html
