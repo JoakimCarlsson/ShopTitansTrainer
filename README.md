@@ -1,4 +1,4 @@
-# Shot Titans Bot / Cheat
+# Shot Titans Trainer / Cheat
 
 ## Working Features 
 
