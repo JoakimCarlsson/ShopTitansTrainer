@@ -85,16 +85,16 @@ namespace ShopTitansCheat.Components
 
         internal bool CraftRandomStuffOverValue(int value)
         {
-            List<GClass287> tmpList = Game.User.observableDictionary_2.Values.ToList();
+            List<gm> tmpList = Game.User.zs.Values.ToList();
             tmpList.Shuffle();
-            foreach (GClass287 blueprint in tmpList)
+            foreach (gm blueprint in tmpList)
             {
-                ItemData itemData = Game.Data.method_265(blueprint.string_0);
-                string fullName = Game.Texts.GetText(blueprint.method_0());
+                ItemData itemData = Game.Data.ep(blueprint.b0);
+                string fullName = Game.Texts.GetText(blueprint.ai7());
 
                 if (Settings.Crafting.CraftBookmarked)
                 {
-                    if (!blueprint.observableProperty_8)
+                    if (!blueprint.ck)
                         continue;
                 }
 
@@ -105,9 +105,9 @@ namespace ShopTitansCheat.Components
                 if (itemData.Value < value)
                     continue;
         
-                if (StartCraft(blueprint.string_0))
+                if (StartCraft(blueprint.b0))
                 {
-                    Log.Instance.PrintConsoleMessage($"started crafting: {blueprint.string_0}", ConsoleColor.Green);
+                    Log.Instance.PrintConsoleMessage($"started crafting: {blueprint.b0}", ConsoleColor.Green);
                     return true;
                 }
         
@@ -120,7 +120,7 @@ namespace ShopTitansCheat.Components
 
         private bool StartCraft(string itemName)
         {
-            if (GClass169.smethod_0(Game.User.vmethod_0(), itemName).imethod_0())
+            if (dg.a0(Game.User.aoe(), itemName).ar())
             {
                 Game.SimManager.SendUserAction("CraftItem", new Dictionary<string, object>
                 {
@@ -131,7 +131,7 @@ namespace ShopTitansCheat.Components
 
                 });
                 Log.Instance.PrintMessageInGame(string.Format(Game.Texts.GetText("craft_started"), Game.Texts.GetText(itemName)), OverlayMessageControl.MessageType.Neutral);
-                Game.User.action_0();
+                //Game.User.action_0();
                 return true;
             }
             return false;
@@ -141,15 +141,15 @@ namespace ShopTitansCheat.Components
         {
             List<Equipment> equips = new List<Equipment>();
 
-            using (var enumerator = Game.User.observableDictionary_18.Values.Reverse().GetEnumerator())
+            using (IEnumerator<g6> enumerator = Game.User.z8.Values.Reverse().GetEnumerator())
             {
                 while (enumerator.MoveNext())
                 {
                     var current = enumerator.Current;
-                    if (current.string_0 != craftName)
+                    if (current.hm != craftName)
                         continue;
 
-                    equips.Add(new Equipment(Game.Texts.GetText(current.string_0), (ItemQuality)current.int_0, current.bool_0));
+                    equips.Add(new Equipment(Game.Texts.GetText(current.hm), (ItemQuality)current.ht, current.hs));
                 }
             }
             return equips;

@@ -10,21 +10,21 @@ namespace ShopTitansCheat.Components
     {
         internal void FinishCraft()
         {
-            foreach (GClass307 gclass3 in Game.User.observableDictionary_18.Values.ToList())
+            foreach (g6 craft in Game.User.z8.Values.ToList())
             {
-                if (Settings.Misc.UseEnergy && Game.User.method_44() > Settings.Misc.UseEnergyAmount)
+                if (Settings.Misc.UseEnergy && Game.User.ajn() > Settings.Misc.UseEnergyAmount)
                 {
                     SpeedCraft();
                 }
-                else if (GClass170.smethod_0(gclass3).imethod_0())
+                else if (dh.a0(craft).ar())
                 {
-                    Log.Instance.PrintConsoleMessage($"{gclass3.string_0} stored.", ConsoleColor.Green);
+                    Log.Instance.PrintConsoleMessage($"{craft.hm} stored.", ConsoleColor.Green);
 
                     Game.SimManager.SendUserAction("CraftStore", new Dictionary<string, object>
                     {
                         {
                             "craftId",
-                            gclass3.long_0
+                            craft.hl
                         }
                     });
                 }
@@ -33,11 +33,11 @@ namespace ShopTitansCheat.Components
 
         private void SpeedCraft()
         {
-            foreach (GClass307 craft in Game.User.observableDictionary_18.Values.ToList())
+            foreach (g6 craft in Game.User.z8.Values.ToList())
             {
-                if (!craft.imethod_3())
+                if (!craft.cr())
                 {
-                    craft.imethod_6();
+                    //craft.imethod_6();
                     Dictionary<string, object> dictionary = new Dictionary<string, object>
                     {
                         {
@@ -46,10 +46,10 @@ namespace ShopTitansCheat.Components
                         },
                         {
                             "id",
-                            craft.long_0
+                            craft.hl
                         }
                     };
-                    if (GClass242.smethod_0(Game.SimManager.CurrentContext, dictionary, null).imethod_0())
+                    if (fi.a0(Game.SimManager.CurrentContext, dictionary, null).ar())
                     {
                         Game.SimManager.SendUserAction("SpeedUpTimer", dictionary);
                     }
@@ -65,7 +65,7 @@ namespace ShopTitansCheat.Components
                     {
                         {
                             "craftId",
-                            craft.long_0
+                            craft.hl
                         }
                     });
                 }

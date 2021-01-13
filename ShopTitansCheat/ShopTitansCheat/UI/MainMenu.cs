@@ -67,11 +67,13 @@ namespace ShopTitansCheat.UI
                 _craftingMenu.Show();
 
             if (GUILayout.Button("Skill Component"))
-                _skillMenu.Show();
+            {
+                //_skillMenu.Show();
+            }
 
             if (GUILayout.Button("Quest Component"))
             {
-                _questMenu.Show();
+                //_questMenu.Show();
             }
 
             //if (GUILayout.Button("Enchantment Component"))
