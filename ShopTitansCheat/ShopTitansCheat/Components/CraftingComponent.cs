@@ -85,12 +85,12 @@ namespace ShopTitansCheat.Components
 
         internal bool CraftRandomStuffOverValue(int value)
         {
-            List<gm> tmpList = Game.User.zs.Values.ToList();
+            var tmpList = Game.User.zt.Values.ToList();
             tmpList.Shuffle();
-            foreach (gm blueprint in tmpList)
+            foreach (var blueprint in tmpList)
             {
                 ItemData itemData = Game.Data.ep(blueprint.b0);
-                string fullName = Game.Texts.GetText(blueprint.ai7());
+                string fullName = Game.Texts.GetText(blueprint.ai8());
 
                 if (Settings.Crafting.CraftBookmarked)
                 {
@@ -120,7 +120,7 @@ namespace ShopTitansCheat.Components
 
         private bool StartCraft(string itemName)
         {
-            if (dg.a0(Game.User.aoe(), itemName).ar())
+            if (dg.a0(Game.User.aof(), itemName).ar())
             {
                 Game.SimManager.SendUserAction("CraftItem", new Dictionary<string, object>
                 {
@@ -141,7 +141,7 @@ namespace ShopTitansCheat.Components
         {
             List<Equipment> equips = new List<Equipment>();
 
-            using (IEnumerator<g6> enumerator = Game.User.z8.Values.Reverse().GetEnumerator())
+            using (var enumerator = Game.User.z9.Values.Reverse().GetEnumerator())
             {
                 while (enumerator.MoveNext())
                 {

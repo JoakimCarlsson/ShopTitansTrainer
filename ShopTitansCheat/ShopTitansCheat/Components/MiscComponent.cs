@@ -10,7 +10,7 @@ namespace ShopTitansCheat.Components
     {
         internal void FinishCraft()
         {
-            foreach (g6 craft in Game.User.z8.Values.ToList())
+            foreach (var craft in Game.User.z9.Values.ToList())
             {
                 if (Settings.Misc.UseEnergy && Game.User.ajn() > Settings.Misc.UseEnergyAmount)
                 {
@@ -33,7 +33,7 @@ namespace ShopTitansCheat.Components
 
         private void SpeedCraft()
         {
-            foreach (g6 craft in Game.User.z8.Values.ToList())
+            foreach (var craft in Game.User.z9.Values.ToList())
             {
                 if (!craft.cr())
                 {

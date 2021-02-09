@@ -13,10 +13,10 @@ namespace ShopTitansCheat.Components
     {
         internal void AutoSell()
         {
-            foreach (ie visitor in Game.User.zz.Values)
+            foreach (ig visitor in Game.User.z0.Values)
             {
-                n7 n2 = Game.SimManager.CurrentContext.an().c(visitor.cw()) as n7;
-                if (visitor.aja() > 0L && n2.bi() == "VAIAsk")
+                n8 n8 = Game.SimManager.CurrentContext.an().c(visitor.cw()) as n8;
+                if (visitor.ajb() > 0L && n8.bi() == "VAIAsk")
                 {
                     StartConversationWithNpc(visitor);
 
@@ -27,20 +27,20 @@ namespace ShopTitansCheat.Components
                         SurchargeOrDiscount(visitor);
 
                     if (Settings.AutoSell.BuyFromNpc)
-                        BuyNpcItem(n2, visitor);
+                        BuyNpcItem(n8, visitor);
 
                     if (Settings.AutoSell.Suggest)
-                        SuggestItem(n2, visitor);
+                        SuggestItem(n8, visitor);
 
-                    SellItem(n2, visitor);
+                    SellItem(n8, visitor);
 
                     if (Settings.AutoSell.Refuse)
-                        RefuseItem(n2, visitor);
+                        RefuseItem(n8, visitor);
                 }
             }
         }
 
-        private void SurchargeOrDiscount(ie gclass10)
+        private void SurchargeOrDiscount(ig gclass10)
         {
             if (Game.User.ajn() < Game.User.ajo() / 2)
             {
@@ -84,9 +84,9 @@ namespace ShopTitansCheat.Components
             });
         }
 
-        private void RefuseItem(n7 gclass11, ie gclass10)
+        private void RefuseItem(n8 gclass11, ig gclass10)
         {
-            if (gclass11.bt() == f1.InteractionType.Initialize)
+            if (gclass11.bt() == f2.InteractionType.Initialize)
             {
                 Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
                 {
@@ -102,9 +102,9 @@ namespace ShopTitansCheat.Components
             }
         }
 
-        private void SellItem(n7 gclass11, ie gclass10)
+        private void SellItem(n8 gclass11, ig gclass10)
         {
-            if (gclass11.bt() == f1.InteractionType.Initialize)
+            if (gclass11.bt() == f2.InteractionType.Initialize)
             {
                 Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
                 {
@@ -120,13 +120,13 @@ namespace ShopTitansCheat.Components
             }
         }
 
-        private void SuggestItem(n7 gclass11, ie gclass10)
+        private void SuggestItem(n8 gclass11, ig gclass10)
         {
-            if (gclass11.bt() == f1.InteractionType.Initialize)
+            if (gclass11.bt() == f2.InteractionType.Initialize)
             {
-                foreach (Item item in Game.User.zq.Values)
+                foreach (Item item in Game.User.zr.Values)
                 {
-                    if (gclass10.agl.aja().ep(item.Data.Type))
+                    if (gclass10.agm.ajb().ep(item.Data.Type))
                     {
                         Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
                         {
@@ -148,9 +148,9 @@ namespace ShopTitansCheat.Components
             }
         }
 
-        private void BuyNpcItem(n7 gclass11, ie gclass10)
+        private void BuyNpcItem(n8 gclass11, ig gclass10)
         {
-            if (gclass11.bt() == f1.InteractionType.Initialize)
+            if (gclass11.bt() == f2.InteractionType.Initialize)
             {
                 Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
                 {
@@ -166,7 +166,7 @@ namespace ShopTitansCheat.Components
             }
         }
 
-        private void SmallTalkWithNpc(ie gclass10)
+        private void SmallTalkWithNpc(ig gclass10)
         {
             Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
             {
@@ -181,7 +181,7 @@ namespace ShopTitansCheat.Components
             });
         }
 
-        private void StartConversationWithNpc(ie gclass10)
+        private void StartConversationWithNpc(ig gclass10)
         {
             Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
             {

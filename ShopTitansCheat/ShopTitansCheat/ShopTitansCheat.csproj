@@ -31,8 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\..\..\..\Games\steamapps\common\ShopTitan\ShopTitan_Data\Managed\Assembly-CSharp.dll</HintPath>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Games\steamapps\common\ShopTitan\ShopTitan_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -62,7 +63,6 @@
   <ItemGroup>
     <Compile Include="Components\AutoSellComponent.cs" />
     <Compile Include="Components\CraftingComponent.cs" />
-    <Compile Include="Components\EnchantmentComponent.cs" />
     <Compile Include="Components\MiscComponent.cs" />
     <Compile Include="Components\QuestComponent.cs" />
     <Compile Include="Components\SkillComponent.cs" />

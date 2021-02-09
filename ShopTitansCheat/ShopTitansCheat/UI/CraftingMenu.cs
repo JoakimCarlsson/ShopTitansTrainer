@@ -192,12 +192,12 @@ namespace ShopTitansCheat.UI
             List<Equipment> strs = new List<Equipment>();
             if (Game.PlayState != null)
             {
-                foreach (gm item in Game.User.zs.Values)
+                foreach (var item in Game.User.zt.Values)
                 {
                     strs.Add(new Equipment
                     {
                         ShortName = item.b0,
-                        FullName = Game.Texts.GetText(item.ai7()),
+                        FullName = Game.Texts.GetText(item.ai8()),
                     });
                 }
             }

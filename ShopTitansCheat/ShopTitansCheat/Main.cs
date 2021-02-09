@@ -16,16 +16,6 @@ namespace ShopTitansCheat
         private AutoSellComponent _autoSellComponent;
         private MiscComponent _miscComponent;
 
-        public static AlertPopupControl Alert(string title, string body, Action callback = null)
-        {
-            if (callback == null)
-            {
-                callback = delegate
-                {
-                };
-            }
-            return AlertPopupControl.ShowButton(title, body, "I'm gay", callback);
-        }
         private void Start()
         {
             _menu = Game.Instance.gameObject.AddComponent<Menu>();
