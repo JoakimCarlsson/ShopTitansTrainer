@@ -12,8 +12,6 @@ namespace ShopTitansCheat.Components
         {
             foreach (var craft in Game.User.z9.Values.ToList())
             {
-                Console.WriteLine(Game.User.ajo());
-
                 if (Settings.Misc.UseEnergy && Game.User.ajo() > Settings.Misc.UseEnergyAmount)
                 {
                     SpeedCraft();
