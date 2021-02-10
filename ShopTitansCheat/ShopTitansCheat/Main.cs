@@ -53,7 +53,7 @@ namespace ShopTitansCheat
                 if (_frame % 77 == 0)
                 {
                     Log.Instance.PrintConsoleMessage("Trying Store Craft", ConsoleColor.DarkBlue);
-                    StoreFinished();
+                    StoreCrafts();
                 }
 
             if (Settings.AutoSell.AutoSellToNpc)
@@ -80,7 +80,7 @@ namespace ShopTitansCheat
             _autoSellComponent.AutoSell();
         }
 
-        private void StoreFinished()
+        private void StoreCrafts()
         {
             _miscComponent.FinishCraft();
         }

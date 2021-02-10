@@ -12,7 +12,9 @@ namespace ShopTitansCheat.Components
         {
             foreach (var craft in Game.User.z9.Values.ToList())
             {
-                if (Settings.Misc.UseEnergy && Game.User.ajn() > Settings.Misc.UseEnergyAmount)
+                Console.WriteLine(Game.User.ajo());
+
+                if (Settings.Misc.UseEnergy && Game.User.ajo() > Settings.Misc.UseEnergyAmount)
                 {
                     SpeedCraft();
                 }
@@ -37,7 +39,6 @@ namespace ShopTitansCheat.Components
             {
                 if (!craft.cr())
                 {
-                    //craft.imethod_6();
                     Dictionary<string, object> dictionary = new Dictionary<string, object>
                     {
                         {
@@ -49,7 +50,7 @@ namespace ShopTitansCheat.Components
                             craft.hl
                         }
                     };
-                    if (fi.a0(Game.SimManager.CurrentContext, dictionary, null).ar())
+                    if (fj.a0(Game.SimManager.CurrentContext, dictionary, null).ar())
                     {
                         Game.SimManager.SendUserAction("SpeedUpTimer", dictionary);
                     }
