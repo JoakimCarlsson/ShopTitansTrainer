@@ -66,15 +66,15 @@ namespace ShopTitansCheat.UI
             if (GUILayout.Button("Crafting Component"))
                 _craftingMenu.Show();
 
-            if (GUILayout.Button("Skill Component"))
-            {
-                //_skillMenu.Show();
-            }
+            //if (GUILayout.Button("Skill Component"))
+            //{
+            //    //_skillMenu.Show();
+            //}
 
-            if (GUILayout.Button("Quest Component"))
-            {
-                //_questMenu.Show();
-            }
+            //if (GUILayout.Button("Quest Component"))
+            //{
+            //    //_questMenu.Show();
+            //}
 
             //if (GUILayout.Button("Enchantment Component"))
             //{
@@ -86,10 +86,6 @@ namespace ShopTitansCheat.UI
 
             if (GUILayout.Button("Options"))
                 _miscItemsMenu.Show();
-
-            if (GUILayout.Button("Test button"))
-            {
-            }
         }
     }
 }

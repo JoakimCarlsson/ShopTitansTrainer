@@ -42,7 +42,7 @@ namespace ShopTitansCheat.Components
 
         private void SurchargeOrDiscount(ig gclass10)
         {
-            if (Game.User.ajn() < Game.User.ajo() / 2)
+            if (Game.User.ajo() < Game.User.ajp() / 2)
             {
                 Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
                 {
@@ -56,7 +56,7 @@ namespace ShopTitansCheat.Components
                     }
                 });
             }
-            else if (Game.User.ajn() == Game.User.ajo())
+            else if (Game.User.ajn() == Game.User.ajp())
             {
                 Game.SimManager.SendUserAction("VisitorInteract", new Dictionary<string, object>
                 {
