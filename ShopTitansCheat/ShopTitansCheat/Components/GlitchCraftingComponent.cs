@@ -21,7 +21,7 @@ namespace ShopTitansCheat.Components
                 if (item.Done)
                     continue;
 
-                if (!StartCraft(item.ShortName))
+                if (!GameHelpers.StartCraft(item.ShortName))
                 {
                     Log.Instance.PrintConsoleMessage($"Not enough resources for {item.FullName}, moving onto next item.", ConsoleColor.Red);
                     continue;
@@ -53,23 +53,7 @@ namespace ShopTitansCheat.Components
             return false;
         }
 
-        private bool StartCraft(string itemName)
-        {
-            if (dg.a0(Game.User.aof(), itemName).ar())
-            {
-                Game.SimManager.SendUserAction("CraftItem", new Dictionary<string, object>
-                {
-                    {
-                        "item",
-                        itemName
-                    }
 
-                });
-                Log.Instance.PrintMessageInGame(string.Format(Game.Texts.GetText("craft_started"), Game.Texts.GetText(itemName)), OverlayMessageControl.MessageType.Neutral);
-                return true;
-            }
-            return false;
-        }
 
         private List<Equipment> PeekCraft(string craftName)
         {

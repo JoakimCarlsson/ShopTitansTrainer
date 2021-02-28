@@ -27,7 +27,7 @@ namespace ShopTitansCheat.Components
                     if (item.Done)
                         continue;
 
-                    if (!StartCraft(item.ShortName))
+                    if (!GameHelpers.StartCraft(item.ShortName))
                     {
                         Log.Instance.PrintConsoleMessage($"Not enough for {item.FullName}, continuing", ConsoleColor.Red);
                         return;
@@ -61,11 +61,10 @@ namespace ShopTitansCheat.Components
                 {
                     string fullName = Game.Texts.GetText(blueprint.ai8());
 
-
                     if (!blueprint.ck)
                         continue;
 
-                    if (StartCraft(blueprint.b0))
+                    if (GameHelpers.StartCraft(blueprint.b0))
                     {
                         Log.Instance.PrintConsoleMessage($"started crafting: {blueprint.b0}", ConsoleColor.Green);
                         return true;
@@ -95,7 +94,7 @@ namespace ShopTitansCheat.Components
                 if (itemData.Value < value)
                     continue;
 
-                if (StartCraft(blueprint.b0))
+                if (GameHelpers.StartCraft(blueprint.b0))
                 {
                     Log.Instance.PrintConsoleMessage($"started crafting: {blueprint.b0}", ConsoleColor.Green);
                     return true;
@@ -104,24 +103,6 @@ namespace ShopTitansCheat.Components
                 Log.Instance.PrintConsoleMessage($"not enough materials too craft: {fullName}", ConsoleColor.Red);
 
                 return false;
-            }
-            return false;
-        }
-
-        private bool StartCraft(string itemName)
-        {
-            if (dg.a0(Game.User.aof(), itemName).ar())
-            {
-                Game.SimManager.SendUserAction("CraftItem", new Dictionary<string, object>
-                {
-                    {
-                        "item",
-                        itemName
-                    }
-
-                });
-                Log.Instance.PrintMessageInGame(string.Format(Game.Texts.GetText("craft_started"), Game.Texts.GetText(itemName)), OverlayMessageControl.MessageType.Neutral);
-                return true;
             }
             return false;
         }
