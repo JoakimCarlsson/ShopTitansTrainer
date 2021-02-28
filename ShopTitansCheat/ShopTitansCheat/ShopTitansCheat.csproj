@@ -62,7 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\AutoSellComponent.cs" />
-    <Compile Include="Components\CraftingComponent.cs" />
+    <Compile Include="Components\GlitchCraftingComponent.cs" />
+    <Compile Include="Components\RegularCraftingComponent.cs" />
     <Compile Include="Components\MiscComponent.cs" />
     <Compile Include="Components\QuestComponent.cs" />
     <Compile Include="Components\SkillComponent.cs" />
@@ -70,9 +71,11 @@
     <Compile Include="Data\ItemQuality.cs" />
     <Compile Include="Loader.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="ReflectionExtensions.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="UI\AutoSellMenu.cs" />
-    <Compile Include="UI\CraftingMenu.cs" />
+    <Compile Include="UI\GlitchCraftingMenu.cs" />
+    <Compile Include="UI\RegularCraftingMenu.cs" />
     <Compile Include="UI\MiscItemsMenu.cs" />
     <Compile Include="UI\QuestMenu.cs" />
     <Compile Include="UI\SkillMenu.cs" />

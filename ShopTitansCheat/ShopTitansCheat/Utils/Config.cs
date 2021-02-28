@@ -21,18 +21,18 @@ namespace ShopTitansCheat.Utils
 
         internal void SaveCraftingList(string fileName)
         {
-            if (Settings.Crafting.CraftingEquipmentsList.Count == 0)
+            if (Settings.RegularCrafting.CraftingEquipmentsList.Count == 0)
             {
                 Log.Instance.PrintMessageInGame("No Items Too Save !", OverlayMessageControl.MessageType.Error);
             }
             else
             {
-                File.WriteAllText($"{fileName}.json", JsonConvert.SerializeObject(Settings.Crafting.CraftingEquipmentsList, Formatting.Indented));
+                File.WriteAllText($"{fileName}.json", JsonConvert.SerializeObject(Settings.RegularCrafting.CraftingEquipmentsList, Formatting.Indented));
                 Log.Instance.PrintMessageInGame("Saved Sucesfully!", OverlayMessageControl.MessageType.Neutral);
             }
         }
 
-        internal void LoadCraftingList(string fileName)
+        internal void LoadCraftingList(string fileName, bool glitchCraft = false)
         {
             string text;
 
@@ -41,7 +41,15 @@ namespace ShopTitansCheat.Utils
                 text = streamReader.ReadToEnd();
             }
             var deserializeObject = JsonConvert.DeserializeObject<List<Equipment>>(text);
-            Settings.Crafting.CraftingEquipmentsList = deserializeObject;
+
+            if (glitchCraft)
+            {
+                Settings.GlitchCrafting.CraftingEquipmentsList = deserializeObject;
+            }
+            else
+            {
+               Settings.RegularCrafting.CraftingEquipmentsList = deserializeObject;
+            }
         }
     }
 }

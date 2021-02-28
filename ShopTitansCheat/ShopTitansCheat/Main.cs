@@ -12,7 +12,8 @@ namespace ShopTitansCheat
     {
         private int _frame;
         private Menu _menu;
-        private CraftingComponent _craftingComponent;
+        private RegularCraftingComponent _regularCraftingComponent;
+        private GlitchCraftingComponent _glitchCraftingComponent;
         private AutoSellComponent _autoSellComponent;
         private MiscComponent _miscComponent;
 
@@ -20,7 +21,8 @@ namespace ShopTitansCheat
         {
             _menu = Game.Instance.gameObject.AddComponent<Menu>();
             Game.Scheduler.Register(Scheduler.Priority.BeginFrame, Update);
-            _craftingComponent = new CraftingComponent();
+            _regularCraftingComponent = new RegularCraftingComponent();
+            _glitchCraftingComponent = new GlitchCraftingComponent();
             _autoSellComponent = new AutoSellComponent();
             _miscComponent = new MiscComponent();
         }
@@ -29,24 +31,12 @@ namespace ShopTitansCheat
         {
             if (Game.PlayState == null || Game.PlayState.CurrentViewState != "ShopState")
                 return;
-
             _frame++;
-            if (Settings.Crafting.ThisIsATempBool)
-            {
-                if (_frame % 66 == 0)
-                {
-                    if (Settings.Crafting.DoCrafting && !Settings.Crafting.CraftRandomStuff)
-                    {
-                        Log.Instance.PrintConsoleMessage("Trying To Craft", ConsoleColor.Cyan);
-                        DoCrafting();
-                    }
 
-                    if (Settings.Crafting.DoCrafting && Settings.Crafting.CraftRandomStuff)
-                    {
-                        Log.Instance.PrintConsoleMessage("Trying To Craft RandomStuff", ConsoleColor.Cyan);
-                        CraftRandomStuff();
-                    }
-                }
+            if (_frame % 66 == 0)
+            {
+                if (Settings.RegularCrafting.DoCrafting || Settings.GlitchCrafting.DoCrafting)
+                    DoCrafting();
             }
 
             if (Settings.Misc.AutoFinishCraft)
@@ -67,13 +57,13 @@ namespace ShopTitansCheat
                 Game.UI.RemoveAllWindows(WindowsManager.MenuLayer.Popup);
         }
 
-        private void CraftRandomStuff()
-        {
-            _craftingComponent.CraftRandomStuffOverValue(Settings.Crafting.CraftRandomStuffValue);
-            Log.Instance.PrintConsoleMessage("We are waiting 2 seconds.", ConsoleColor.Blue);
-            Settings.Crafting.DoCrafting = false;
-            StartCoroutine(WaitThenStart(2));
-        }
+        //private void CraftRandomItems()
+        //{
+        //    _regularCraftingComponent.CraftRandomStuffOverValue(Settings.RegularCrafting.CraftRandomStuffValue);
+        //    Log.Instance.PrintConsoleMessage("We are waiting 2 seconds.", ConsoleColor.Blue);
+        //    Settings.RegularCrafting.DoCrafting = false;
+        //    StartCoroutine(WaitThenStart(2));
+        //}
 
         private void AutoSell()
         {
@@ -87,33 +77,47 @@ namespace ShopTitansCheat
 
         private void DoCrafting()
         {
-            if (Settings.Crafting.RegularCrafting)
+            if (Settings.RegularCrafting.ThisIsATempBool)
             {
-                _craftingComponent.Craft();
-                Settings.Crafting.DoCrafting = false;
-                StartCoroutine(WaitThenStart(20));
+                if (Settings.RegularCrafting.DoCrafting)
+                {
+                    _regularCraftingComponent.Craft();
+                    StartCoroutine(WaitThenStart(20));
+                }
+            }
+
+            if (Settings.GlitchCrafting.ShouldCraft)
+            {
+                if (Settings.GlitchCrafting.DoCrafting)
+                {
+                    if (_glitchCraftingComponent.GlitchCraft())
+                    {
+                        Settings.GlitchCrafting.DoCrafting = false;
+                        Log.Instance.PrintConsoleMessage("We are waiting 20 seconds.", ConsoleColor.Blue);
+                        StartCoroutine(WaitThenStart(20, true));
+                    }
+                    else
+                    {
+                        Settings.RegularCrafting.DoCrafting = false;
+                        StartCoroutine(WaitThenStart(0.1f, true));
+                    }
+                }
+            }
+
+        }
+
+        private IEnumerator WaitThenStart(float seconds, bool glitchCraft = false)
+        {
+            if (glitchCraft)
+            {
+                yield return new WaitForSeconds(seconds);
+                Settings.GlitchCrafting.DoCrafting = true;
             }
             else
             {
-                if (_craftingComponent.GlitchCraft())
-                {
-                    Settings.Crafting.DoCrafting = false;
-                    Game.Instance.GarbageCollect();
-                    Log.Instance.PrintConsoleMessage("We are waiting 20 seconds.", ConsoleColor.Blue);
-                    StartCoroutine(WaitThenStart(20));
-                }
-                else
-                {
-                    Settings.Crafting.DoCrafting = false;
-                    StartCoroutine(WaitThenStart(0.1f));
-                }
+                yield return new WaitForSeconds(seconds);
+                Settings.RegularCrafting.DoCrafting = true;
             }
-        }
-
-        private IEnumerator WaitThenStart(float seconds)
-        {
-            yield return new WaitForSeconds(seconds);
-            Settings.Crafting.DoCrafting = true;
         }
     }
 }

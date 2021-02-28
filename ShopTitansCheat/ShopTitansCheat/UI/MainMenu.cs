@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Riposte;
 using Riposte.Sim;
 using ShopTitansCheat.Components;
@@ -11,25 +12,23 @@ namespace ShopTitansCheat.UI
     public class Menu : MonoBehaviour
     {
         private bool _visible = true;
-        private CraftingMenu _craftingMenu;
-        private SkillMenu _skillMenu;
+        private RegularCraftingMenu _regularCraftingMenu;
+        private GlitchCraftingMenu _glitchCraftingMenu;
         private AutoSellMenu _autoSellMenu;
         private MiscItemsMenu _miscItemsMenu;
-        private QuestMenu _questMenu;
 
         private Rect _mainWindow;
 
-        private readonly string _watermark = "Shop Titans Bot 0.24b";
+        private readonly string _watermark = "Shop Titans Bot 0.30b";
 
         private void Start()
         {
             _mainWindow = new Rect(20f, 60f, 250f, 50f);
 
             _miscItemsMenu = Game.Instance.gameObject.AddComponent<MiscItemsMenu>();
-            _skillMenu = Game.Instance.gameObject.AddComponent<SkillMenu>();
-            _craftingMenu = Game.Instance.gameObject.AddComponent<CraftingMenu>();
+            _regularCraftingMenu = Game.Instance.gameObject.AddComponent<RegularCraftingMenu>();
+            _glitchCraftingMenu = Game.Instance.gameObject.AddComponent<GlitchCraftingMenu>();
             _autoSellMenu = Game.Instance.gameObject.AddComponent<AutoSellMenu>();
-            _questMenu = Game.Instance.gameObject.AddComponent<QuestMenu>();
         }
 
         private void Update()
@@ -63,29 +62,26 @@ namespace ShopTitansCheat.UI
 
         private void MainMenu()
         {
-            if (GUILayout.Button("Crafting Component"))
-                _craftingMenu.Show();
+            if (GUILayout.Button("Regular Crafting Component"))
+                _regularCraftingMenu.Show();
 
-            //if (GUILayout.Button("Skill Component"))
-            //{
-            //    //_skillMenu.Show();
-            //}
-
-            //if (GUILayout.Button("Quest Component"))
-            //{
-            //    //_questMenu.Show();
-            //}
-
-            //if (GUILayout.Button("Enchantment Component"))
-            //{
-
-            //}
+            if (GUILayout.Button("Glitch Crafting Component"))
+                _glitchCraftingMenu.Show();
 
             if (GUILayout.Button("Auto Sell Component"))
                 _autoSellMenu.Show();
 
             if (GUILayout.Button("Options"))
                 _miscItemsMenu.Show();
+        }
+
+        private void Test() //aec
+        {
+            var barValue = Game.User.GetMemberValue("aec");
+            Console.WriteLine(barValue);
+            Game.User.SetMemberValue("aec", true);
+            barValue = Game.User.GetMemberValue("aec");
+            Console.WriteLine(barValue);
         }
     }
 }

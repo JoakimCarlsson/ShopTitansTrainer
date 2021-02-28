@@ -6,34 +6,32 @@ namespace ShopTitansCheat
 {
     class Settings
     {
-        internal class Crafting
+        internal class RegularCrafting
         {
             internal static bool ThisIsATempBool = false;
             internal static bool DoCrafting = false;
-            internal static bool RegularCrafting = false;
-            internal static bool CraftRandomStuff = false;
+            internal static bool CraftRandomItems = false;
             internal static int CraftRandomStuffValue = 0;
             internal static bool CraftBookmarked = false;
             internal static bool IncludeRune = false;
             internal static bool IncludeElements = false;
-
-            internal static List<ItemQuality> ItemQualities = new List<ItemQuality>
-            {
-            ItemQuality.Uncommon,
-            ItemQuality.Flawless,
-            ItemQuality.Epic,
-            ItemQuality.Legendary
-            };
-
             internal static List<Equipment> CraftingEquipmentsList = new List<Equipment>();
         }
 
-        internal class Skill
+        internal class GlitchCrafting
         {
-            //internal static bool DoSkill = false;
-            //internal static GClass282 SelectedHero;
-            //internal static List<GClass338> XpItems = new List<GClass338>();
-            //internal static List<string> Skills = new List<string>();
+            internal static bool ShouldCraft = false;
+            internal static bool DoCrafting = false;
+
+            internal static List<ItemQuality> ItemQualities = new List<ItemQuality>
+            {
+                ItemQuality.Uncommon,
+                ItemQuality.Flawless,
+                ItemQuality.Epic,
+                ItemQuality.Legendary
+            };
+
+            internal static List<Equipment> CraftingEquipmentsList = new List<Equipment>();
         }
 
         internal class Misc
@@ -52,7 +50,6 @@ namespace ShopTitansCheat
             internal static bool SurchargeDiscount = false;
             internal static bool Suggest = false;
             internal static bool BuyFromNpc = false;
-
             internal static long SurchargeAmount = 0;
             internal static long DiscountAmount = 0;
         }
