@@ -29,17 +29,17 @@ namespace ShopTitansCheat.Components
 
                     if (!GameHelpers.StartCraft(item.ShortName))
                     {
-                        Log.Instance.PrintConsoleMessage($"Not enough for {item.FullName}, continuing", ConsoleColor.Red);
+                        Log.Instance.Error($"Not enough for {item.FullName}, continuing");
                         return;
                     }
 
-                    Log.Instance.PrintConsoleMessage($"Sucesfully crafted {item.FullName}, {item.ItemQuality}", ConsoleColor.Green);
+                    Log.Instance.Info($"Sucesfully crafted {item.FullName}, {item.ItemQuality}", ConsoleColor.Green);
                     item.Done = true;
                     item.FullName = $"{item.FullName}, {item.Done}";
 
                     if (Settings.RegularCrafting.CraftingEquipmentsList.All(i => i.Done))
                     {
-                        Log.Instance.PrintConsoleMessage($"Crafted everything in list. \tRestarting.", ConsoleColor.Green);
+                        Log.Instance.Info($"Crafted everything in list. \tRestarting.", ConsoleColor.Green);
 
                         foreach (Equipment equipment in Settings.RegularCrafting.CraftingEquipmentsList)
                         {
@@ -66,11 +66,11 @@ namespace ShopTitansCheat.Components
 
                     if (GameHelpers.StartCraft(blueprint.b0))
                     {
-                        Log.Instance.PrintConsoleMessage($"started crafting: {blueprint.b0}", ConsoleColor.Green);
+                        Log.Instance.Info($"started crafting: {blueprint.b0}", ConsoleColor.Green);
                         return true;
                     }
 
-                    Log.Instance.PrintConsoleMessage($"not enough materials too craft: {fullName}", ConsoleColor.Red);
+                    Log.Instance.Info($"not enough materials too craft: {fullName}", ConsoleColor.Red);
 
                 }
             }
@@ -96,11 +96,11 @@ namespace ShopTitansCheat.Components
 
                 if (GameHelpers.StartCraft(blueprint.b0))
                 {
-                    Log.Instance.PrintConsoleMessage($"started crafting: {blueprint.b0}", ConsoleColor.Green);
+                    Log.Instance.Info($"started crafting: {blueprint.b0}", ConsoleColor.Green);
                     return true;
                 }
 
-                Log.Instance.PrintConsoleMessage($"not enough materials too craft: {fullName}", ConsoleColor.Red);
+                Log.Instance.Error($"not enough materials too craft: {fullName}");
 
                 return false;
             }

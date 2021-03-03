@@ -42,28 +42,20 @@ namespace ShopTitansCheat
             if (Settings.Misc.AutoFinishCraft)
                 if (_frame % 77 == 0)
                 {
-                    Log.Instance.PrintConsoleMessage("Trying Store Craft", ConsoleColor.DarkBlue);
+                    Log.Instance.Info("Trying Store Craft");
                     StoreCrafts();
                 }
 
             if (Settings.AutoSell.AutoSellToNpc)
                 if (_frame % 111 == 0)
                 {
-                    Log.Instance.PrintConsoleMessage("Trying Auto Sell", ConsoleColor.DarkCyan);
+                    Log.Instance.Info("Trying Auto Sell");
                     AutoSell();
                 }
 
             if (Settings.Misc.RemoveWindowPopup)
                 Game.UI.RemoveAllWindows(WindowsManager.MenuLayer.Popup);
         }
-
-        //private void CraftRandomItems()
-        //{
-        //    _regularCraftingComponent.CraftRandomStuffOverValue(Settings.RegularCrafting.CraftRandomStuffValue);
-        //    Log.Instance.PrintConsoleMessage("We are waiting 2 seconds.", ConsoleColor.Blue);
-        //    Settings.RegularCrafting.DoCrafting = false;
-        //    StartCoroutine(WaitThenStart(2));
-        //}
 
         private void AutoSell()
         {
@@ -93,7 +85,7 @@ namespace ShopTitansCheat
                     if (_glitchCraftingComponent.GlitchCraft())
                     {
                         Settings.GlitchCrafting.DoCrafting = false;
-                        Log.Instance.PrintConsoleMessage("We are waiting 20 seconds.", ConsoleColor.Blue);
+                        Log.Instance.Info("We are waiting 20 seconds.", ConsoleColor.Blue);
                         StartCoroutine(WaitThenStart(20, true));
                     }
                     else

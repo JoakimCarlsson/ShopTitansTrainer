@@ -20,18 +20,57 @@ namespace ShopTitansCheat.Utils
             Game.UI.overlayMessage.PushMessage(message, type);
         }
 
-        internal void PrintConsoleMessage(string message, ConsoleColor backgroundColor)
+        public void Critical(object value)
         {
-            Console.BackgroundColor = backgroundColor;
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine($"{DateTime.Now:T} {message}");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.BackgroundColor = ConsoleColor.Black;
+            Color(ConsoleColor.Magenta);
+            Console.WriteLine("[!] " + value.ToString());
+            Color();
         }
 
-        private void test()
+        public void Info(object value)
         {
-            
+            Color(ConsoleColor.Cyan);
+            Console.WriteLine("[+] " + value.ToString());
+        }
+
+        public bool QueryYesNo(string question)
+        {
+            var input = QueryString(question);
+            if (input.ToLower().StartsWith("y")) return true;
+            else return false;
+        }
+
+        public string QueryString(string question)
+        {
+            Color(ConsoleColor.Yellow);
+            Console.Write("[?] " + question);
+            Color();
+            return Console.ReadLine();
+        }
+
+        public void Info(object value, ConsoleColor color)
+        {
+            Color(color);
+            Console.WriteLine("[+] " + value.ToString());
+        }
+
+        public void Error(object value)
+        {
+            Color(ConsoleColor.Red);
+            Console.WriteLine("[-] " + value.ToString());
+            Color();
+        }
+
+        public void Fatal(object value)
+        {
+            Error(value);
+            Console.ReadLine();
+            Environment.Exit(0);
+        }
+
+        private void Color(ConsoleColor color = ConsoleColor.White)
+        {
+            Console.ForegroundColor = color;
         }
     }
 }

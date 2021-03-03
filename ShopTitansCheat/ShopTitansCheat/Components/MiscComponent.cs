@@ -18,7 +18,7 @@ namespace ShopTitansCheat.Components
                 }
                 else if (dh.a0(craft).ar())
                 {
-                    Log.Instance.PrintConsoleMessage($"{craft.hm} stored.", ConsoleColor.Green);
+                    Log.Instance.Info($"{craft.hm} stored.", ConsoleColor.Green);
 
                     Game.SimManager.SendUserAction("CraftStore", new Dictionary<string, object>
                     {

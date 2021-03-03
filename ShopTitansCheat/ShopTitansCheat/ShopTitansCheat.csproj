@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.2.0.4\lib\net45\0Harmony.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Games\steamapps\common\ShopTitan\ShopTitan_Data\Managed\Assembly-CSharp.dll</HintPath>
@@ -71,6 +74,7 @@
     <Compile Include="Data\ItemQuality.cs" />
     <Compile Include="Loader.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="Patch.cs" />
     <Compile Include="ReflectionExtensions.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="UI\AutoSellMenu.cs" />
@@ -87,6 +91,8 @@
     <Compile Include="Utils\Accsess.cs" />
     <Compile Include="Utils\AllocConsoleHandler.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

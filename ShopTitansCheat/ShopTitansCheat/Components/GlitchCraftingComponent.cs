@@ -12,7 +12,7 @@ namespace ShopTitansCheat.Components
 {
     class GlitchCraftingComponent
     {
-        private int _i;
+        private int _i = 1;
 
         internal bool GlitchCraft()
         {
@@ -23,7 +23,7 @@ namespace ShopTitansCheat.Components
 
                 if (!GameHelpers.StartCraft(item.ShortName))
                 {
-                    Log.Instance.PrintConsoleMessage($"Not enough resources for {item.FullName}, moving onto next item.", ConsoleColor.Red);
+                    Log.Instance.Error($"Not enough resources for {item.FullName}, moving onto next item.");
                     continue;
                 }
 
@@ -31,7 +31,7 @@ namespace ShopTitansCheat.Components
 
                 if (equipment.ItemQuality >= item.ItemQuality)
                 {
-                    Log.Instance.PrintConsoleMessage($"{equipment}, Tries: {_i}", ConsoleColor.Green);
+                    Log.Instance.Info($"{equipment}, Tries: {_i}", ConsoleColor.Green);
 
                     _i = 1;
                     item.Done = true;
@@ -39,14 +39,14 @@ namespace ShopTitansCheat.Components
                     return true;
                 }
 
-                Log.Instance.PrintConsoleMessage($"{equipment}, Tries: {_i++}", ConsoleColor.Yellow);
+                Log.Instance.Info($"{equipment}, Tries: {_i++}", ConsoleColor.Yellow);
                 Game.Instance.Restart();
                 return false;
             }
 
             if (Settings.GlitchCrafting.CraftingEquipmentsList.All(i => i.Done))
             {
-                Log.Instance.PrintConsoleMessage("We are done\n Stopping.", ConsoleColor.Green);
+                Log.Instance.Info("We are done\n Stopping.", ConsoleColor.Green);
                 return true;
             }
 
